@@ -1,0 +1,4 @@
+@mixin var_compat($property, $variableCSS, $variableSASS) {
+  #{$property}: $variableCSS;
+  #{$property}: $variableSASS;
+}

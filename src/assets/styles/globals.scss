@@ -1,22 +1,16 @@
-:global(body) {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+// abstracts
+@import "./sass/variables";
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+// reset
+@import "./sass/reset";
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+// theme
+@import "./sass/theme";
 
-* {
-  box-sizing: border-box;
-}
+// vendors
+
+// base
+// @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import "./sass/base";
+@import "./sass/sizes";
+@import "./sass/typography";

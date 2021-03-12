@@ -1,0 +1,27 @@
+:global(body) {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+html {
+  font-size: 62.5%; // fallback
+  font-size: var(--text-html, 62.5%);
+}
+
+body {
+  font-size: 1.6rem; // fallback
+  font-size: var(--text-body, 1.6rem);
+  background-color: $color-background; // fallback
+  background-color: var(--color-background, $color-background);
+  color: $color-text; // fallback
+  color: var(--color-text, $color-text);
+}

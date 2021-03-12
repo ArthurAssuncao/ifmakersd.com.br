@@ -1,0 +1,12 @@
+body {
+  @include var_compat("font-size", --text-body, $text-body);
+  font-weight: 400;
+}
+
+$font-sizes: "h1", "h2", "h3", "h4", "h5", "h6", "caption", "small";
+
+@each $tag in $sizes {
+  #{$tag} {
+    @include var_compat("font-size", --text-#{tag}, $text-#{tag});
+  }
+}

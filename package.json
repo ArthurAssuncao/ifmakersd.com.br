@@ -12,10 +12,13 @@
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
-    "release:major": "standard-version --release-as major"
+    "release:major": "standard-version --release-as major",
+    "new:feature": "git checkout -b ",
+    "merge:feature": "git checkout develop && git merge --no-ff "
   },
   "dependencies": {
     "next": "10.0.8",
+    "next-seo": "^4.20.0",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   },
@@ -38,6 +41,12 @@
     "typescript-eslint-parser": "^22.0.0",
     "url-loader": "^4.1.1"
   },
+  "browserslist": [
+    ">0.3%",
+    "not ie 11",
+    "not dead",
+    "not op_mini all"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "echo \"[Husky] pre-commit\"",

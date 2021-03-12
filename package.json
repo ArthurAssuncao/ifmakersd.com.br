@@ -12,7 +12,9 @@
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
-    "release:major": "standard-version --release-as major"
+    "release:major": "standard-version --release-as major",
+    "new:feature": "git checkout -b ",
+    "merge:feature": "git checkout develop && git merge --no-ff "
   },
   "dependencies": {
     "next": "10.0.8",

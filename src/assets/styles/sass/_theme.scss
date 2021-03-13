@@ -9,11 +9,13 @@
   --color-text: #{$color-text};
   --color-text-alt: #{$color-text-alt};
   --color-text-label: #{$color-text-label};
+  --color-text-gray: #{$color-text-gray};
   --color-text-disabled: #{$color-text-disabled};
   --color-text-highlight: #{$color-text-highlight};
   --color-primary: #{$color-primary};
   --color-accent: #{$color-accent};
   --color-secondary: #{$color-secondary};
+  --color-secondary-light: #{$color-secondary-light};
   --color-warning: #{$color-warning};
   --color-error: #{$color-error};
   --color-card-shadow: #{$color-card-shadow};
@@ -26,11 +28,13 @@
   --color-text: #{$color-text-dark};
   --color-text-alt: #{$color-text-alt};
   --color-text-label: #{$color-text-label-dark};
+  --color-text-gray: #{$color-text-gray-dark};
   --color-text-disabled: #{$color-text-disabled-dark};
   --color-text-highlight: #{$color-text-highlight};
   --color-primary: #{$color-primary};
   --color-accent: #{$color-accent};
   --color-secondary: #{$color-secondary};
+  --color-secondary-light: #{$color-secondary-light};
   --color-warning: #{$color-warning};
   --color-error: #{$color-error};
   --color-container-shadow: #{$color-container-shadow-dark};

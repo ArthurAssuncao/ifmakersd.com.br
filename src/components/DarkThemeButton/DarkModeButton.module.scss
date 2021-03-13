@@ -52,6 +52,7 @@
     display: flex;
     top: 0rem;
     margin-right: 1.5rem;
+    z-index: $z-index-over;
 
     &.animation {
       animation: flip-vertical-left 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955)

@@ -4,8 +4,6 @@ import bxData from "@iconify/icons-bx/bx-data";
 import bxsMicrochip from "@iconify/icons-bx/bxs-microchip";
 import lockLine from "@iconify/icons-clarity/lock-line";
 import mobilePhoneSolid from "@iconify/icons-clarity/mobile-phone-solid";
-import moonSolid from "@iconify/icons-clarity/moon-solid";
-import sunSolid from "@iconify/icons-clarity/sun-solid";
 import baselinePrecisionManufacturing from "@iconify/icons-ic/baseline-precision-manufacturing";
 import outlineScience from "@iconify/icons-ic/outline-science";
 import augmentedReality from "@iconify/icons-openmoji/augmented-reality";
@@ -40,10 +38,6 @@ const Hero = () => {
   };
   return (
     <section className={styles.container}>
-      <div className={styles.darkmode}>
-        <Icon icon={moonSolid} className={styles.darkmodeIcon} />
-        <Icon icon={sunSolid} className={styles.darkmodeIcon} />
-      </div>
       <div className={styles.heroLogoContainer}>
         <div
           className={styles.heroIconWrapper}

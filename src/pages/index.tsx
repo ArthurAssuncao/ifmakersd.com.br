@@ -1,7 +1,5 @@
-import { Home } from '../parts/Home';
+import { Home } from "../parts/Home";
 
 export default function InitialPage() {
-  return (
-    <Home />
-  )
+  return <Home />;
 }

@@ -1,3 +1,8 @@
-.container{
-  
+@import "../../assets/styles/sass/resources";
+
+.container {
+  @include mobile-up {
+    width: 100vw;
+    min-height: 100vh;
+  }
 }

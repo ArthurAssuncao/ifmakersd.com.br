@@ -1,3 +1,6 @@
+@import "colors";
+@import "sizes";
+
 :global(body) {
   margin: 0;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -18,10 +21,11 @@ html {
 }
 
 body {
-  font-size: 1.6rem; // fallback
-  font-size: var(--text-body, 1.6rem);
-  background-color: $color-background; // fallback
-  background-color: var(--color-background, $color-background);
-  color: $color-text; // fallback
-  color: var(--color-text, $color-text);
+  @include property_compat("font-size", --text-body, $text-body);
+  @include property_compat(
+    "background-color",
+    --color-background,
+    $color-background
+  );
+  @include property_compat("color", --color-text, $color-text);
 }

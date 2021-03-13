@@ -1,63 +1,46 @@
-$color-background: #fff;
-$color-background-alt: #7b7ff6;
-$color-gray-line: #dcdde0;
-$color-text: #4d4d4d;
-$color-text-alt: #fff;
-$color-text-label: #707070;
-$color-text-disabled: #dbdbdb;
-$color-text-highlight: #9b9fff;
-$color-primary: #9b9fff;
-$color-accent: #ff6961;
-$color-secondary: #4adede;
-$color-warning: #ffa061;
-$color-error: #ff6961;
-$color-card-shadow: rgba(0, 0, 0, 0.2);
-
-$color-background-dark: #525252;
-$color-gray-line-dark: #5a5a5a;
-$color-text-dark: #e4e4e4;
-$color-text-label-dark: #aaaaaa;
-$color-text-disabled-dark: #686868;
-$color-container-shadow-dark: rgb(255, 255, 255);
+@import "colors";
+@import "mixins";
 
 :root,
 :root body[data-theme="light"] {
-  --color-background: $color-background;
-  --color-background-alt: $color-background-alt;
-  --color-gray-line: $color-gray-line;
-  --color-text: $color-text;
-  --color-text-alt: $color-text-alt;
-  --color-text-label: $color-text-label;
-  --color-text-disabled: $color-text-disabled;
-  --color-text-highlight: $color-text-highlight;
-  --color-primary: $color-primary;
-  --color-accent: $color-accent;
-  --color-secondary: $color-secondary;
-  --color-warning: $color-warning;
-  --color-error: $color-error;
-  --color-card-shadow: $color-card-shadow;
+  --color-background: #{$color-background};
+  --color-background-alt: #{$color-background-alt};
+  --color-gray-line: #{$color-gray-line};
+  --color-text: #{$color-text};
+  --color-text-alt: #{$color-text-alt};
+  --color-text-label: #{$color-text-label};
+  --color-text-disabled: #{$color-text-disabled};
+  --color-text-highlight: #{$color-text-highlight};
+  --color-primary: #{$color-primary};
+  --color-accent: #{$color-accent};
+  --color-secondary: #{$color-secondary};
+  --color-warning: #{$color-warning};
+  --color-error: #{$color-error};
+  --color-card-shadow: #{$color-card-shadow};
 }
 
 :root body[data-theme="dark"] {
-  --color-background: $color-background-dark;
-  --color-background-alt: $color-background-alt;
-  --color-gray-line: $color-gray-line-dark;
-  --color-text: $color-text-dark;
-  --color-text-alt: $color-text-alt;
-  --color-text-label: $color-text-label-dark;
-  --color-text-disabled: $color-text-disabled-dark;
-  --color-text-highlight: $color-text-highlight;
-  --color-primary: $color-primary;
-  --color-accent: $color-accent;
-  --color-secondary: $color-secondary;
-  --color-warning: $color-warning;
-  --color-error: $color-error;
-  --color-container-shadow: $color-container-shadow-dark;
+  --color-background: #{$color-background-dark};
+  --color-background-alt: #{$color-background-alt};
+  --color-gray-line: #{$color-gray-line-dark};
+  --color-text: #{$color-text-dark};
+  --color-text-alt: #{$color-text-alt};
+  --color-text-label: #{$color-text-label-dark};
+  --color-text-disabled: #{$color-text-disabled-dark};
+  --color-text-highlight: #{$color-text-highlight};
+  --color-primary: #{$color-primary};
+  --color-accent: #{$color-accent};
+  --color-secondary: #{$color-secondary};
+  --color-warning: #{$color-warning};
+  --color-error: #{$color-error};
+  --color-container-shadow: #{$color-container-shadow-dark};
 }
 
 ::selection {
-  color: $color-background; //fallback
-  color: var(--color-background, $color-background);
-  background-color: $color-text-highlight; //fallback
-  background-color: var(--color-text-highlight, $color-text-highlight);
+  @include property_compat("color", --color-background, $color-background);
+  @include property_compat(
+    "background-color",
+    --color-text-highlight,
+    $color-text-highlight
+  );
 }

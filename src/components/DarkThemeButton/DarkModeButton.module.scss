@@ -16,11 +16,11 @@
     .containerInner {
       .iconWrapper {
         &:first-child {
-          z-index: calc($z-index-over + 1);
+          z-index: calc(#{$z-index-over} + 1);
           opacity: 0;
         }
         &:last-child {
-          z-index: calc($z-index-over + 2);
+          z-index: calc(#{$z-index-over} + 2);
           opacity: 1;
         }
       }
@@ -74,16 +74,16 @@
       }
 
       &:first-child {
-        transform: rotate(15deg) !important;
+        transform: rotate(12deg) !important;
       }
 
       &:first-child {
-        z-index: calc($z-index-over + 2);
+        z-index: calc(#{$z-index-over} + 2);
         opacity: 1;
       }
 
       &:last-child {
-        z-index: calc($z-index-over + 1);
+        z-index: calc(#{$z-index-over} + 1);
         opacity: 0;
       }
     }

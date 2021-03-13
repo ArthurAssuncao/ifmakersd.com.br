@@ -1,0 +1,90 @@
+@import "../../assets/styles/sass/resources";
+
+@keyframes flip-vertical-left {
+  0% {
+    transform: rotateY(-360deg);
+    opacity: 0.1;
+  }
+  100% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@include isDarkMode {
+  .container {
+    .containerInner {
+      .iconWrapper {
+        &:first-child {
+          z-index: calc($z-index-over + 1);
+          opacity: 0;
+        }
+        &:last-child {
+          z-index: calc($z-index-over + 2);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.container {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 100%;
+  top: 0rem;
+  z-index: $z-index-over;
+
+  @include tablet-up {
+    max-width: 960px;
+  }
+
+  .containerInner {
+    width: 3.6rem;
+    height: 3.6rem;
+    overflow: hidden;
+    align-self: flex-end;
+    margin-right: 1.5rem;
+    margin-top: 1.5rem;
+    position: absolute;
+    display: flex;
+    top: 0rem;
+    margin-right: 1.5rem;
+
+    &.animation {
+      animation: flip-vertical-left 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+        forwards;
+    }
+
+    .iconWrapper {
+      font-size: 3.6rem;
+      color: var(--color-text-alt, $color-text-alt);
+      position: absolute;
+
+      .icon {
+        transition: color 0.5s ease;
+
+        &:hover {
+          cursor: pointer;
+          color: var(--color-primary, $color-primary);
+        }
+      }
+
+      &:first-child {
+        transform: rotate(15deg) !important;
+      }
+
+      &:first-child {
+        z-index: calc($z-index-over + 2);
+        opacity: 1;
+      }
+
+      &:last-child {
+        z-index: calc($z-index-over + 1);
+        opacity: 0;
+      }
+    }
+  }
+}

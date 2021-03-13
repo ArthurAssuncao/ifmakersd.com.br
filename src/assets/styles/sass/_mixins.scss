@@ -1,4 +1,32 @@
-@mixin var_compat($property, $variableCSS, $variableSASS) {
-  #{$property}: $variableCSS;
-  #{$property}: $variableSASS;
+@mixin property_compat($property, $variableCSS, $variableSASS) {
+  @supports not (--css: variables) {
+    #{$property}: $variableSASS;
+  }
+  #{$property}: var($variableCSS, $variableSASS);
+}
+
+@mixin mobile-up {
+  @media (min-width: 0) {
+    @content;
+  }
+}
+@mixin mobile-land-up {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
+@mixin tablet-up {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+@mixin desktop-up {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+@mixin desktop-big-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
 }

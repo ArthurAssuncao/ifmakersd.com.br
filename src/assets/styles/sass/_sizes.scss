@@ -8,31 +8,10 @@ $text-h5: 2rem;
 $text-h6: 1.7rem;
 $text-body: 1.6rem;
 $text-caption: 1.28rem;
-$text-tiny: 1.024rem;
+$text-small: 1.024rem;
 
 $letter-space-capital: 0.3rem;
 $letter-space-thin-text: 0.3rem;
 $letter-space-body: 0rem;
 $letter-space-bold: -0.1rem;
 $letter-space-large-text: -0.2rem;
-
-:root,
-:root body {
-  --text-html: $text-html;
-
-  --text-h1: $text-h1;
-  --text-h2: $text-h2;
-  --text-h3: $text-h3;
-  --text-h4: $text-h4;
-  --text-h5: $text-h5;
-  --text-h6: $text-h6;
-  --text-body: $text-body;
-  --text-caption: $text-caption;
-  --text-tiny: $text-tiny;
-
-  --letter-space-capital: $letter-space-capital;
-  --letter-space-thin-text: $letter-space-thin-text;
-  --letter-space-body: $letter-space-body;
-  --letter-space-bold: $letter-space-bold;
-  --letter-space-large-text: $letter-space-large-text;
-}

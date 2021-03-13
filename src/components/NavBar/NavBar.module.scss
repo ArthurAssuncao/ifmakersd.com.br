@@ -1,0 +1,223 @@
+@import "../../assets/styles/sass/resources";
+
+.container {
+  max-width: 100%;
+  position: relative;
+  z-index: 1;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-background, $color-background);
+  margin: 1rem;
+  border-radius: 3rem;
+  z-index: $z-index-over-all;
+
+  @include tablet-up {
+    position: absolute;
+    top: 1.5rem;
+    left: 0;
+    right: inherit;
+    bottom: inherit;
+    background-color: transparent;
+    margin: 0;
+    border-radius: 0;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .menuMainOverlay {
+    &.opened {
+      @include mobile-up {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: fixed;
+        z-index: calc($z-index-over-all - 1);
+
+        .menuMain {
+          transition: transform 0.5s ease;
+        }
+      }
+    }
+    @include tablet-up {
+      position: relative;
+      width: inherit;
+      height: inherit;
+      background-color: transparent;
+      left: inherit;
+      right: inherit;
+      top: 0;
+      bottom: inherit;
+      transition: none;
+    }
+  }
+
+  .menuMain {
+    position: fixed;
+    height: 100vh;
+    width: 80vw;
+    background-color: var(--color-background, $color-background);
+    color: var(--color-text, $color-text);
+    right: 0;
+    top: 0;
+    transform: translateX(100vw);
+    transition: none;
+    z-index: $z-index-over-all;
+
+    &.active {
+      transform: none;
+    }
+
+    @include tablet-up {
+      position: relative;
+      height: inherit;
+      width: inherit;
+      background-color: transparent;
+      right: inherit;
+      top: inherit;
+      transform: none;
+      transition: none;
+      z-index: $z-index-over-all;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-alt, $color-text-alt);
+    }
+
+    .menuMainTitleWrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem;
+      z-index: $z-index-over-all;
+
+      @include tablet-up {
+        display: none;
+      }
+
+      .menuMainTitleIcon {
+        width: 50%;
+      }
+
+      .menuMainTitleCloseWrapper {
+        border: 2px solid var(--color-text, $color-text);
+        border-radius: 50%;
+        padding: 0.3rem;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: $z-index-over-all;
+
+        .menuMainTitleCloseIcon {
+          font-size: 2.5rem;
+          font-weight: bold;
+          color: var(--color-text, $color-text);
+        }
+
+        &:hover {
+          color: var(--color-primary, $color-primary);
+        }
+      }
+    }
+
+    .menuMainList {
+      margin: 3rem;
+      margin-top: 4rem;
+
+      @include tablet-up {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+      }
+
+      .menuMainItem {
+        display: flex;
+        align-items: center;
+        margin: 2rem 0;
+
+        @include tablet-up {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin: 0 1.6rem;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: var(--color-primary, $color-primary);
+            cursor: pointer;
+          }
+        }
+
+        .menuMainItemIcon {
+          font-size: 5rem;
+          margin-right: 1rem;
+
+          @include tablet-up {
+            font-size: 3.6rem;
+            margin: 0.2rem 0;
+          }
+        }
+        .menuMainItemText {
+          font-size: var(--text-h4, $text-h4);
+
+          @include tablet-up {
+            font-size: var(--text-h6, $text-h6);
+          }
+        }
+      }
+    }
+  }
+
+  .menuBottom {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5rem 0;
+    z-index: 30;
+
+    @include tablet-up {
+      display: none;
+    }
+
+    .menuBottomIconWrapper {
+      cursor: pointer;
+      width: 74px;
+      border-radius: 25px;
+      padding: 0.4rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-gray, $color-text-gray);
+
+      &.active {
+        color: var(--color-primary, $color-primary);
+        background-color: var(--color-secondary-light, $color-secondary-light);
+      }
+
+      .menuBottomIcon {
+        width: 32px;
+        height: 32px;
+        transition: color 0.5s ease;
+        &:hover {
+          color: var(--color-primary, $color-primary);
+        }
+      }
+    }
+  }
+}

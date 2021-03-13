@@ -1,6 +1,7 @@
 @import "../../assets/styles/sass/resources";
 
 .container {
+  position: relative;
   @include mobile-up {
     width: 100%;
     display: flex;

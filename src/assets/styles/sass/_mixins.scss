@@ -5,6 +5,18 @@
   #{$property}: var($variableCSS, $variableSASS);
 }
 
+@mixin isLightMode {
+  :root body[data-theme="light"] {
+    @content;
+  }
+}
+
+@mixin isDarkMode {
+  :root body[data-theme="dark"] {
+    @content;
+  }
+}
+
 @mixin mobile-up {
   @media (min-width: 0) {
     @content;

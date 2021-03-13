@@ -73,22 +73,6 @@
   display: flex;
   flex-direction: column;
 
-  .darkmode {
-    width: 3.6rem;
-    height: 3.6rem;
-    overflow: hidden;
-    align-self: flex-end;
-    margin-right: 1.5rem;
-    margin-top: 1.5rem;
-    .darkmodeIcon {
-      font-size: 3.6rem;
-      color: var(--color-text-alt, $color-text-alt);
-      &:first-child {
-        transform: rotate(15deg) !important;
-      }
-    }
-  }
-
   .heroLogoContainer {
     display: flex;
     align-items: center;

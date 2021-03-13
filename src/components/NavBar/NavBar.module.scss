@@ -28,6 +28,7 @@
     align-items: flex-start;
     justify-content: center;
     width: 100%;
+    z-index: $z-index-default;
   }
 
   .menuMainOverlay {
@@ -71,7 +72,7 @@
     top: 0;
     transform: translateX(100vw);
     transition: none;
-    z-index: $z-index-over-all;
+    z-index: $z-index-default;
 
     &.active {
       transform: none;
@@ -86,7 +87,6 @@
       top: inherit;
       transform: none;
       transition: none;
-      z-index: $z-index-over-all;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -99,7 +99,6 @@
       align-items: center;
       justify-content: center;
       margin: 2rem;
-      z-index: $z-index-over-all;
 
       @include tablet-up {
         display: none;
@@ -119,7 +118,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: $z-index-over-all;
 
         .menuMainTitleCloseIcon {
           font-size: 2.5rem;
@@ -189,7 +187,7 @@
     align-items: center;
     justify-content: space-around;
     padding: 0.5rem 0;
-    z-index: 30;
+    z-index: $z-index-over-all;
 
     @include tablet-up {
       display: none;

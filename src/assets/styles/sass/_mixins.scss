@@ -1,0 +1,44 @@
+@mixin property_compat($property, $variableCSS, $variableSASS) {
+  @supports not (--css: variables) {
+    #{$property}: $variableSASS;
+  }
+  #{$property}: var($variableCSS, $variableSASS);
+}
+
+@mixin isLightMode {
+  :root body[data-theme="light"] {
+    @content;
+  }
+}
+
+@mixin isDarkMode {
+  :root body[data-theme="dark"] {
+    @content;
+  }
+}
+
+@mixin mobile-up {
+  @media (min-width: 0) {
+    @content;
+  }
+}
+@mixin mobile-land-up {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
+@mixin tablet-up {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+@mixin desktop-up {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+@mixin desktop-big-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}

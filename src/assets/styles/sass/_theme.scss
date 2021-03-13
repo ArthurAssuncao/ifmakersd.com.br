@@ -1,0 +1,50 @@
+@import "colors";
+@import "mixins";
+
+:root,
+:root body[data-theme="light"] {
+  --color-background: #{$color-background};
+  --color-background-alt: #{$color-background-alt};
+  --color-gray-line: #{$color-gray-line};
+  --color-text: #{$color-text};
+  --color-text-alt: #{$color-text-alt};
+  --color-text-label: #{$color-text-label};
+  --color-text-gray: #{$color-text-gray};
+  --color-text-disabled: #{$color-text-disabled};
+  --color-text-highlight: #{$color-text-highlight};
+  --color-primary: #{$color-primary};
+  --color-accent: #{$color-accent};
+  --color-secondary: #{$color-secondary};
+  --color-secondary-light: #{$color-secondary-light};
+  --color-warning: #{$color-warning};
+  --color-error: #{$color-error};
+  --color-card-shadow: #{$color-card-shadow};
+}
+
+:root body[data-theme="dark"] {
+  --color-background: #{$color-background-dark};
+  --color-background-alt: #{$color-background-alt};
+  --color-gray-line: #{$color-gray-line-dark};
+  --color-text: #{$color-text-dark};
+  --color-text-alt: #{$color-text-alt};
+  --color-text-label: #{$color-text-label-dark};
+  --color-text-gray: #{$color-text-gray-dark};
+  --color-text-disabled: #{$color-text-disabled-dark};
+  --color-text-highlight: #{$color-text-highlight};
+  --color-primary: #{$color-primary};
+  --color-accent: #{$color-accent};
+  --color-secondary: #{$color-secondary};
+  --color-secondary-light: #{$color-secondary-light};
+  --color-warning: #{$color-warning};
+  --color-error: #{$color-error};
+  --color-container-shadow: #{$color-container-shadow-dark};
+}
+
+::selection {
+  @include property_compat("color", --color-background, $color-background);
+  @include property_compat(
+    "background-color",
+    --color-text-highlight,
+    $color-text-highlight
+  );
+}

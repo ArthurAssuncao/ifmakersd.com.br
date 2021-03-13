@@ -1,0 +1,45 @@
+@import "mixins";
+@import "sizes";
+
+body {
+  @include property_compat("font-size", --text-body, $text-body);
+  font-weight: 400;
+}
+
+:root,
+:root body {
+  --text-html: #{$text-html};
+
+  --text-h1: #{$text-h1};
+  --text-h2: #{$text-h2};
+  --text-h3: #{$text-h3};
+  --text-h4: #{$text-h4};
+  --text-h5: #{$text-h5};
+  --text-h6: #{$text-h6};
+  --text-body: #{$text-body};
+  --text-caption: #{$text-caption};
+  --text-small: #{$text-small};
+
+  --letter-space-capital: #{$letter-space-capital};
+  --letter-space-thin-text: #{$letter-space-thin-text};
+  --letter-space-body: #{$letter-space-body};
+  --letter-space-bold: #{$letter-space-bold};
+  --letter-space-large-text: #{$letter-space-large-text};
+}
+
+$font-sizes: (
+  "h1": #{$text-h1},
+  "h2": #{$text-h2},
+  "h3": #{$text-h3},
+  "h4": #{$text-h4},
+  "h5": #{$text-h5},
+  "h6": #{$text-h6},
+  "caption": #{$text-caption},
+  "small": #{$text-small},
+);
+
+@each $tag, $val in $font-sizes {
+  #{$tag} {
+    @include property_compat("font-size", #{--text-$tag}, $val);
+  }
+}

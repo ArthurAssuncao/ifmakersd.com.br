@@ -4,6 +4,7 @@
 :root,
 :root body[data-theme="light"] {
   --color-background: #{$color-background};
+  --color-background-alpha: #{$color-background-alpha};
   --color-background-alt: #{$color-background-alt};
   --color-gray-line: #{$color-gray-line};
   --color-text: #{$color-text};
@@ -23,6 +24,7 @@
 
 :root body[data-theme="dark"] {
   --color-background: #{$color-background-dark};
+  --color-background-alpha: #{$color-background-dark-alpha};
   --color-background-alt: #{$color-background-alt};
   --color-gray-line: #{$color-gray-line-dark};
   --color-text: #{$color-text-dark};

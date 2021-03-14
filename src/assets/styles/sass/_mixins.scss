@@ -1,3 +1,7 @@
+@function toRGBA ($color, $alpha) {
+  @return "rgba(" + red($color) + ", " + green($color) + ", " + blue($color) + ", " + $alpha ")";
+}
+
 @mixin property_compat($property, $variableCSS, $variableSASS) {
   @supports not (--css: variables) {
     #{$property}: $variableSASS;

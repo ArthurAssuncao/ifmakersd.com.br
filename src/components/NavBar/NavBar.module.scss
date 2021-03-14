@@ -37,10 +37,25 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: var(--color-background, $color-background);
+  
   margin: 1rem;
-  border-radius: 3rem;
+  
   z-index: $z-index-over-all;
+  
+  &:after{
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    background-color: var(--color-background-alpha, $color-background-alpha);
+    border-radius: 3rem;
+    box-shadow: 0 0 1rem var(--color-card-shadow, $color-card-shadow);
+    backdrop-filter: blur(10px);
+  }
 
   @include tablet-up {
     position: absolute;
@@ -57,6 +72,7 @@
     justify-content: center;
     width: 100%;
     z-index: $z-index-default;
+    box-shadow: initial;
   }
 
   .menuMainOverlay {
@@ -146,11 +162,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
 
         .menuMainTitleCloseIcon {
           font-size: 2.5rem;
           font-weight: bold;
           color: var(--color-text, $color-text);
+          z-index: -1;
+          position: relative;
         }
 
         &:hover {

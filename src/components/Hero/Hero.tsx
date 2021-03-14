@@ -43,9 +43,9 @@ const Hero = () => {
     colorBG: "#283036",
   };
 
-  function handleWindowSizeChange() {
+  const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);

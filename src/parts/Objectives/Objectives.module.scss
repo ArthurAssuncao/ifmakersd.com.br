@@ -1,13 +1,16 @@
 @import "../../assets/styles/sass/resources";
 
 .container {
-  min-height: 100vh;
+  min-height: 70vh;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 
-  .wave {
-    top: -4rem;
-    position: absolute;
-    height: 5rem;
+  .wave{
+    path{
+      fill: var(--color-background, $color-background);
+    }
   }
 
   .containerInner {
@@ -15,19 +18,55 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem;
+    padding: 4rem 0;
+    width: 100%;
 
     @include tablet-up {
       max-width: 960px;
+      width: auto;
     }
 
     .title {
       font-weight: bold;
+      padding: 3rem 0;
     }
 
     .objectives {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 3rem;
+      width: 100%;
+
+      @include tablet-up {
+        flex-direction: row;
+        width: auto;
+      }
+
       & > * {
-        margin: 3rem 0;
+        margin: 1.5rem 0;
+
+        @include tablet-up {
+          margin: 2rem;
+        }
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        
+        max-width: 100%;
+        width: 100%;
+
+        @include tablet-up {
+          $idealSize: (960px - (20px * 3)) / 3;
+          max-width: clamp(100%, #{$idealSize}, 100%);
+          width: auto;
+        }
       }
     }
   }

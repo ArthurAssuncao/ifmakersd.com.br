@@ -13,8 +13,12 @@ const Objective = (props: ObjectiveProps) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.icon}>{icon}</div>
-      <div className={styles.image}>{image}</div>
+      <div className={styles.iconImageWrapper}>
+        <div className={styles.image}>
+          <div className={styles.icon}>{icon}</div>
+          {image}
+        </div>
+      </div>
       <div className={styles.content}>
         <h5 className={styles.title}>{title}</h5>
         <div className={styles.description}>{description}</div>

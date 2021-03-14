@@ -20,7 +20,8 @@ const NavBar = () => {
     setIsMobileSideMenuActive(true);
   };
 
-  const closeMobileSideMenu = () => {
+  const closeMobileSideMenu = (e: React.MouseEvent) => {
+    if (e.target !== e.currentTarget) return;
     setIsMobileSideMenuActive(false);
   };
 
@@ -30,8 +31,8 @@ const NavBar = () => {
         className={`${styles.menuMainOverlay} ${
           isMobileSideMenuActive ? styles.opened : ""
         }`}
-        onClick={() => {
-          closeMobileSideMenu();
+        onClick={(e) => {
+          closeMobileSideMenu(e);
         }}
       >
         <div
@@ -42,7 +43,7 @@ const NavBar = () => {
           <h3 className={styles.menuMainTitleWrapper}>
             <Logo className={styles.menuMainTitleIcon} />
             <span
-              onClick={() => closeMobileSideMenu()}
+              onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}
               className={styles.menuMainTitleCloseWrapper}
             >
               <Icon

@@ -8,7 +8,7 @@ const withReactSvg = require ('next-react-svg');
 const nextConfig = {
   webpack: function (config) {
     config.module.rules.push ({
-      test: /\.(eot|woff|woff2|ttf|mp3)$/,
+      test: /\.(eot|woff|woff2|ttf|mp3|svg)$/,
       use: {
         loader: 'url-loader',
         options: {
@@ -27,21 +27,24 @@ const nextConfig = {
 
 module.exports = withPlugins (
   [
-    [withImages],
     [
-      withPWA ({
+      withPWA,
+      {
         pwa: {
           dest: 'public',
         },
-      }),
+      },
     ],
     [
-      withReactSvg ({
-        include: path.resolve (__dirname, 'src/assets/images/'),
-        webpack (config, options) {
-          return config;
-        },
-      }),
+      withReactSvg (
+        withImages ({
+          include: path.resolve (__dirname, 'src/assets/images'),
+          fileExtensions: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+          webpack (config, options) {
+            return config;
+          },
+        })
+      ),
     ],
   ],
   nextConfig

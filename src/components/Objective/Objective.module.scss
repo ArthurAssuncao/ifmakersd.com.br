@@ -1,0 +1,122 @@
+@import "../../assets/styles/sass/resources";
+
+.container {
+  box-shadow: 0 0 2rem var(--color-card-shadow, $color-card-shadow);
+  padding: 2.5rem;
+  
+  @include tablet-up{
+    padding: 1.5rem;
+  }
+
+  display: flex;
+  flex-direction: column;
+
+  transition: transform 0.5s ease;
+
+  &:hover{
+    transform: scale(1.1);
+  }
+
+  .iconImageWrapper {
+    position: relative;
+    align-self: flex-end;
+    width: fit-content;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    width: 100%;
+
+    .image {
+      position: relative;
+      padding: 2rem 1rem 0 3rem;
+
+      @include tablet-up{
+        padding: 2rem 0.5rem 0 1.5rem;
+      }
+
+      width: inherit;
+
+      & > * {
+        width: inherit;
+      }
+
+      .icon {
+        top: 0;
+        left: 0;
+        width: 6.4rem;
+        height: 6.4rem;
+        width: clamp(6.4rem, 10rem, 16vw);
+        height: clamp(6.4rem, 10rem, 16vw);
+        @include tablet-up{
+          width: 6.4rem;
+          height: 6.4rem;
+        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        z-index: 1;
+  
+        &:before {
+          content: "";
+          position: absolute;
+          width: 6.4rem;
+          height: 6.4rem;
+          width: clamp(6.4rem, 10rem, 16vw);
+          height: clamp(6.4rem, 10rem, 16vw);
+
+          @include tablet-up{
+            width: 6.4rem;
+            height: 6.4rem;
+          }
+
+          border-radius: 50%;
+          background-color: var(--color-secondary, $color-secondary);
+          opacity: 0.4;
+        }
+  
+        & > * {
+          font-size: 4.8rem;
+          font-size: clamp(4.8rem, 8rem, 10vw);
+          @include tablet-up{
+            font-size: 4.8rem;
+          }
+          color: var(--color-primary, $color-primary);
+        }
+      }
+    }
+  }
+
+  .content {
+    position: relative;
+    
+    padding: 1rem 0;
+
+    @include tablet-up{
+      padding: 0.5rem 0;
+    }
+    
+
+    .title {
+      font-weight: bold;
+      line-height: 1.15;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      
+        padding: 1rem 0;
+      
+    }
+
+    .description {
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+  }
+}

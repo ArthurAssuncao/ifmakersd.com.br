@@ -11,10 +11,10 @@
 
 @keyframes logo-pulse {
   0% {
-    box-shadow: 0 0 0rem var(--color-primary, $color-primary);
+    box-shadow: 0 0 0.1rem var(--color-card-shadow, $color-card-shadow);
   }
   100% {
-    box-shadow: 0 0 2rem var(--color-primary, $color-primary);
+    box-shadow: 0 0 2rem var(--color-card-shadow, $color-card-shadow);
   }
 }
 

@@ -1,9 +1,37 @@
 @import "../../assets/styles/sass/resources";
 
+@keyframes menuSlideOut {
+  0% {
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+@keyframes menuSlideIn {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@include isDarkMode {
+  .container {
+    .menuBottom {
+      .menuBottomIconWrapper {
+        &.active {
+          color: var(--color-text, $color-text);
+          background-color: var(--color-text-disabled, $color-text-disabled);
+        }
+      }
+    }
+  }
+}
+
 .container {
   max-width: 100%;
   position: relative;
-  z-index: 1;
 
   position: fixed;
   bottom: 0;
@@ -42,11 +70,7 @@
         top: 0;
         bottom: 0;
         position: fixed;
-        z-index: calc($z-index-over-all - 1);
-
-        .menuMain {
-          transition: transform 0.5s ease;
-        }
+        z-index: calc(#{$z-index-over-all} - 1);
       }
     }
     @include tablet-up {
@@ -71,14 +95,17 @@
     right: 0;
     top: 0;
     transform: translateX(100vw);
-    transition: none;
-    z-index: $z-index-default;
+    overflow: hidden;
+    animation: menuSlideOut 0.5s ease forwards;
+
+    z-index: $z-index-over-all;
 
     &.active {
-      transform: none;
+      animation: menuSlideIn 0.5s ease forwards;
     }
 
     @include tablet-up {
+      animation: none;
       position: relative;
       height: inherit;
       width: inherit;
@@ -90,6 +117,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: $z-index-default;
       color: var(--color-text-alt, $color-text-alt);
     }
 
@@ -171,7 +199,7 @@
           }
         }
         .menuMainItemText {
-          font-size: var(--text-h4, $text-h4);
+          font-size: var(--text-h5, $text-h5);
 
           @include tablet-up {
             font-size: var(--text-h6, $text-h6);
@@ -187,7 +215,7 @@
     align-items: center;
     justify-content: space-around;
     padding: 0.5rem 0;
-    z-index: $z-index-over-all;
+    z-index: calc(#{$z-index-over-all} - 1);
 
     @include tablet-up {
       display: none;
@@ -212,6 +240,8 @@
         width: 32px;
         height: 32px;
         transition: color 0.5s ease;
+        z-index: $z-index-default;
+        position: relative;
         &:hover {
           color: var(--color-primary, $color-primary);
         }

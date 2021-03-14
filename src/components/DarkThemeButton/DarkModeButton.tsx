@@ -9,6 +9,18 @@ const DarkModeButton = () => {
   const [isAnimationActive, setAnimationActive] = useState(false);
 
   useEffect(() => {
+    const preferColor = window.matchMedia("(prefers-color-scheme: dark)");
+
+    preferColor.addEventListener("change", function (evt) {
+      setTheme(evt.matches ? "dark" : "light");
+    });
+    const prefersDark = preferColor.matches;
+    const actualTheme = prefersDark ? "dark" : "light";
+    setTheme(actualTheme);
+    document.body.dataset.theme = actualTheme;
+  }, []);
+
+  useEffect(() => {
     document.body.dataset.theme = theme;
   }, [theme]);
 

@@ -8,6 +8,7 @@ import baselinePrecisionManufacturing from "@iconify/icons-ic/baseline-precision
 import outlineScience from "@iconify/icons-ic/outline-science";
 import augmentedReality from "@iconify/icons-openmoji/augmented-reality";
 import { Icon } from "@iconify/react";
+import { useEffect, useState } from "react";
 import ReactTooltip, { Effect, Type } from "react-tooltip";
 import Logo from "../../assets/images/ifmaker/logo.svg";
 import styles from "./Hero.module.scss";
@@ -25,6 +26,8 @@ interface TooltipConfig {
 }
 
 const Hero = () => {
+  const [width, setWidth] = useState<number>(window && window.innerWidth);
+
   const tooltipConfig: TooltipConfig = {
     type: "dark",
     effect: "solid",
@@ -33,9 +36,24 @@ const Hero = () => {
     className: styles.tooltip,
     classNameMsgLeft: `${styles.tooltipMsg} ${styles.tooltipMsgLeft}`,
     classNameMsgRight: `${styles.tooltipMsg} ${styles.tooltipMsgRight}`,
-    buttonMsg: "Clique no ícone para aprender mais",
+    buttonMsg:
+      width >= 768
+        ? "Clique no ícone para aprender mais"
+        : "Clique aqui para aprender mais",
     colorBG: "#283036",
   };
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
   return (
     <section className={styles.container}>
       <div className={styles.heroLogoContainer}>

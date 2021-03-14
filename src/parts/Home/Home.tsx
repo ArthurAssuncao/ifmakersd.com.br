@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ButtonScrollToTop } from "../../components/ButtonScrollToTop";
 import { Header } from "../Header";
 import { Objectives } from "../Objectives";
 import styles from "./Home.module.scss";
@@ -22,6 +23,7 @@ const Home = () => {
       <ToastContainer />
       <Header />
       <Objectives />
+      <ButtonScrollToTop />
     </div>
   );
 };

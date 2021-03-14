@@ -29,4 +29,8 @@ body {
     $color-background
   );
   @include property_compat("color", --color-text, $color-text);
+  @include property_compat("background-color", --color-background, $color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

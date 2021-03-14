@@ -40,6 +40,6 @@ $font-sizes: (
 
 @each $tag, $val in $font-sizes {
   #{$tag} {
-    @include property_compat("font-size", #{--text-$tag}, $val);
+    @include property_compat("font-size", --text-#{$tag}, $val);
   }
 }

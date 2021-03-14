@@ -1068,6 +1068,11 @@
   resolved "https://registry.yarnpkg.com/@iconify/icons-clarity/-/icons-clarity-1.1.0.tgz#72834d2366cf6be22c5516fafe5710b96aeed916"
   integrity sha512-k++l+TvTu4i7D0lJRHztzVghqeSK4cEsoRdNljQGbOmLXkNhLxUynC+HdqTSPekTS1JtucRoFjHan06U+goGsA==
 
+"@iconify/icons-dashicons@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-dashicons/-/icons-dashicons-1.1.0.tgz#2bfa1f805a39d6ecef9fc03c1229a4415bf441ae"
+  integrity sha512-Neljkz+P3sQPzpzBHN1oqWfdX5arhO+UCsVqvegVoKQsnwkEE6XmNmrwxOciJBIAgSuo5ZmJit1kFwgR8TjhsA==
+
 "@iconify/icons-fluent@^1.1.8":
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/@iconify/icons-fluent/-/icons-fluent-1.1.8.tgz#c2dd2217e0f93e0aa4431c41be81df60dc5d50ab"
@@ -1082,6 +1087,11 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@iconify/icons-la/-/icons-la-1.1.0.tgz#da00d0ed5686ff07d5addcf75a91175beb2629d3"
   integrity sha512-9LEAEabzI2xMJzSh0wqeJmjYseWsDvN9mSZKcCoHlT+pZCJkMAwHoyoBgI7pO2Deo31VG2JiX5hx/4VyMtbE0Q==
+
+"@iconify/icons-mdi@^1.1.12":
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-mdi/-/icons-mdi-1.1.12.tgz#6cdf4fd354730491685ff741c0d490c90631683b"
+  integrity sha512-U7ZjSRx1ByV09I9oVow1BT9II7DKc1m2HuCB2CjE9gA43Ybpq2qJUDBQohc0svu/q+MPoM6XNW0b09v9iYI1AA==
 
 "@iconify/icons-openmoji@^1.1.7":
   version "1.1.7"
@@ -4061,6 +4071,13 @@ react-tooltip@^4.2.15:
   dependencies:
     prop-types "^15.7.2"
     uuid "^7.0.3"
+
+react-wavify@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/react-wavify/-/react-wavify-1.5.2.tgz#02a26b335414d0e008cd4f6c0ab15dd97af5ba88"
+  integrity sha512-Xf7zC+6DyitUbNQsAMrSN6DygN90DrzQB20ecgLpiSoBqyUgUM3DbYvCTk5re7azvwT9EANq+awyk2KNCr4oEg==
+  dependencies:
+    prop-types "^15.7.2"
 
 react@17.0.1:
   version "17.0.1"

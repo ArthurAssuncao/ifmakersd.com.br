@@ -1,0 +1,34 @@
+@import "../../assets/styles/sass/resources";
+
+.container {
+  min-height: 100vh;
+  position: relative;
+
+  .wave {
+    top: -4rem;
+    position: absolute;
+    height: 5rem;
+  }
+
+  .containerInner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+
+    @include tablet-up {
+      max-width: 960px;
+    }
+
+    .title {
+      font-weight: bold;
+    }
+
+    .objectives {
+      & > * {
+        margin: 3rem 0;
+      }
+    }
+  }
+}

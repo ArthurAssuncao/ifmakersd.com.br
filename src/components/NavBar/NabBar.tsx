@@ -43,12 +43,11 @@ const NavBar = () => {
           <h3 className={styles.menuMainTitleWrapper}>
             <Logo className={styles.menuMainTitleIcon} />
             <span
-              onClick={(e) => closeMobileSideMenu(e)}
+              onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}
               className={styles.menuMainTitleCloseWrapper}
             >
               <Icon
                 icon={windowCloseLine}
-                onClick={(e) => closeMobileSideMenu(e)}
                 className={styles.menuMainTitleCloseIcon}
               />
             </span>

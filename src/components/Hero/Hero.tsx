@@ -26,7 +26,7 @@ interface TooltipConfig {
 }
 
 const Hero = () => {
-  const [width, setWidth] = useState<number>(window && window.innerWidth);
+  const [width, setWidth] = useState<number>(0);
 
   const tooltipConfig: TooltipConfig = {
     type: "dark",
@@ -304,9 +304,12 @@ const Hero = () => {
           </ReactTooltip>
         </div>
 
-        <div className={styles.heroLogoWrapper}>
-          <Logo className={styles.heroLogoIcon} />
-        </div>
+        <h1 className={styles.heroLogoWrapper}>
+          <Logo
+            className={styles.heroLogoIcon}
+            aria-label="Logo do Laboratório IFMaker"
+          />
+        </h1>
       </div>
     </section>
   );

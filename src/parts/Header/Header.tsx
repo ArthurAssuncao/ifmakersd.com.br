@@ -8,6 +8,7 @@ const Header = () => {
     <header className={styles.container}>
       <DarkModeButton />
       <NavBar />
+
       <Hero />
     </header>
   );

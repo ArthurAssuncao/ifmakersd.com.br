@@ -9,12 +9,34 @@ import news20Regular from "@iconify/icons-fluent/news-20-regular";
 import targetEdit16Regular from "@iconify/icons-fluent/target-edit-16-regular";
 import toolsIcon from "@iconify/icons-la/tools";
 import { Icon } from "@iconify/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Logo from "../../assets/images/ifmaker/logo.svg";
 import styles from "./NavBar.module.scss";
 
 const NavBar = () => {
   const [isMobileSideMenuActive, setIsMobileSideMenuActive] = useState(false);
+  const [showFloating, setShowFloating] = useState(false);
+
+  let navRef = useRef<HTMLElement | null>(null);
+
+  const setShowFloatingCheck = (value: boolean) => {
+    if (
+      value !== showFloating ||
+      value !== Boolean(navRef.current?.dataset.floating)
+    ) {
+      setShowFloating(value);
+    }
+  };
+
+  const checkScroll = () => {
+    const limitHeight = window.innerHeight; // window.innerHeight
+
+    if (window.pageYOffset > limitHeight) {
+      setShowFloatingCheck(true);
+    } else {
+      setShowFloatingCheck(false);
+    }
+  };
 
   const openMobileSideMenu = () => {
     setIsMobileSideMenuActive(true);
@@ -25,8 +47,15 @@ const NavBar = () => {
     setIsMobileSideMenuActive(false);
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll", checkScroll);
+    return () => {
+      window.removeEventListener("scroll", checkScroll);
+    };
+  }, []);
+
   return (
-    <nav className={styles.container}>
+    <nav className={styles.container} data-floating={showFloating} ref={navRef}>
       <div
         className={`${styles.menuMainOverlay} ${
           isMobileSideMenuActive ? styles.opened : ""
@@ -51,6 +80,9 @@ const NavBar = () => {
                 className={styles.menuMainTitleCloseIcon}
               />
             </span>
+          </h3>
+          <h3 className={styles.menuMainIconWrapper}>
+            <Logo className={styles.menuMainIcon} />
           </h3>
           <ul className={styles.menuMainList}>
             <li className={styles.menuMainItem}>

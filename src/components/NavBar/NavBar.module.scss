@@ -7,12 +7,33 @@
     transform: translateX(100vw);
   }
 }
+
+
 @keyframes menuSlideIn {
   0% {
     transform: translateX(100vw);
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+@keyframes menuFloatingAppear {
+  0% {
+    transform: translateY(-6rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes menuFloatingDisappear {
+  0% {
+    
+  }
+  100% {
+    
+    
   }
 }
 
@@ -41,7 +62,80 @@
   margin: 1rem;
   
   z-index: $z-index-over-all;
-  
+
+  @include tablet-up {
+    margin: 0;
+    border-radius: 0;
+    top: 0;
+    left: 0;
+    right: inherit;
+    bottom: inherit;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    z-index: $z-index-default;
+    box-shadow: initial;
+
+    &[data-floating=false]{
+      // animation: menuFloatingDisappear 0.5s ease;
+      position: absolute;
+      margin-top: 1.5rem;
+      background-color: transparent;
+      
+    
+      &:after{
+        content: none;
+      }
+
+      .menuMain{
+        max-width: 960px;
+
+        .menuMainIcon{
+          display: none;
+        }
+      }
+    }
+
+    &[data-floating=true]{
+      margin: 0;
+      animation: menuFloatingAppear 0.5s ease forwards;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1rem 0;
+      z-index: $z-index-over;
+
+      &:after{
+        background: linear-gradient(
+          45deg,
+          var(--color-secondary, $color-secondary),
+          var(--color-primary, $color-primary)
+        );
+        box-shadow: 0 0.1rem 1rem var(--color-card-shadow, $color-card-shadow);
+      }
+      
+      .menuMain{
+        max-width: 960px;
+        justify-content: space-evenly;
+
+        .menuMainList{
+          .menuMainItem{
+            &:hover{
+              color: lighten($color-primary, 10%);
+            }
+          }
+        }
+
+        .menuMainIcon{
+          height: 5.5rem;
+        }
+      }
+      
+    }
+  }
+
   &:after{
     content: "";
     z-index: -1;
@@ -55,24 +149,10 @@
     border-radius: 3rem;
     box-shadow: 0 0 1rem var(--color-card-shadow, $color-card-shadow);
     backdrop-filter: blur(10px);
-  }
 
-  @include tablet-up {
-    position: absolute;
-    top: 1.5rem;
-    left: 0;
-    right: inherit;
-    bottom: inherit;
-    background-color: transparent;
-    margin: 0;
-    border-radius: 0;
-
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-    z-index: $z-index-default;
-    box-shadow: initial;
+    @include tablet-up {
+      border-radius: 0;
+    }
   }
 
   .menuMainOverlay {
@@ -99,6 +179,9 @@
       top: 0;
       bottom: inherit;
       transition: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 

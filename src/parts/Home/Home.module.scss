@@ -2,7 +2,7 @@
 
 .container {
   @include mobile-up {
-    width: 99.2vw;
+    width: 100vw;
     min-height: 100vh;
   }
 }

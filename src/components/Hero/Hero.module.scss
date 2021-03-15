@@ -152,6 +152,9 @@
         width: 3.6rem;
         height: 3.6rem;
         padding: 0.2rem;
+        z-index: $z-index-default;
+        position: relative;
+
         path {
           transition: all 0.5s ease;
           fill: var(--color-text-alt, $color-text-alt);
@@ -185,6 +188,8 @@
         height: 25rem;
       }
       .heroLogoIcon {
+        z-index: $z-index-default;
+        position: relative;
       }
     }
   }

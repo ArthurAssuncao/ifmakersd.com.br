@@ -1,0 +1,14 @@
+@import "../../assets/styles/sass/resources";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  @include mobile-up {
+    width: 100vw;
+    min-height: 100vh;
+  }
+}

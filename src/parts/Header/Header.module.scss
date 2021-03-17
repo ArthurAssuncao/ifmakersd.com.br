@@ -1,8 +1,27 @@
 @import "../../assets/styles/sass/resources";
 
+@keyframes bg-pan-left {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .container {
   position: relative;
-  
+  min-height: 8rem;
+
+  background: linear-gradient(
+    45deg,
+    var(--color-secondary, $color-secondary),
+    var(--color-primary, $color-primary)
+  );
+  background-size: 200% 100%;
+  overflow: hidden;
+  animation: bg-pan-left 8s alternate infinite;
+
   @include mobile-up {
     width: 100%;
     display: flex;

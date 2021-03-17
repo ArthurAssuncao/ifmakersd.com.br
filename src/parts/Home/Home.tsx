@@ -1,30 +1,23 @@
-import { useEffect } from "react";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ButtonScrollToTop } from "../../components/ButtonScrollToTop";
-import { Header } from "../Header";
+import { Hero } from "../../components/Hero";
+import { ProjectCMS, ProjectProvider } from "../../services/ProjectContext";
 import { Objectives } from "../Objectives";
-import styles from "./Home.module.scss";
+import { PageTemplate } from "../PageTemplate";
+import { Projects } from "../Projects";
 
-const Home = () => {
-  useEffect(() => {
-    toast.info("Site em desenvolvimento...", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-    });
-  }, []);
+interface HomeProps {
+  projects: Array<ProjectCMS>;
+}
 
+const Home = (props: HomeProps) => {
+  const { projects } = props;
   return (
-    <div className={styles.container}>
-      <ToastContainer />
-      <Header />
+    <PageTemplate headerChildren={<Hero />}>
       <Objectives />
-      <ButtonScrollToTop />
-    </div>
+      <ProjectProvider>
+        <Projects projects={projects} />
+      </ProjectProvider>
+    </PageTemplate>
   );
 };
 

@@ -43,14 +43,14 @@
     cursor: pointer;
 
     .icon{
-      filter: drop-shadow(0px 0px 0.5rem var(--color-primary, $color-primary));
+      filter: drop-shadow(0px 0px 0.5rem var(--color-text-alt, $color-text-alt));
       animation: to-top-slide-up 0.5s ease-out alternate infinite;
     }
   }
 
   .icon {
+    filter: drop-shadow(0px 0px 0.2rem var(--color-text-alt, $color-text-alt));
     color: var(--color-primary, $color-primary);
-    filter: drop-shadow(0px 0px 0.5rem var(--color-card-shadow, $color-card-shadow));
     transition: all 0.5s ease;
   }
 }

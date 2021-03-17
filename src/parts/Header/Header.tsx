@@ -1,15 +1,20 @@
+import { ReactNode } from "react";
 import { DarkModeButton } from "../../components/DarkThemeButton";
-import { Hero } from "../../components/Hero";
 import { NavBar } from "../../components/NavBar";
 import styles from "./Header.module.scss";
 
-const Header = () => {
+interface HeaderProps {
+  children?: ReactNode;
+}
+
+const Header = (props: HeaderProps) => {
+  const { children } = props;
   return (
     <header className={styles.container}>
       <DarkModeButton />
       <NavBar />
 
-      <Hero />
+      {children}
     </header>
   );
 };

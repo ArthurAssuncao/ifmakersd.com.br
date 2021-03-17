@@ -1,0 +1,72 @@
+@import "../../assets/styles/sass/resources";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  @include tablet-up {
+    max-width: 960px;
+  }
+
+  .imageBackgroundWrapper {
+    position: relative;
+    width: 100%;
+    .background {
+      position: absolute;
+      content: "";
+      top: 0;
+      width: 98vw;
+      z-index: -1;
+      height: 98%;
+      background-image: var(--project-image, "");
+      background-position: center;
+      background-size: 100% 100%;
+      filter: blur(8px);
+
+      @include desktop-up {
+        left: -20%;
+      }
+    }
+
+    .imageWrapper {
+      height: 40rem;
+      position: relative;
+
+      img {
+        height: 100%;
+        width: 960px;
+        object-fit: fill;
+      }
+    }
+  }
+
+  .content {
+    background-color: var(--color-background, $color-background);
+    padding: 2.5rem;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .description {
+        padding: 1rem;
+        width: 60%;
+        line-height: 1.5;
+        text-align: justify;
+      }
+
+      .title {
+        line-height: 1.15;
+      }
+    }
+
+    .body {
+      line-height: 1.5;
+    }
+  }
+}

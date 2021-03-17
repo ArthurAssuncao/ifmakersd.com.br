@@ -1,14 +1,5 @@
 @import "../../assets/styles/sass/resources";
 
-@keyframes bg-pan-left {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 @keyframes logo-pulse {
   0% {
     box-shadow: 0 0 0.1rem var(--color-card-shadow, $color-card-shadow);
@@ -60,16 +51,10 @@
 
 .container {
   width: 100%;
-  height: 100vh;
+  height: clamp(600px, 100vh, 100vh);
 
   overflow: hidden;
-  background: linear-gradient(
-    45deg,
-    var(--color-secondary, $color-secondary),
-    var(--color-primary, $color-primary)
-  );
-  background-size: 200% 100%;
-  animation: bg-pan-left 8s alternate infinite;
+
   display: flex;
   flex-direction: column;
 
@@ -78,7 +63,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-top: 30vh;
+    margin-top: clamp(20rem, 30vh, 30vh);
     animation: hero-slide-up 2s cubic-bezier(0, 0.95, 0.96, 1.02) forwards;
 
     .heroIconWrapper {

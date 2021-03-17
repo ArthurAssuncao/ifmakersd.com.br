@@ -8,6 +8,7 @@
 
 .container {
   min-height: 70vh;
+  width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -16,8 +17,8 @@
   background-color: var(--color-primary, $color-primary);
   color: var(--color-text-alt, $color-text-alt);
 
-  .wave{
-    path{
+  .wave {
+    path {
       fill: var(--color-primary, $color-primary);
     }
   }
@@ -67,7 +68,6 @@
           margin-right: 0;
         }
 
-        
         max-width: 100%;
         width: 100%;
 

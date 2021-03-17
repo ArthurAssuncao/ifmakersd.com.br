@@ -11,7 +11,10 @@ import { ProjectCMS } from "../../services/ProjectContext";
 //     })
 
 const createProject = (item: any) => {
-  const body = null;
+  if (!item || !item.fields) {
+    return null;
+  }
+  const body = item.fields.body;
   const description = item.fields.description;
   const photo = {
     url: item.fields.photo.fields.file.url,
@@ -33,12 +36,15 @@ const createProject = (item: any) => {
 const createProjectsAndParse = (items: any) => {
   const projects = [];
   for (let item of items) {
-    projects.push(createProject(item));
+    const formatedProject = createProject(item);
+    if (formatedProject) {
+      projects.push(formatedProject);
+    }
   }
   return projects;
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handleRequest = async (req: NextApiRequest, res: NextApiResponse) => {
   const { limit = 10 } = req.query;
   const data = await CmsClient.getEntries({
     content_type: "project",
@@ -50,3 +56,35 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   res.status(200).json(newData);
 };
+
+const fetchProjects = async (limitReq?: number) => {
+  const limit = limitReq && 10;
+  const data = await CmsClient.getEntries({
+    content_type: "project",
+    order: "-sys.createdAt",
+    limit,
+  });
+
+  const newData = createProjectsAndParse(data.items);
+
+  return newData;
+};
+
+const fetchProject = async (slug: string) => {
+  const data = await CmsClient.getEntries({
+    content_type: "project",
+    limit: 1,
+    "fields.slug": slug,
+  });
+
+  const newData = data ? createProject(data.items[0]) : null;
+
+  return newData;
+};
+
+const generateProjectUrl = (slug: string) => {
+  return `/projects/${slug}`;
+};
+
+export default handleRequest;
+export { fetchProjects, fetchProject, generateProjectUrl };

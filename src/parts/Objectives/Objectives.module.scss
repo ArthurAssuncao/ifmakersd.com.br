@@ -2,13 +2,14 @@
 
 .container {
   min-height: 70vh;
+  width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 
-  .wave{
-    path{
+  .wave {
+    path {
       fill: var(--color-background, $color-background);
     }
   }
@@ -58,7 +59,6 @@
           margin-right: 0;
         }
 
-        
         max-width: 100%;
         width: 100%;
 

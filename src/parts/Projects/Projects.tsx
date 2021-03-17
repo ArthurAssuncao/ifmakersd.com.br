@@ -5,8 +5,12 @@ import { Wave } from "../../components/Wave";
 import { ProjectCMS, ProjectContext } from "../../services/ProjectContext";
 import styles from "./Projects.module.scss";
 
-const Projects = () => {
-  const { projects } = useContext(ProjectContext);
+interface ProjectsProps {
+  projects?: Array<ProjectCMS>;
+}
+
+const Projects = (props: ProjectsProps) => {
+  const { projects } = props.projects ? props : useContext(ProjectContext);
 
   return (
     <section className={styles.container}>

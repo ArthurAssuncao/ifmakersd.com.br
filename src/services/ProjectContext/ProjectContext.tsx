@@ -1,8 +1,8 @@
-import { createContext, ReactElement, ReactNode, useEffect } from "react";
+import "isomorphic-fetch";
+import { createContext, ReactNode, useEffect } from "react";
 import useSWR from "swr";
-
 interface ProjectCMS {
-  body: ReactElement | null;
+  body: any;
   description: string;
   photo: {
     url: string;

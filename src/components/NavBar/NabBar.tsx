@@ -1,10 +1,6 @@
-import homeOutlined from "@iconify/icons-ant-design/home-outlined";
-import bxMenu from "@iconify/icons-bx/bx-menu";
 import bxMessageAltDetail from "@iconify/icons-bx/bx-message-alt-detail";
-import bxSearch from "@iconify/icons-bx/bx-search";
 import chartLine from "@iconify/icons-cil/chart-line";
 import groupSolid from "@iconify/icons-clarity/group-solid";
-import windowCloseLine from "@iconify/icons-clarity/window-close-line";
 import news20Regular from "@iconify/icons-fluent/news-20-regular";
 import targetEdit16Regular from "@iconify/icons-fluent/target-edit-16-regular";
 import toolsIcon from "@iconify/icons-la/tools";
@@ -55,35 +51,14 @@ const NavBar = () => {
   }, []);
 
   return (
-    <nav className={styles.container} data-floating={showFloating} ref={navRef}>
-      <div
-        className={`${styles.menuMainOverlay} ${
-          isMobileSideMenuActive ? styles.opened : ""
-        }`}
-        onClick={(e) => {
-          closeMobileSideMenu(e);
-        }}
-      >
-        <div
-          className={`${styles.menuMain} ${
-            isMobileSideMenuActive ? styles.active : ""
-          }`}
-        >
-          <h3 className={styles.menuMainTitleWrapper}>
-            <Logo className={styles.menuMainTitleIcon} />
-            <span
-              onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}
-              className={styles.menuMainTitleCloseWrapper}
-            >
-              <Icon
-                icon={windowCloseLine}
-                className={styles.menuMainTitleCloseIcon}
-              />
-            </span>
-          </h3>
-          <h3 className={styles.menuMainIconWrapper}>
-            <Logo className={styles.menuMainIcon} />
-          </h3>
+    <>
+      <nav className={styles.containerMenuTop}>
+        <div className={styles.menuIconTopWrapper}>
+          <Logo className={styles.menuIconTop} />
+        </div>
+      </nav>
+      <nav className={styles.containerMenuMain}>
+        <div className={styles.containerInnerMenuMain}>
           <ul className={styles.menuMainList}>
             <li className={styles.menuMainItem}>
               <Icon
@@ -117,23 +92,9 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-      </div>
-
-      <div className={styles.menuBottom}>
-        <div className={`${styles.menuBottomIconWrapper} ${styles.active}`}>
-          <Icon icon={homeOutlined} className={styles.menuBottomIcon} />
-        </div>
-        <div className={styles.menuBottomIconWrapper}>
-          <Icon icon={bxSearch} className={styles.menuBottomIcon} />
-        </div>
-        <div
-          className={styles.menuBottomIconWrapper}
-          onClick={() => openMobileSideMenu()}
-        >
-          <Icon icon={bxMenu} className={styles.menuBottomIcon} />
-        </div>
-      </div>
-    </nav>
+      </nav>
+      <nav className={styles.containerMenuBottom}></nav>
+    </>
   );
 };
 

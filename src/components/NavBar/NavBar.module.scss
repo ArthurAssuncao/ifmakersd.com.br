@@ -1,353 +1,58 @@
 @import "../../assets/styles/sass/resources";
 
-@keyframes menuSlideOut {
-  0% {
-  }
-  100% {
-    transform: translateX(100vw);
-  }
-}
-
-
-@keyframes menuSlideIn {
-  0% {
-    transform: translateX(100vw);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes menuFloatingAppear {
-  0% {
-    transform: translateY(-6rem);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes menuFloatingDisappear {
-  0% {
-    
-  }
-  100% {
-    
-    
-  }
-}
-
-@include isDarkMode {
-  .container {
-    .menuBottom {
-      .menuBottomIconWrapper {
-        &.active {
-          color: var(--color-text, $color-text);
-          background-color: var(--color-text-disabled, $color-text-disabled);
-        }
-      }
-    }
-  }
-}
-
-.container {
-  max-width: 100%;
-  position: relative;
-
-  position: fixed;
-  bottom: 0;
+.containerMenuTop {
+  position: absolute;
+  width: 100%;
+  top: 0;
   left: 0;
-  right: 0;
-  
-  margin: 1rem;
-  
-  z-index: $z-index-over-all;
+  height: 6rem;
 
   @include tablet-up {
-    margin: 0;
-    border-radius: 0;
-    top: 0;
-    left: 0;
-    right: inherit;
-    bottom: inherit;
-
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-    z-index: $z-index-default;
-    box-shadow: initial;
-
-    &[data-floating=false]{
-      // animation: menuFloatingDisappear 0.5s ease;
-      position: absolute;
-      margin-top: 1.5rem;
-      background-color: transparent;
-      
-    
-      &:after{
-        content: none;
-      }
-
-      .menuMain{
-        max-width: 960px;
-
-        .menuMainIcon{
-          display: none;
-        }
-      }
-    }
-
-    &[data-floating=true]{
-      margin: 0;
-      animation: menuFloatingAppear 0.5s ease forwards;
-      position: fixed;
-      top: 0;
-      left: 0;
-      padding: 1rem 0;
-      z-index: $z-index-over;
-
-      &:after{
-        background: linear-gradient(
-          45deg,
-          var(--color-secondary, $color-secondary),
-          var(--color-primary, $color-primary)
-        );
-        box-shadow: 0 0.1rem 1rem var(--color-card-shadow, $color-card-shadow);
-      }
-      
-      .menuMain{
-        max-width: 960px;
-        justify-content: space-evenly;
-
-        .menuMainList{
-          .menuMainItem{
-            &:hover{
-              color: lighten($color-primary, 10%);
-            }
-          }
-        }
-
-        .menuMainIcon{
-          height: 5.5rem;
-        }
-      }
-      
-    }
+    display: none;
   }
 
-  &:after{
-    content: "";
-    z-index: -1;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+  .menuIconTopWrapper {
+    height: inherit;
+    padding: 1.5rem;
+
+    .menuIconTop {
+      height: inherit;
+    }
+  }
+}
+
+.containerMenuMain {
+  position: fixed;
+  height: 100vh;
+  width: 80vw;
+  background-color: var(--color-background, $color-background);
+  color: var(--color-text, $color-text);
+  right: 0;
+  top: 0;
+  transform: translateX(100vw);
+  overflow: hidden;
+  animation: menuSlideOut 0.5s ease forwards;
+
+  z-index: $z-index-over-all;
+
+  &.active {
+    animation: menuSlideIn 0.5s ease forwards;
+  }
+
+  @include tablet-up {
     max-width: 100%;
-    background-color: var(--color-background-alpha, $color-background-alpha);
-    border-radius: 3rem;
-    box-shadow: 0 0 1rem var(--color-card-shadow, $color-card-shadow);
-    backdrop-filter: blur(10px);
-
-    @include tablet-up {
-      border-radius: 0;
-    }
   }
 
-  .menuMainOverlay {
-    &.opened {
-      @include mobile-up {
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.5);
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        position: fixed;
-        z-index: calc(#{$z-index-over-all} - 1);
-      }
-    }
+  .containerInnerMenuMain {
     @include tablet-up {
-      position: relative;
-      width: inherit;
-      height: inherit;
-      background-color: transparent;
-      left: inherit;
-      right: inherit;
-      top: 0;
-      bottom: inherit;
-      transition: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-
-  .menuMain {
-    position: fixed;
-    height: 100vh;
-    width: 80vw;
-    background-color: var(--color-background, $color-background);
-    color: var(--color-text, $color-text);
-    right: 0;
-    top: 0;
-    transform: translateX(100vw);
-    overflow: hidden;
-    animation: menuSlideOut 0.5s ease forwards;
-
-    z-index: $z-index-over-all;
-
-    &.active {
-      animation: menuSlideIn 0.5s ease forwards;
-    }
-
-    @include tablet-up {
-      animation: none;
-      position: relative;
-      height: inherit;
-      width: inherit;
-      background-color: transparent;
-      right: inherit;
-      top: inherit;
-      transform: none;
-      transition: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: $z-index-default;
-      color: var(--color-text-alt, $color-text-alt);
-    }
-
-    .menuMainTitleWrapper {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 2rem;
-
-      @include tablet-up {
-        display: none;
-      }
-
-      .menuMainTitleIcon {
-        width: 50%;
-      }
-
-      .menuMainTitleCloseWrapper {
-        border: 2px solid var(--color-text, $color-text);
-        border-radius: 50%;
-        padding: 0.3rem;
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-
-        .menuMainTitleCloseIcon {
-          font-size: 2.5rem;
-          font-weight: bold;
-          color: var(--color-text, $color-text);
-          z-index: -1;
-          position: relative;
-        }
-
-        &:hover {
-          color: var(--color-primary, $color-primary);
-        }
-      }
+      max-width: 960px;
     }
 
     .menuMainList {
-      margin: 3rem;
-      margin-top: 4rem;
-
-      @include tablet-up {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-      }
-
-      .menuMainItem {
-        display: flex;
-        align-items: center;
-        margin: 2rem 0;
-
-        @include tablet-up {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          margin: 0 1.6rem;
-          transition: color 0.3s ease;
-
-          &:hover {
-            color: var(--color-primary, $color-primary);
-            cursor: pointer;
-          }
-        }
-
-        .menuMainItemIcon {
-          font-size: 5rem;
-          margin-right: 1rem;
-
-          @include tablet-up {
-            font-size: 3.6rem;
-            margin: 0.2rem 0;
-          }
-        }
-        .menuMainItemText {
-          font-size: var(--text-h5, $text-h5);
-
-          @include tablet-up {
-            font-size: var(--text-h6, $text-h6);
-          }
-        }
-      }
-    }
-  }
-
-  .menuBottom {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0.5rem 0;
-    z-index: calc(#{$z-index-over-all} - 1);
-
-    @include tablet-up {
-      display: none;
-    }
-
-    .menuBottomIconWrapper {
-      cursor: pointer;
-      width: 74px;
-      border-radius: 25px;
-      padding: 0.4rem 0;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-text-gray, $color-text-gray);
-
-      &.active {
-        color: var(--color-primary, $color-primary);
-        background-color: var(--color-secondary-light, $color-secondary-light);
-      }
-
-      .menuBottomIcon {
-        width: 32px;
-        height: 32px;
-        transition: color 0.5s ease;
-        z-index: $z-index-default;
-        position: relative;
-        &:hover {
-          color: var(--color-primary, $color-primary);
-        }
-      }
     }
   }
+}
+
+.containerMenuBottom {
 }

@@ -16,8 +16,11 @@ import styles from "./NavBar.module.scss";
 const NavBar = () => {
   const [isMobileSideMenuActive, setIsMobileSideMenuActive] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [searchNeverOpened, setSearchNeverOpened] = useState(true);
 
   let navRef = useRef<HTMLElement | null>(null);
+  let inputSearchRef = useRef<HTMLInputElement | null>(null);
 
   const setShowFloatingCheck = (value: boolean) => {
     if (
@@ -26,6 +29,25 @@ const NavBar = () => {
     ) {
       setShowFloating(value);
     }
+  };
+
+  const setIsSearchActiveCheck = (value: boolean) => {
+    setTimeout(() => {
+      if (
+        value !== isSearchActive ||
+        value !== Boolean(inputSearchRef.current?.dataset.active)
+      ) {
+        setIsSearchActive(value);
+        if (value) {
+          inputSearchRef.current?.focus();
+          if (searchNeverOpened) {
+            setSearchNeverOpened(false);
+          }
+        } else {
+          inputSearchRef.current?.blur();
+        }
+      }
+    }, 100);
   };
 
   const checkScroll = () => {
@@ -66,6 +88,7 @@ const NavBar = () => {
         data-menuopen={isMobileSideMenuActive}
         data-floating={showFloating}
         onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}
+        ref={navRef}
       >
         <div className={styles.containerInnerMenuMain}>
           <div className={styles.menuMainIconWrapper}>
@@ -116,7 +139,21 @@ const NavBar = () => {
           <Icon icon={homeOutlined} className={styles.menuBottomIcon} />
         </div>
         <div className={styles.menuBottomIconWrapper}>
-          <Icon icon={bxSearch} className={styles.menuBottomIcon} />
+          <div onClick={() => !isSearchActive && setIsSearchActiveCheck(true)}>
+            <Icon icon={bxSearch} className={styles.menuBottomIcon} />
+          </div>
+          <input
+            type="search"
+            className={styles.menuBottomSearchField}
+            aria-label="Buscar"
+            placeholder="Pesquise no site"
+            data-active={isSearchActive}
+            data-neverOpened={searchNeverOpened}
+            ref={inputSearchRef}
+            onBlur={() => {
+              setIsSearchActiveCheck(false);
+            }}
+          />
         </div>
         <div
           className={styles.menuBottomIconWrapper}

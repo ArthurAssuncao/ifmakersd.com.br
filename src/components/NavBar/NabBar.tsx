@@ -1,4 +1,7 @@
+import homeOutlined from "@iconify/icons-ant-design/home-outlined";
+import bxMenu from "@iconify/icons-bx/bx-menu";
 import bxMessageAltDetail from "@iconify/icons-bx/bx-message-alt-detail";
+import bxSearch from "@iconify/icons-bx/bx-search";
 import chartLine from "@iconify/icons-cil/chart-line";
 import groupSolid from "@iconify/icons-clarity/group-solid";
 import news20Regular from "@iconify/icons-fluent/news-20-regular";
@@ -57,8 +60,15 @@ const NavBar = () => {
           <Logo className={styles.menuIconTop} />
         </div>
       </nav>
-      <nav className={styles.containerMenuMain}>
+      <nav
+        className={styles.containerMenuMain}
+        data-menuopen={isMobileSideMenuActive}
+        onClick={(e) => closeMobileSideMenu(e)}
+      >
         <div className={styles.containerInnerMenuMain}>
+          <div className={styles.menuMainIconWrapper}>
+            <Logo className={styles.menuMainIcon} />
+          </div>
           <ul className={styles.menuMainList}>
             <li className={styles.menuMainItem}>
               <Icon
@@ -93,7 +103,20 @@ const NavBar = () => {
           </ul>
         </div>
       </nav>
-      <nav className={styles.containerMenuBottom}></nav>
+      <nav className={styles.containerMenuBottom}>
+        <div className={`${styles.menuBottomIconWrapper}`} data-active={true}>
+          <Icon icon={homeOutlined} className={styles.menuBottomIcon} />
+        </div>
+        <div className={styles.menuBottomIconWrapper}>
+          <Icon icon={bxSearch} className={styles.menuBottomIcon} />
+        </div>
+        <div
+          className={styles.menuBottomIconWrapper}
+          onClick={() => openMobileSideMenu()}
+        >
+          <Icon icon={bxMenu} className={styles.menuBottomIcon} />
+        </div>
+      </nav>
     </>
   );
 };

@@ -80,3 +80,4 @@ const ProjectPage = (props: ProjectPageProps) => {
 };
 
 export { ProjectPage };
+export default ProjectPage;

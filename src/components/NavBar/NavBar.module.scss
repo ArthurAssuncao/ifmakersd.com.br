@@ -65,12 +65,13 @@
   right: 0;
   top: 0;
 
-  z-index: calc(#{$z-index-over-all} - 1);
+  z-index: $z-index-over-all;
 
   display: flex;
   justify-content: flex-end;
 
   @include tablet-up {
+    z-index: calc(#{$z-index-over} - 1);
     position: relative;
     height: auto;
     max-width: 100vw;

@@ -4,6 +4,7 @@ import bxMessageAltDetail from "@iconify/icons-bx/bx-message-alt-detail";
 import bxSearch from "@iconify/icons-bx/bx-search";
 import chartLine from "@iconify/icons-cil/chart-line";
 import groupSolid from "@iconify/icons-clarity/group-solid";
+import windowCloseLine from "@iconify/icons-clarity/window-close-line";
 import news20Regular from "@iconify/icons-fluent/news-20-regular";
 import targetEdit16Regular from "@iconify/icons-fluent/target-edit-16-regular";
 import toolsIcon from "@iconify/icons-la/tools";
@@ -63,12 +64,18 @@ const NavBar = () => {
       <nav
         className={styles.containerMenuMain}
         data-menuopen={isMobileSideMenuActive}
-        onClick={(e) => closeMobileSideMenu(e)}
+        onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}
       >
         <div className={styles.containerInnerMenuMain}>
           <div className={styles.menuMainIconWrapper}>
             <Logo className={styles.menuMainIcon} />
           </div>
+          <span
+            onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}
+            className={styles.menuMainCloseWrapper}
+          >
+            <Icon icon={windowCloseLine} className={styles.menuMainCloseIcon} />
+          </span>
           <ul className={styles.menuMainList}>
             <li className={styles.menuMainItem}>
               <Icon

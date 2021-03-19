@@ -89,6 +89,24 @@
       }
     }
 
+    .menuMainCloseWrapper {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 3.6rem;
+      padding: 0.4rem;
+      color: var(--color-text, $color-text);
+      border: 1px solid var(--color-text, $color-text);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .menuMainCloseIcon {
+        z-index: -1;
+      }
+    }
+
     .menuMainList {
       display: flex;
       flex-direction: column;

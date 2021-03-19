@@ -7,7 +7,7 @@ import styles from "./PageTemplate.module.scss";
 
 interface PageTemplateProps {
   children: ReactNode;
-  headerChildren: ReactNode;
+  headerChildren?: ReactNode;
 }
 
 const PageTemplate = (props: PageTemplateProps) => {

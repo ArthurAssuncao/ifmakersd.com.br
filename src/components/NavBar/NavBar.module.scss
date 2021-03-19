@@ -162,6 +162,9 @@
         .menuMainList {
           .menuMainItem {
             font-size: var(--text-body, $text-body);
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             &:hover {
               color: var(--color-text-highlight, $color-text-highlight);
@@ -274,8 +277,6 @@
         }
 
         .menuMainItemIcon {
-          margin-right: 0.5rem;
-
           @include tablet-up {
             font-size: 3.6rem;
           }

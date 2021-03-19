@@ -17,6 +17,24 @@
   }
 }
 
+@keyframes menuFloatingAppear {
+  0% {
+    transform: translateY(-6rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes menuFloatingDisappear {
+  0% {
+    transform: translateY(0rem);
+  }
+  100% {
+    transform: translateY(-6rem);
+  }
+}
+
 .containerMenuTop {
   position: absolute;
   width: 100%;
@@ -52,6 +70,14 @@
   display: flex;
   justify-content: flex-end;
 
+  @include tablet-up {
+    position: relative;
+    height: auto;
+    max-width: 100vw;
+    right: initial;
+    justify-content: center;
+  }
+
   transition: max-width 0.3s ease, background-color 0s 0.4s ease-out;
 
   &[data-menuopen="true"] {
@@ -60,6 +86,46 @@
 
     .containerInnerMenuMain {
       animation: menuSlideIn 0.5s ease forwards;
+
+      .menuMainIconWrapper {
+        .menuMainIcon {
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  &[data-floating="true"] {
+    @include tablet-up {
+      position: fixed;
+      background-color: var(--color-primary, $color-primary);
+      transition: none;
+      // animation: menuFloatingAppear 0.5s ease forwards;
+      box-shadow: 0 0.2rem 2rem var(--color-card-shadow, $color-card-shadow);
+
+      .containerInnerMenuMain {
+        animation: menuFloatingAppear 0.5s ease forwards;
+
+        .menuMainIconWrapper {
+          .menuMainIcon {
+            visibility: visible;
+          }
+        }
+
+        .menuMainList {
+          .menuMainItem {
+            font-size: var(--text-body, $text-body);
+
+            &:hover {
+              color: var(--color-text-highlight, $color-text-highlight);
+            }
+
+            .menuMainItemIcon {
+              font-size: 2.8rem;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -76,6 +142,20 @@
     color: var(--color-text, $color-text);
     display: flex;
     flex-direction: column;
+
+    @include tablet-up {
+      position: relative;
+      right: initial;
+      transform: translateX(0vw);
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      max-width: 960px;
+      background-color: initial;
+      background-color: transparent;
+      color: var(--color-text-alt, $color-text-alt);
+      padding-right: 10rem;
+    }
     // animation: menuSlideOut 0.5s ease forwards;
 
     .menuMainIconWrapper {
@@ -84,8 +164,17 @@
       align-items: center;
       padding: 1.5rem;
 
+      @include tablet-up {
+        padding: 1.5rem 0;
+      }
+
       .menuMainIcon {
         width: 60%;
+
+        @include tablet-up {
+          width: 10rem;
+          visibility: hidden;
+        }
       }
     }
 
@@ -102,6 +191,10 @@
       align-items: center;
       justify-content: center;
 
+      @include tablet-up {
+        display: none;
+      }
+
       .menuMainCloseIcon {
         z-index: -1;
       }
@@ -111,12 +204,23 @@
       display: flex;
       flex-direction: column;
 
+      @include tablet-up {
+        flex-direction: row;
+      }
+
       .menuMainItem {
         display: flex;
         font-size: var(--text-h4, $text-h4);
         padding: 1.5rem;
         display: flex;
         align-items: center;
+        cursor: pointer;
+        transition: color 0.5s ease;
+
+        @include tablet-up {
+          flex-direction: column;
+          font-size: var(--text-h6, $text-h6);
+        }
 
         &:hover {
           color: var(--color-primary, $color-primary);
@@ -124,6 +228,10 @@
 
         .menuMainItemIcon {
           margin-right: 0.5rem;
+
+          @include tablet-up {
+            font-size: 3.6rem;
+          }
         }
       }
     }

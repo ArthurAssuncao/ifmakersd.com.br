@@ -64,6 +64,7 @@ const NavBar = () => {
       <nav
         className={styles.containerMenuMain}
         data-menuopen={isMobileSideMenuActive}
+        data-floating={showFloating}
         onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}
       >
         <div className={styles.containerInnerMenuMain}>

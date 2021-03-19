@@ -84,6 +84,17 @@
   }
 }
 
+.containerMenuMainSpaceFix {
+  @include tablet-up {
+    &[data-floating-will-disappear="true"],
+    &[data-floating="true"] {
+      height: 8.6rem;
+      position: relative;
+      top: 0;
+    }
+  }
+}
+
 .containerMenuMain {
   position: fixed;
   height: 100vh;
@@ -121,6 +132,13 @@
           visibility: visible;
         }
       }
+    }
+  }
+
+  &[data-floating-will-disappear="true"] {
+    &[data-floating="false"] {
+      position: fixed;
+      animation: menuFloatingDisappear 0.4s ease forwards;
     }
   }
 

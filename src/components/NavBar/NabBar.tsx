@@ -16,6 +16,7 @@ import styles from "./NavBar.module.scss";
 const NavBar = () => {
   const [isMobileSideMenuActive, setIsMobileSideMenuActive] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
+  const [floatingWillDisappear, setFloatingWillDisappear] = useState(false);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchNeverOpened, setSearchNeverOpened] = useState(true);
 
@@ -28,6 +29,13 @@ const NavBar = () => {
       value !== Boolean(navRef.current?.dataset.floating)
     ) {
       setShowFloating(value);
+      if (!value) {
+        setTimeout(() => {
+          setFloatingWillDisappear(false);
+        }, 600);
+      } else {
+        setFloatingWillDisappear(true);
+      }
     }
   };
 
@@ -83,10 +91,16 @@ const NavBar = () => {
           <Logo className={styles.menuIconTop} />
         </div>
       </nav>
+      <div
+        className={styles.containerMenuMainSpaceFix}
+        data-floating={showFloating}
+        data-floating-will-disappear={floatingWillDisappear}
+      ></div>
       <nav
         className={styles.containerMenuMain}
         data-menuopen={isMobileSideMenuActive}
         data-floating={showFloating}
+        data-floating-will-disappear={floatingWillDisappear}
         onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}
         ref={navRef}
       >

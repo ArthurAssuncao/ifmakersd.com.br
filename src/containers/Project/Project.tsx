@@ -9,14 +9,14 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { PageTemplate } from "../../parts/PageTemplate";
 import { ProjectCMS } from "../../services/ProjectContext";
 import { ImageUrl } from "../../util/ImageUrl";
-import styles from "./ProjectPage.module.scss";
+import styles from "./Project.module.scss";
 
-interface ProjectPageProps {
+interface ProjectProps {
   project: ProjectCMS;
   meta: { title: string; description: string };
 }
 
-const ProjectPage = (props: ProjectPageProps) => {
+const Project = (props: ProjectProps) => {
   const { project, meta } = props;
   const projectImageURl = ImageUrl.generateDesktopSrcMedia(project.photo.url);
 
@@ -79,5 +79,4 @@ const ProjectPage = (props: ProjectPageProps) => {
   );
 };
 
-export { ProjectPage };
-export default ProjectPage;
+export { Project };

@@ -1,8 +1,8 @@
 import { GetStaticPaths } from "next";
 import ErrorPage from "next/error";
+import { Project } from "../../containers/Project";
 import { ProjectCMS } from "../../services/ProjectContext";
 import { fetchProject, fetchProjects } from "../api/project";
-import { ProjectPage } from "../Project/ProjectPage";
 
 interface ProjectsPageProps {
   meta: {
@@ -14,14 +14,14 @@ interface ProjectsPageProps {
 }
 
 const ProjectPageSlug = (props: ProjectsPageProps) => {
-  if (!props || Object.keys(props).length === 0) {
+  if (!props || props === undefined || Object.keys(props).length === 0) {
     return <ErrorPage statusCode={404} />;
   }
 
   const { meta, data, type } = props;
   const project = data;
 
-  return <ProjectPage project={project} meta={meta} />;
+  return <Project project={project} meta={meta} />;
 };
 
 export default ProjectPageSlug;
@@ -53,9 +53,10 @@ export const getStaticProps = async ({ params }: Params) => {
 
   const project: ProjectCMS | null = await fetchProject(slugComplete);
 
-  if (!project) {
+  if (!project || project === undefined) {
     return { props: {} };
   }
+
   return {
     props: {
       meta: {

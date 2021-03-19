@@ -54,6 +54,8 @@
 .container {
   width: 100%;
   height: clamp(600px, 100vh, 100vh);
+  content-visibility: auto;
+  contain-intrinsic-size: 100vh;
 
   overflow: hidden;
 

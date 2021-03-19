@@ -9,12 +9,34 @@ import news20Regular from "@iconify/icons-fluent/news-20-regular";
 import targetEdit16Regular from "@iconify/icons-fluent/target-edit-16-regular";
 import toolsIcon from "@iconify/icons-la/tools";
 import { Icon } from "@iconify/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Logo from "../../assets/images/ifmaker/logo.svg";
 import styles from "./NavBar.module.scss";
 
 const NavBar = () => {
   const [isMobileSideMenuActive, setIsMobileSideMenuActive] = useState(false);
+  const [showFloating, setShowFloating] = useState(false);
+
+  let navRef = useRef<HTMLElement | null>(null);
+
+  const setShowFloatingCheck = (value: boolean) => {
+    if (
+      value !== showFloating ||
+      value !== Boolean(navRef.current?.dataset.floating)
+    ) {
+      setShowFloating(value);
+    }
+  };
+
+  const checkScroll = () => {
+    const limitHeight = window.innerHeight; // window.innerHeight
+
+    if (window.pageYOffset > limitHeight) {
+      setShowFloatingCheck(true);
+    } else {
+      setShowFloatingCheck(false);
+    }
+  };
 
   const openMobileSideMenu = () => {
     setIsMobileSideMenuActive(true);
@@ -25,33 +47,36 @@ const NavBar = () => {
     setIsMobileSideMenuActive(false);
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll", checkScroll);
+    return () => {
+      window.removeEventListener("scroll", checkScroll);
+    };
+  }, []);
+
   return (
-    <nav className={styles.container}>
-      <div
-        className={`${styles.menuMainOverlay} ${
-          isMobileSideMenuActive ? styles.opened : ""
-        }`}
-        onClick={(e) => {
-          closeMobileSideMenu(e);
-        }}
+    <>
+      <nav className={styles.containerMenuTop}>
+        <div className={styles.menuIconTopWrapper}>
+          <Logo className={styles.menuIconTop} />
+        </div>
+      </nav>
+      <nav
+        className={styles.containerMenuMain}
+        data-menuopen={isMobileSideMenuActive}
+        data-floating={showFloating}
+        onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}
       >
-        <div
-          className={`${styles.menuMain} ${
-            isMobileSideMenuActive ? styles.active : ""
-          }`}
-        >
-          <h3 className={styles.menuMainTitleWrapper}>
-            <Logo className={styles.menuMainTitleIcon} />
-            <span
-              onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}
-              className={styles.menuMainTitleCloseWrapper}
-            >
-              <Icon
-                icon={windowCloseLine}
-                className={styles.menuMainTitleCloseIcon}
-              />
-            </span>
-          </h3>
+        <div className={styles.containerInnerMenuMain}>
+          <div className={styles.menuMainIconWrapper}>
+            <Logo className={styles.menuMainIcon} />
+          </div>
+          <span
+            onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}
+            className={styles.menuMainCloseWrapper}
+          >
+            <Icon icon={windowCloseLine} className={styles.menuMainCloseIcon} />
+          </span>
           <ul className={styles.menuMainList}>
             <li className={styles.menuMainItem}>
               <Icon
@@ -85,10 +110,9 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-      </div>
-
-      <div className={styles.menuBottom}>
-        <div className={`${styles.menuBottomIconWrapper} ${styles.active}`}>
+      </nav>
+      <nav className={styles.containerMenuBottom}>
+        <div className={`${styles.menuBottomIconWrapper}`} data-active={true}>
           <Icon icon={homeOutlined} className={styles.menuBottomIcon} />
         </div>
         <div className={styles.menuBottomIconWrapper}>
@@ -100,8 +124,8 @@ const NavBar = () => {
         >
           <Icon icon={bxMenu} className={styles.menuBottomIcon} />
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

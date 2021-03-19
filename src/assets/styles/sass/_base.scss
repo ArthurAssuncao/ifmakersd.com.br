@@ -19,6 +19,14 @@ body {
 html {
   font-size: 62.5%; // fallback
   font-size: var(--text-html, 62.5%);
+  // width: 98.4vw;
+  overflow-x: hidden;
+
+  #__next{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 body {

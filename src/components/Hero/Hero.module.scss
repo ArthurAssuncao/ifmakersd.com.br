@@ -26,6 +26,8 @@
   // background-color: #525252ee;
   // visibility: visible;
   opacity: 0;
+  z-index: $z-index-over-all;
+  position: relative;
 
   .tooltipMsg {
     &.tooltipMsgLeft {
@@ -79,6 +81,7 @@
       position: absolute;
       transition: all 0.5s ease;
       cursor: pointer;
+      z-index: $z-index-default;
 
       $angle: 360 - 90;
       $dangle: 360 / 9; /* 9 itens */
@@ -122,6 +125,7 @@
 
       &:hover {
         border-color: var(--color-primary, $color-primary);
+        z-index: $z-index-over;
         .heroIcon,
         .heroIconText {
           color: var(--color-primary, $color-primary);
@@ -167,14 +171,14 @@
       align-items: center;
       justify-content: center;
       animation: logo-pulse 5s alternate infinite;
+      z-index: $z-index-default;
+      position: relative;
 
       @include tablet-up {
         width: 25rem;
         height: 25rem;
       }
       .heroLogoIcon {
-        z-index: $z-index-default;
-        position: relative;
       }
     }
   }

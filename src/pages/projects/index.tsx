@@ -25,7 +25,7 @@ const ProjectPage = (props: ProjectsPageProps) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={meta.description} />
       </Head>
-      <Projects projects={projects} />
+      <Projects projects={projects} moreButton={false} />
     </PageTemplate>
   );
 };

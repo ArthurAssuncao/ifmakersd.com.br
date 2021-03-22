@@ -21,7 +21,11 @@ const Posts = (props: PropsPosts) => {
     ></Button>
   );
   return (
-    <Section title="Saiba mais sobre a Indústria 4.0" moreButton={button}>
+    <Section
+      title="Saiba mais sobre a Indústria 4.0"
+      moreButton={button}
+      backgroundColor="neutral"
+    >
       {posts ? (
         posts.map((post: PostCMS) => {
           return <Post post={post} key={post.slug} />;

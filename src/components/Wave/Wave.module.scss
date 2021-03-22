@@ -1,21 +1,19 @@
 @import "../../assets/styles/sass/resources";
 
-.container{
-  
+.container {
   position: absolute;
 
-  @include mobile-up{
-    &.mobile{
+  @include mobile-up {
+    &.mobile {
       top: -4rem;
       height: 4.1rem;
     }
   }
 
-  @include tablet-up{
-    &.noMobile{
+  @include tablet-up {
+    &.noMobile {
       top: -6rem;
       height: 6.1rem;
     }
   }
-
 }

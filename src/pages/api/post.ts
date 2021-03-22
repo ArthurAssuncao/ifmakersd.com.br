@@ -9,8 +9,6 @@ const createPost = (item: any) => {
     return null;
   }
 
-  console.log(item.fields.hero_image);
-
   const post: PostCMS = {
     title: item.fields.title,
     slug: item.fields.slug,

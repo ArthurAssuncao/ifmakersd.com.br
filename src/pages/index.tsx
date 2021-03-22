@@ -1,5 +1,5 @@
 import { Home } from "../parts/Home";
-import { ProjectCMS } from "../services/ProjectContext";
+import { ProjectCMS, ProjectProvider } from "../services/ProjectContext";
 import { fetchProjects } from "./api/project";
 
 interface InitialPageProps {
@@ -11,7 +11,11 @@ interface InitialPageProps {
 const InitialPage = (props: InitialPageProps) => {
   const { data } = props;
   const projects = data.projects;
-  return <Home projects={projects} />;
+  return (
+    <ProjectProvider>
+      <Home projects={projects} />
+    </ProjectProvider>
+  );
 };
 
 export async function getStaticProps() {

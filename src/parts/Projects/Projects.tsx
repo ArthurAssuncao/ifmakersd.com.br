@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import { Button } from "../../components/Button";
+import { ButtonProps } from "../../components/Button/Button";
 import { Loading } from "../../components/Loading";
 import { Project } from "../../components/Project";
 import { Wave } from "../../components/Wave";
@@ -7,10 +9,16 @@ import styles from "./Projects.module.scss";
 
 interface ProjectsProps {
   projects?: Array<ProjectCMS>;
+  moreButton: boolean;
 }
 
 const Projects = (props: ProjectsProps) => {
   const { projects } = props.projects ? props : useContext(ProjectContext);
+  const button: ButtonProps = {
+    text: "Veja mais projetos",
+    href: "/projects",
+    backgroundColor: "purple",
+  };
 
   return (
     <section className={styles.container}>
@@ -26,6 +34,7 @@ const Projects = (props: ProjectsProps) => {
             <Loading />
           )}
         </div>
+        <Button {...button} />
       </div>
     </section>
   );

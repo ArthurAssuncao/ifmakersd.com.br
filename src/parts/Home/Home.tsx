@@ -15,7 +15,7 @@ const Home = (props: HomeProps) => {
     <PageTemplate headerChildren={<Hero />}>
       <Objectives />
       <ProjectProvider>
-        <Projects projects={projects} />
+        <Projects projects={projects} moreButton={true} />
       </ProjectProvider>
     </PageTemplate>
   );

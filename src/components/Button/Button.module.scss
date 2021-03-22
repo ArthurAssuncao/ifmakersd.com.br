@@ -1,0 +1,57 @@
+@import "../../assets/styles/sass/resources";
+
+.container {
+  width: 20rem;
+  height: 5rem;
+  border: 0.3rem solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+
+  &:hover {
+    box-shadow: 0 0 2rem var(--color-card-shadow, $color-card-shadow);
+  }
+
+  &[data-bg="purple"] {
+    background-color: var(--color-primary, $color-primary);
+    color: var(--color-text-alt, $color-text-alt);
+    border-color: var(--color-text-alt, $color-text-alt);
+
+    &:hover {
+      border-color: var(--color-primary, $color-primary);
+
+      &:after {
+        content: "";
+        height: 100%;
+        width: 100%;
+        border-radius: 1rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        position: absolute;
+      }
+    }
+  }
+
+  &[data-bg="neutral"] {
+    background-color: var(--color-background, $color-background);
+    color: var(--color-text, $color-text);
+    border-color: var(--color-text, $color-text);
+
+    &:hover {
+      border-color: var(--color-background, $color-background);
+
+      &:after {
+        content: "";
+        height: 100%;
+        width: 100%;
+        border-radius: 1rem;
+        background-color: rgba(0, 0, 0, 0.05);
+        position: absolute;
+      }
+    }
+  }
+}

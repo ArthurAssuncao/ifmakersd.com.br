@@ -1,4 +1,9 @@
-import { ProjectCMS, ProjectContext, ProjectProvider } from "./ProjectContext";
+import {
+  ProjectCMS,
+  ProjectContext,
+  ProjectContextData,
+  ProjectProvider,
+} from "./ProjectContext";
 
 export { ProjectContext, ProjectProvider };
-export type { ProjectCMS };
+export type { ProjectCMS, ProjectContextData };

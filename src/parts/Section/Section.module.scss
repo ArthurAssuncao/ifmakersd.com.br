@@ -2,20 +2,32 @@
 
 .container {
   min-height: 70vh;
-  content-visibility: auto;
-  contain-intrinsic-size: 70vh;
+  // content-visibility: auto;
+  // contain-intrinsic-size: 70vh;
   width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 
-  background-color: var(--color-background, $color-background);
-  color: var(--color-text, $color-text);
+  &[data-color="neutral"] {
+    background-color: var(--color-background, $color-background);
+    color: var(--color-text, $color-text);
+    .wave {
+      path {
+        fill: var(--color-background, $color-background);
+      }
+    }
+  }
 
-  .wave {
-    path {
-      fill: var(--color-background, $color-background);
+  &[data-color="purple"] {
+    background-color: var(--color-primary, $color-primary);
+    color: var(--color-text-alt, $color-text-alt);
+
+    .wave {
+      path {
+        fill: var(--color-primary, $color-primary);
+      }
     }
   }
 
@@ -38,7 +50,7 @@
       padding: 3rem 0;
     }
 
-    .itens {
+    .cards {
       display: flex;
       justify-content: center;
       flex-direction: column;

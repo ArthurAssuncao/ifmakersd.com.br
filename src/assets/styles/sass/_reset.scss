@@ -7,6 +7,11 @@
 html {
   box-sizing: border-box;
   font-size: 16px;
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
 }
 
 *,
@@ -38,6 +43,8 @@ ul {
 img {
   max-width: 100%;
   height: auto;
+  image-rendering: auto;
+  image-rendering: smooth;
 }
 
 @import "/node_modules/normalize-scss/sass/normalize";

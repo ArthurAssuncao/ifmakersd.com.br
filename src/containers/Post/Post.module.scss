@@ -121,3 +121,18 @@ $size-header: 25rem;
     }
   }
 }
+
+.shareButton {
+  --share-size: 5rem;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: $z-index-over-all;
+
+  @include tablet-up {
+    top: initial;
+    --share-size: 4.2rem;
+    bottom: 2rem;
+    right: 8rem;
+  }
+}

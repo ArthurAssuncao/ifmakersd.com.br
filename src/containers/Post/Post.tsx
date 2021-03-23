@@ -6,9 +6,12 @@ import { Icon } from "@iconify/react";
 import { format, parseISO } from "date-fns";
 import * as localePtBr from "date-fns/locale/pt-BR/index.js";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import readingTime from "reading-time";
 import { BodyRender } from "../../components/BodyRender/BodyRender";
+import { ShareButtons } from "../../components/ShareButtons";
+import { generatePostUrl } from "../../pages/api/post";
 import { PostCMS } from "../../pages/api/schema/post";
 import { PageTemplate } from "../../parts/PageTemplate";
 import { ImageUrl } from "../../util/ImageUrl";
@@ -28,6 +31,32 @@ const Post = (props: PostProps) => {
   const text = documentToPlainTextString(post.body);
   const statsToRead = readingTime(text);
   const minutesToRead = Math.ceil(statsToRead.minutes);
+
+  const [width, setWidth] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const verifyIsMobile = (width: number) => {
+    if (width < 768) {
+      setIsMobile(true);
+      return;
+    }
+    setIsMobile(false);
+  };
+
+  const handleWindowSizeChange = () => {
+    const width = window.innerWidth;
+    setWidth(width);
+    verifyIsMobile(width);
+  };
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+    verifyIsMobile(width);
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
 
   return (
     <PageTemplate>
@@ -88,6 +117,19 @@ const Post = (props: PostProps) => {
           <footer></footer>
         </article>
       </main>
+      <div className={styles.shareButton} data-mobile={isMobile}>
+        <ShareButtons
+          url={
+            typeof window !== "undefined"
+              ? window.location.href
+              : generatePostUrl(post.slug)
+          }
+          title={post.title}
+          tags={post.tags}
+          direction={isMobile ? "toBottom" : "toTop"}
+          widthCSSVar={"--share-size"}
+        />
+      </div>
     </PageTemplate>
   );
 };

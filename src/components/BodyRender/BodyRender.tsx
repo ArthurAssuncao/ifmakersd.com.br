@@ -36,7 +36,6 @@ const BodyRender = (props: BodyProps) => {
         <h4>{children}</h4>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
-        console.log(node.data.target.fields);
         const { title, description, file } = node.data.target.fields;
         const mimeType = file.contentType;
         const mimeGroup = mimeType.split("/")[0];

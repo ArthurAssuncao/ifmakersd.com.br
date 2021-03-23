@@ -8,6 +8,7 @@ interface ItemCard {
   title: string;
   description: string;
   href: string;
+  tag?: string;
 }
 
 interface CardProps {
@@ -31,6 +32,7 @@ const Card = (props: CardProps) => {
         <div className={styles.contentWrapper}>
           <div className={styles.content}>
             <div className={styles.contentInner}>
+              {item.tag && <span className={styles.tag}>{item.tag}</span>}
               <header>
                 <h5 className={styles.title}>{item.title}</h5>
               </header>

@@ -62,6 +62,18 @@
         background-color: var(--color-background, $color-background);
         color: var(--color-text, $color-text);
 
+        .tag {
+          position: absolute;
+          right: 0;
+          top: ($text-small * -2) - 0.2rem;
+          font-size: $text-small;
+          padding: 0.5rem;
+          padding-left: 1rem;
+          background-color: var(--color-accent, $color-accent);
+          border-top-left-radius: 2rem;
+          color: var(--color-text-alt, $color-text-alt);
+        }
+
         .title {
           font-weight: bold;
           line-height: 1.15;

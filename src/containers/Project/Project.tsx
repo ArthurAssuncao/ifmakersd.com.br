@@ -1,11 +1,9 @@
-import {
-  documentToReactComponents,
-  Options,
-} from "@contentful/rich-text-react-renderer";
+import { Options } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import Head from "next/head";
 import { ReactNode } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { BodyRender } from "../../components/BodyRender";
 import { PageTemplate } from "../../parts/PageTemplate";
 import { ProjectCMS } from "../../services/ProjectContext";
 import { ImageUrl } from "../../util/ImageUrl";
@@ -45,32 +43,34 @@ const Project = (props: ProjectProps) => {
         <meta name="description" content={meta.description} />
       </Head>
       <main className={styles.container}>
-        <div className={styles.imageBackgroundWrapper}>
-          <LazyLoadImage
-            wrapperClassName={styles.imageWrapper}
-            className={styles.image}
-            alt={project.title}
-            effect="blur"
-            src={projectImageURl.src}
-          />
-          <div
-            className={styles.background}
-            style={
-              {
-                "--project-image": `url('${projectImageURl.src}')`,
-              } as React.CSSProperties
-            }
-          ></div>
-        </div>
         <article className={styles.content}>
-          <header className={styles.header}>
-            <h2 className={styles.title}>{project.title}</h2>
-            <div className={styles.description}>
-              Resumo: <em>{project.description}</em>
+          <div className={styles.imageHeaderWrapper}>
+            <div className={styles.imageBackgroundWrapper}>
+              <LazyLoadImage
+                wrapperClassName={styles.imageWrapper}
+                className={styles.image}
+                alt={project.title}
+                effect="blur"
+                src={projectImageURl.src}
+              />
+              <div
+                className={styles.background}
+                style={
+                  {
+                    "--project-image": `url('${projectImageURl.src}')`,
+                  } as React.CSSProperties
+                }
+              ></div>
             </div>
-          </header>
+            <header className={styles.header}>
+              <h2 className={styles.title}>{project.title}</h2>
+              <div className={styles.description}>
+                <em>{project.description}</em>
+              </div>
+            </header>
+          </div>
           <div className={styles.body}>
-            {documentToReactComponents(project.body, optionsContentfulRender)}
+            <BodyRender body={project.body} />
           </div>
           <footer></footer>
         </article>

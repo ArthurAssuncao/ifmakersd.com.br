@@ -162,7 +162,7 @@ const NavBar = () => {
             aria-label="Buscar"
             placeholder="Pesquise no site"
             data-active={isSearchActive}
-            data-neverOpened={searchNeverOpened}
+            data-neveropened={searchNeverOpened}
             ref={inputSearchRef}
             onBlur={() => {
               setIsSearchActiveCheck(false);

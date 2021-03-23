@@ -1,5 +1,7 @@
 @import "../../assets/styles/sass/resources";
 
+$size-header: 25rem;
+
 .container {
   display: flex;
   flex-direction: column;
@@ -11,62 +13,111 @@
     max-width: 960px;
   }
 
-  .imageBackgroundWrapper {
-    position: relative;
-    width: 100%;
-    .background {
-      position: absolute;
-      content: "";
-      top: 0;
-      width: 98vw;
-      z-index: -1;
-      height: 98%;
-      background-image: var(--post-image, "");
-      background-position: center;
-      background-size: 100% 100%;
-      filter: blur(8px);
-
-      @include desktop-up {
-        left: -20%;
-      }
-    }
-
-    .imageWrapper {
-      height: 40rem;
-      position: relative;
-
-      img {
-        height: 100%;
-        width: 960px;
-        object-fit: fill;
-      }
-    }
-  }
-
   .content {
     background-color: var(--color-background, $color-background);
-    padding: 2.5rem;
 
-    .header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .imageHeaderWrapper {
+      position: relative;
 
-      .description {
-        padding: 1rem;
-        width: 60%;
-        line-height: 1.5;
-        text-align: justify;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        height: $size-header;
+        width: 100%;
+        background-color: var(
+          --color-background-alpha,
+          $color-background-alpha
+        );
+        backdrop-filter: blur(5px);
+        z-index: 1;
       }
 
-      .title {
-        line-height: 1.15;
+      .imageBackgroundWrapper {
+        position: relative;
+        width: 100%;
+
+        .background {
+          position: absolute;
+          content: "";
+          top: 0;
+          width: 98vw;
+          z-index: -1;
+          height: 98%;
+          background-image: var(--post-image, "");
+          background-position: center;
+          background-size: 100% 100%;
+          filter: blur(8px);
+
+          @include desktop-up {
+            left: -20%;
+          }
+        }
+
+        .imageWrapper {
+          height: 60rem;
+          position: relative;
+
+          img {
+            height: 98%;
+            width: 960px;
+            object-fit: fill;
+          }
+        }
+      }
+
+      .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 0;
+        height: $size-header;
+        width: 100%;
+        color: var(--color-text, $color-text);
+        z-index: 2;
+        filter: contrast(2);
+        padding: 1.5rem;
+
+        .title {
+          line-height: 1.15;
+          font-weight: bold;
+        }
+
+        .info {
+          display: flex;
+          margin: 1rem 0;
+          > * {
+            margin: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .infoIcon {
+            font-size: $text-h5;
+            margin: 0.5rem;
+          }
+        }
+
+        .description {
+          padding: 1rem;
+          width: 60%;
+          line-height: 1.5;
+          text-align: justify;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          max-height: 13rem;
+          overflow: hidden;
+        }
       }
     }
 
     .body {
       line-height: 1.5;
+      padding: 2.5rem;
     }
   }
 }

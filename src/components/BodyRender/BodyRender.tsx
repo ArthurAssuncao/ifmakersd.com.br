@@ -20,6 +20,12 @@ const BodyRender = (props: BodyProps) => {
         ReactHtmlParser(embedded ? embedded?.toString() : ""),
     },
     renderNode: {
+      [BLOCKS.UL_LIST]: (node: ReactNode, children: ReactNode) => (
+        <ul>{children}</ul>
+      ),
+      [BLOCKS.OL_LIST]: (node: ReactNode, children: ReactNode) => (
+        <ol>{children}</ol>
+      ),
       [BLOCKS.PARAGRAPH]: (node: ReactNode, children: ReactNode) => (
         <p>{children}</p>
       ),

@@ -7,30 +7,47 @@
   h4,
   h5,
   h6 {
-    font-weight: bold;
+    font-weight: 500;
   }
 
   ul,
   ol {
+    padding-left: 3rem;
     li {
       text-indent: 1.5rem;
+      list-style-type: initial;
+      list-style-position: inside;
+      p {
+        display: inline;
+      }
       li {
         text-indent: 3rem;
+        list-style-type: initial;
+        list-style-position: inside;
+        p {
+          display: inline;
+        }
       }
     }
   }
 
-  p {
+  > p {
     text-align: justify;
+    line-height: 2;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    hyphenate-limit-chars: 10 4 4;
 
     &:first-letter {
-      color: var(--color-primary, $color-primary);
+      // color: var(--color-primary, $color-primary);
       font-size: 200%;
       text-transform: capitalize;
+      cursor: text;
     }
 
     &::first-line {
-      line-height: 1.1;
+      line-height: 1.4;
     }
   }
   iframe {

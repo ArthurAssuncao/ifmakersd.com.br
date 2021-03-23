@@ -6,7 +6,6 @@ import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types";
 import { ReactNode } from "react";
 import ReactHtmlParser from "react-html-parser";
 import styles from "./BodyRender.module.scss";
-
 interface BodyProps {
   body: Document;
 }
@@ -16,8 +15,11 @@ const BodyRender = (props: BodyProps) => {
   const optionsContentfulRender: Options = {
     renderMark: {
       [MARKS.BOLD]: (text: ReactNode) => <strong>{text}</strong>,
-      [MARKS.CODE]: (embedded: ReactNode) =>
-        ReactHtmlParser(embedded ? embedded?.toString() : ""),
+      [MARKS.CODE]: (embedded: ReactNode) => (
+        <div className={styles.embeddedWrapper}>
+          {ReactHtmlParser(embedded ? embedded?.toString() : "")}
+        </div>
+      ),
     },
     renderNode: {
       [BLOCKS.UL_LIST]: (node: ReactNode, children: ReactNode) => (
@@ -36,7 +38,6 @@ const BodyRender = (props: BodyProps) => {
         <h4>{children}</h4>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
-        console.log(node.data.target.fields);
         const { title, description, file } = node.data.target.fields;
         const mimeType = file.contentType;
         const mimeGroup = mimeType.split("/")[0];

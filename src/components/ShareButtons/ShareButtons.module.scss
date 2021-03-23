@@ -1,0 +1,202 @@
+@import "../../assets/styles/sass/resources";
+
+$num-itens: 5;
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(5rem) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0rem) scale(1);
+  }
+}
+
+@keyframes fade-in-icon {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0rem) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(5rem) scale(0);
+  }
+}
+
+@keyframes fade-out-icon {
+  0% {
+    transform: rotate(-360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.container {
+  width: calc(var(--share-button-size, fit-content) + 1rem);
+  padding: 0.5rem 0;
+  overflow: hidden;
+  min-height: fit-content;
+  position: relative;
+  font-size: auto;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  &[data-direction="toTop"] {
+    flex-direction: column-reverse;
+
+    .shareList {
+      &[data-open="false"] {
+        .shareItem {
+          @for $i from 1 through $num-itens {
+            &:nth-child(#{$i}n) {
+              animation: fade-out 0.5s #{($i - 1) * 0.2}s ease forwards;
+
+              .shareItemIcon {
+                animation: fade-out-icon 1s #{($i - 1) * 0.1}s ease forwards;
+              }
+            }
+          }
+        }
+      }
+
+      &[data-open="true"] {
+        // animation: slide-open 1s ease forwards;
+
+        .shareItem {
+          opacity: 0;
+
+          @for $i from 1 through $num-itens {
+            &:nth-child(#{$i}n) {
+              // animation-delay: #{(4 - $i) * 0.2}s;
+              animation: fade-in 0.5s #{($num-itens - $i) * 0.2}s ease forwards;
+
+              .shareItemIcon {
+                animation: fade-in-icon
+                  #{(($num-itens - $i) * 0.2) +
+                  1}s
+                  ease
+                  forwards;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &[data-direction="toBottom"] {
+    flex-direction: column;
+
+    .shareList {
+      &[data-open="false"] {
+        .shareItem {
+          @for $i from 1 through $num-itens {
+            &:nth-child(#{$i}n) {
+              animation: fade-out
+                0.5s
+                #{($num-itens - $i) *
+                0.2}s
+                ease
+                forwards;
+
+              .shareItemIcon {
+                animation: fade-out-icon
+                  1s
+                  #{($num-itens - $i) *
+                  0.1}s
+                  ease
+                  forwards;
+              }
+            }
+          }
+        }
+      }
+
+      &[data-open="true"] {
+        // animation: slide-open 1s ease forwards;
+
+        .shareItem {
+          opacity: 0;
+
+          @for $i from 1 through $num-itens {
+            &:nth-child(#{$i}n) {
+              // animation-delay: #{(4 - $i) * 0.2}s;
+              animation: fade-in 0.5s #{($i - 1) * 0.2}s ease forwards;
+
+              .shareItemIcon {
+                animation: fade-in-icon #{(($i - 1) * 0.2) + 1}s ease forwards;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .shareIconWrapper {
+    overflow: hidden;
+    height: fit-content;
+    width: fit-content;
+
+    background-color: var(--color-background, $color-background);
+    box-shadow: 0 0 1rem var(--color-card-shadow, $color-card-shadow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    font-size: var(--share-button-size, fit-content);
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .shareIcon {
+      padding: 1rem;
+      color: var(--color-primary, $color-primary);
+    }
+  }
+
+  .shareList {
+    width: fit-content;
+    height: fit-content;
+
+    .shareItem {
+      .shareItemLink {
+        background-color: var(--color-background, $color-background);
+        height: var(--share-button-size, fit-content);
+        width: var(--share-button-size, fit-content);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem 0;
+        transition: color 0.5s ease;
+        padding: 0.7rem;
+        box-shadow: 0 0 1rem var(--color-card-shadow, $color-card-shadow);
+
+        &:hover {
+          color: var(--color-primary, $color-primary);
+          cursor: pointer;
+        }
+
+        .shareItemIcon {
+          font-size: var(--share-button-size, auto);
+        }
+      }
+    }
+  }
+}

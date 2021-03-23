@@ -21,21 +21,26 @@
 }
 
 .tooltip {
-  width: 300px;
-  max-width: 50vw;
+  width: 30rem;
+  max-width: 90vw;
   // background-color: #525252ee;
   // visibility: visible;
   opacity: 0;
   z-index: $z-index-over-all;
   position: relative;
+  font-size: $text-body;
 
   .tooltipMsg {
-    &.tooltipMsgLeft {
-      text-align: right;
-      float: right;
-    }
-    &.tooltipMsgRight {
-      text-align: left;
+    font-size: $text-body;
+
+    @include tablet-up {
+      &.tooltipMsgLeft {
+        text-align: right;
+        float: right;
+      }
+      &.tooltipMsgRight {
+        text-align: left;
+      }
     }
   }
 
@@ -54,8 +59,8 @@
 .container {
   width: 100%;
   height: clamp(600px, 100vh, 100vh);
-  content-visibility: auto;
-  contain-intrinsic-size: 100vh;
+  // content-visibility: auto;
+  // contain-intrinsic-size: 100vh;
 
   overflow: hidden;
 

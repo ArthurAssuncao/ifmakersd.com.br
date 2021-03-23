@@ -6,9 +6,12 @@ import { Icon } from "@iconify/react";
 import { format, parseISO } from "date-fns";
 import * as localePtBr from "date-fns/locale/pt-BR/index.js";
 import Head from "next/head";
+import { useEffect, useRef, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import readingTime from "reading-time";
 import { BodyRender } from "../../components/BodyRender/BodyRender";
+import { ShareButtons } from "../../components/ShareButtons";
+import { generatePostUrl } from "../../pages/api/post";
 import { PostCMS } from "../../pages/api/schema/post";
 import { PageTemplate } from "../../parts/PageTemplate";
 import { ImageUrl } from "../../util/ImageUrl";
@@ -28,6 +31,62 @@ const Post = (props: PostProps) => {
   const text = documentToPlainTextString(post.body);
   const statsToRead = readingTime(text);
   const minutesToRead = Math.ceil(statsToRead.minutes);
+
+  const [width, setWidth] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [onScroll, setOnScroll] = useState(false);
+
+  let shareButtonRef = useRef<HTMLDivElement | null>(null);
+
+  const verifyIsMobile = (width: number) => {
+    if (width < 768) {
+      setIsMobile(true);
+      return;
+    }
+    setIsMobile(false);
+  };
+
+  const handleWindowSizeChange = () => {
+    const width = window.innerWidth;
+    setWidth(width);
+    verifyIsMobile(width);
+  };
+
+  const setOnScrollCheck = (value: boolean) => {
+    if (
+      value !== onScroll ||
+      value !== Boolean(shareButtonRef.current?.dataset.onscroll)
+    ) {
+      setOnScroll(value);
+    }
+  };
+
+  const checkScrollTop = () => {
+    const heightBase = 60 * 1.5;
+    const limitHeight = heightBase;
+
+    if (window.pageYOffset > limitHeight) {
+      setOnScrollCheck(true);
+    } else {
+      setOnScrollCheck(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", checkScrollTop);
+    return () => {
+      window.removeEventListener("scroll", checkScrollTop);
+    };
+  }, []);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+    verifyIsMobile(width);
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
 
   return (
     <PageTemplate>
@@ -63,6 +122,10 @@ const Post = (props: PostProps) => {
                   <Icon icon={dateLine} className={styles.infoIcon} />
                   <span>{publishDateFormatted}</span>
                 </div>
+                <div className={styles.infoReadingTime}>
+                  <Icon icon={bxsTimeFive} className={styles.infoIcon} />
+                  <span>{minutesToRead}min para ler</span>
+                </div>
                 <div className={styles.infoAuthor}>
                   <Icon icon={bxsUser} className={styles.infoIcon} />
                   {post.authors &&
@@ -71,10 +134,6 @@ const Post = (props: PostProps) => {
                         <span key={author.sys.id}>{author.fields.name}</span>
                       );
                     })}
-                </div>
-                <div className={styles.infoReadingTime}>
-                  <Icon icon={bxsTimeFive} className={styles.infoIcon} />
-                  <span>{minutesToRead}min para ler</span>
                 </div>
               </div>
               <div className={styles.description}>
@@ -88,6 +147,24 @@ const Post = (props: PostProps) => {
           <footer></footer>
         </article>
       </main>
+      <div
+        className={styles.shareButton}
+        data-mobile={isMobile}
+        data-onscroll={onScroll}
+        ref={shareButtonRef}
+      >
+        <ShareButtons
+          url={
+            typeof window !== "undefined"
+              ? window.location.href
+              : generatePostUrl(post.slug)
+          }
+          title={post.title}
+          tags={post.tags}
+          direction={isMobile ? "toBottom" : "toTop"}
+          widthCSSVar={"--share-size"}
+        />
+      </div>
     </PageTemplate>
   );
 };

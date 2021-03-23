@@ -1,7 +1,4 @@
-import { Options } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import Head from "next/head";
-import { ReactNode } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { BodyRender } from "../../components/BodyRender";
 import { PageTemplate } from "../../parts/PageTemplate";
@@ -17,23 +14,6 @@ interface ProjectProps {
 const Project = (props: ProjectProps) => {
   const { project, meta } = props;
   const projectImageURl = ImageUrl.generateDesktopSrcMedia(project.photo.url);
-
-  const optionsContentfulRender: Options = {
-    renderMark: {
-      [MARKS.BOLD]: (text: ReactNode) => <strong>{text}</strong>,
-    },
-    renderNode: {
-      [BLOCKS.PARAGRAPH]: (node: ReactNode, children: ReactNode) => (
-        <p>{children}</p>
-      ),
-      [BLOCKS.HEADING_1]: (node: ReactNode, children: ReactNode) => (
-        <h3>{children}</h3>
-      ),
-      [BLOCKS.HEADING_2]: (node: ReactNode, children: ReactNode) => (
-        <h4>{children}</h4>
-      ),
-    },
-  };
 
   return (
     <PageTemplate>

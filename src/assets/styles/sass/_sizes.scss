@@ -1,9 +1,9 @@
 $text-html: 62.5%;
 
-$text-h1: 4.88rem;
-$text-h2: 3.9rem;
-$text-h3: 3.125rem;
-$text-h4: 2.5rem;
+$text-h1: 3.575rem;
+$text-h2: 3.025rem;
+$text-h3: 2.75rem; // 1.1x
+$text-h4: 2.5rem; // 1.5x até aqui
 $text-h5: 2rem;
 $text-h6: 1.7rem;
 $text-body: 1.6rem;
@@ -22,3 +22,4 @@ $z-index-over: 99;
 $z-index-over-all: 999;
 
 $max-page-size: 960px;
+$size-pages-header: 30rem;

@@ -366,12 +366,12 @@
       }
 
       &[data-active="true"] {
-        animation: searchSlideIn 0.5s ease forwards;
+        animation: searchSlideIn 1s ease forwards;
       }
 
       &[data-active="false"] {
         &[data-neveropened="false"] {
-          animation: searchSlideOut 0.5s ease forwards;
+          animation: searchSlideOut 1s ease forwards;
         }
       }
     }

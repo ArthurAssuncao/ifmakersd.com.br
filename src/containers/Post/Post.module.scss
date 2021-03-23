@@ -1,7 +1,5 @@
 @import "../../assets/styles/sass/resources";
 
-$size-header: 25rem;
-
 .container {
   display: flex;
   flex-direction: column;
@@ -18,19 +16,27 @@ $size-header: 25rem;
 
     .imageHeaderWrapper {
       position: relative;
+      display: flex;
+      flex-direction: column-reverse;
 
-      &:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        height: $size-header;
-        width: 100%;
-        background-color: var(
-          --color-background-alpha,
-          $color-background-alpha
-        );
-        backdrop-filter: blur(5px);
-        z-index: 1;
+      @include tablet-up {
+        flex-direction: column;
+      }
+
+      @include tablet-up {
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          height: $size-pages-header;
+          width: 100%;
+          background-color: var(
+            --color-background-alpha,
+            $color-background-alpha
+          );
+          backdrop-filter: blur(5px);
+          z-index: 1;
+        }
       }
 
       .imageBackgroundWrapper {
@@ -55,13 +61,21 @@ $size-header: 25rem;
         }
 
         .imageWrapper {
-          height: 60rem;
+          height: auto;
           position: relative;
+          padding: 0 3rem;
+
+          @include tablet-up {
+            height: $size-pages-header * 2.3;
+          }
 
           img {
-            height: 98%;
-            width: 960px;
-            object-fit: fill;
+            width: 100%;
+            max-width: 960px;
+            object-fit: contain;
+            @include tablet-up {
+              object-fit: fill;
+            }
           }
         }
       }
@@ -71,28 +85,42 @@ $size-header: 25rem;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        position: absolute;
+        position: relative;
         bottom: 0;
-        height: $size-header;
+        height: $size-pages-header;
         width: 100%;
         color: var(--color-text, $color-text);
         z-index: 2;
         filter: contrast(2);
         padding: 1.5rem;
 
+        @include tablet-up {
+          position: absolute;
+        }
+
         .title {
           line-height: 1.15;
           font-weight: bold;
+          text-align: center;
         }
 
         .info {
           display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
           margin: 1rem 0;
+
           > * {
             margin: 0 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-basis: 40%;
+            @include tablet-up {
+              flex-basis: initial;
+            }
           }
 
           .infoIcon {
@@ -103,7 +131,7 @@ $size-header: 25rem;
 
         .description {
           padding: 1rem;
-          width: 60%;
+          width: 96%;
           line-height: 1.5;
           text-align: justify;
           display: flex;
@@ -111,6 +139,10 @@ $size-header: 25rem;
           justify-content: center;
           max-height: 13rem;
           overflow: hidden;
+
+          @include tablet-up {
+            width: 60%;
+          }
         }
       }
     }
@@ -125,9 +157,17 @@ $size-header: 25rem;
 .shareButton {
   --share-size: 5rem;
   position: fixed;
-  top: 1.5rem;
   right: 1.5rem;
   z-index: $z-index-over-all;
+  transition: top 0.5s ease;
+
+  &[data-onscroll="false"] {
+    top: 10rem;
+  }
+
+  &[data-onscroll="true"] {
+    top: 1.5rem;
+  }
 
   @include tablet-up {
     top: initial;

@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 import { format, parseISO } from "date-fns";
 import * as localePtBr from "date-fns/locale/pt-BR/index.js";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import readingTime from "reading-time";
 import { BodyRender } from "../../components/BodyRender/BodyRender";
@@ -34,6 +34,9 @@ const Post = (props: PostProps) => {
 
   const [width, setWidth] = useState<number>(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [onScroll, setOnScroll] = useState(false);
+
+  let shareButtonRef = useRef<HTMLDivElement | null>(null);
 
   const verifyIsMobile = (width: number) => {
     if (width < 768) {
@@ -48,6 +51,33 @@ const Post = (props: PostProps) => {
     setWidth(width);
     verifyIsMobile(width);
   };
+
+  const setOnScrollCheck = (value: boolean) => {
+    if (
+      value !== onScroll ||
+      value !== Boolean(shareButtonRef.current?.dataset.onscroll)
+    ) {
+      setOnScroll(value);
+    }
+  };
+
+  const checkScrollTop = () => {
+    const heightBase = 60 * 1.5;
+    const limitHeight = heightBase;
+
+    if (window.pageYOffset > limitHeight) {
+      setOnScrollCheck(true);
+    } else {
+      setOnScrollCheck(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", checkScrollTop);
+    return () => {
+      window.removeEventListener("scroll", checkScrollTop);
+    };
+  }, []);
 
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -92,6 +122,10 @@ const Post = (props: PostProps) => {
                   <Icon icon={dateLine} className={styles.infoIcon} />
                   <span>{publishDateFormatted}</span>
                 </div>
+                <div className={styles.infoReadingTime}>
+                  <Icon icon={bxsTimeFive} className={styles.infoIcon} />
+                  <span>{minutesToRead}min para ler</span>
+                </div>
                 <div className={styles.infoAuthor}>
                   <Icon icon={bxsUser} className={styles.infoIcon} />
                   {post.authors &&
@@ -100,10 +134,6 @@ const Post = (props: PostProps) => {
                         <span key={author.sys.id}>{author.fields.name}</span>
                       );
                     })}
-                </div>
-                <div className={styles.infoReadingTime}>
-                  <Icon icon={bxsTimeFive} className={styles.infoIcon} />
-                  <span>{minutesToRead}min para ler</span>
                 </div>
               </div>
               <div className={styles.description}>
@@ -117,7 +147,12 @@ const Post = (props: PostProps) => {
           <footer></footer>
         </article>
       </main>
-      <div className={styles.shareButton} data-mobile={isMobile}>
+      <div
+        className={styles.shareButton}
+        data-mobile={isMobile}
+        data-onscroll={onScroll}
+        ref={shareButtonRef}
+      >
         <ShareButtons
           url={
             typeof window !== "undefined"

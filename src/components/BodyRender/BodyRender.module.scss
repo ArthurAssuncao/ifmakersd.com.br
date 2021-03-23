@@ -1,0 +1,77 @@
+@import "../../assets/styles/sass/resources";
+
+.container {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+  }
+
+  ul,
+  ol {
+    li {
+      text-indent: 1.5rem;
+      li {
+        text-indent: 3rem;
+      }
+    }
+  }
+
+  p {
+    text-align: justify;
+
+    &:first-letter {
+      color: var(--color-primary, $color-primary);
+      font-size: 200%;
+      text-transform: capitalize;
+    }
+
+    &::first-line {
+      line-height: 1.1;
+    }
+  }
+  iframe {
+    margin: 1rem auto;
+    display: block;
+  }
+
+  figure {
+    max-width: 75%;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    figcaption {
+      position: absolute;
+      bottom: 0;
+      max-width: 75%;
+      height: $text-caption * 5;
+      padding: 1rem;
+      font-size: var(--text-caption, $text-caption);
+      color: var(--color-text, $color-text);
+      z-index: 2;
+      font-weight: bold;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      word-wrap: break-word;
+      overflow: hidden;
+    }
+
+    &:after {
+      content: "";
+      bottom: 0;
+      background-color: var(--color-background, $color-background);
+      position: absolute;
+      height: $text-caption * 5;
+      opacity: 0.7;
+      width: 100%;
+      left: 0;
+      z-index: 1;
+    }
+  }
+}

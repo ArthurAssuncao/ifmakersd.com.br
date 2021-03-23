@@ -1,3 +1,5 @@
+import { Document } from "@contentful/rich-text-types";
+
 interface PostCMS {
   title: string;
   slug: string;
@@ -6,7 +8,7 @@ interface PostCMS {
     type: string;
   };
   description: string;
-  body: any;
+  body: Document;
   authors: [any];
   publish_date: any;
   tags: [string];

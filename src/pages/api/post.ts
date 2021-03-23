@@ -27,14 +27,14 @@ const createPost = (item: any) => {
 };
 
 const createPostsAndParse = (items: any) => {
-  const projects = [];
+  const posts = [];
   for (let item of items) {
-    const formatedProject = createPost(item);
-    if (formatedProject) {
-      projects.push(formatedProject);
+    const formatedPost = createPost(item);
+    if (formatedPost) {
+      posts.push(formatedPost);
     }
   }
-  return projects;
+  return posts;
 };
 
 const handleRequest = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -65,7 +65,7 @@ const fetchPosts = async (limitReq?: number) => {
 
 const fetchPost = async (slug: string) => {
   const data = await CmsClient.getEntries({
-    content_type: "posts",
+    content_type: CONTENT_TYPE,
     limit: 1,
     "fields.slug": slug,
   });

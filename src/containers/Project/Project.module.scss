@@ -1,16 +1,16 @@
 @import "../../assets/styles/sass/resources";
 
-$size-pages-header: 30rem;
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding: 0 2rem;
 
   @include tablet-up {
     max-width: 960px;
+    padding: 0;
   }
 
   .content {
@@ -45,20 +45,24 @@ $size-pages-header: 30rem;
         position: relative;
         width: 100%;
 
-        .background {
-          position: absolute;
-          content: "";
-          top: 0;
-          width: 98vw;
-          z-index: -1;
-          height: 98%;
-          background-image: var(--project-image, "");
-          background-position: center;
-          background-size: 100% 100%;
-          filter: blur(8px);
+        @include tablet-up {
+          .background {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            transform: translateX(-50%);
+            width: 200vw;
+            z-index: -1;
+            height: 98%;
+            background-image: var(--project-image, "");
+            background-position: center;
+            background-size: 100% 100%;
+            filter: blur(8px);
 
-          @include desktop-up {
-            left: -20%;
+            @include desktop-up {
+              // left: -20%;
+            }
           }
         }
 
@@ -69,14 +73,17 @@ $size-pages-header: 30rem;
 
           @include tablet-up {
             height: $size-pages-header * 2.3;
+            padding: 0;
           }
 
           img {
             width: 100%;
             max-width: 960px;
             object-fit: contain;
+
             @include tablet-up {
               object-fit: fill;
+              height: 98%;
             }
           }
         }
@@ -108,11 +115,19 @@ $size-pages-header: 30rem;
 
         .info {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           flex-wrap: wrap;
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
           margin: 1rem 0;
+          align-self: flex-start;
+
+          @include tablet-up {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+          }
 
           > * {
             margin: 0 1rem;
@@ -139,11 +154,11 @@ $size-pages-header: 30rem;
           display: flex;
           align-items: center;
           justify-content: center;
+          max-height: 13rem;
+          overflow: hidden;
 
           @include tablet-up {
             width: 60%;
-            max-height: 13rem;
-            overflow: hidden;
           }
         }
       }

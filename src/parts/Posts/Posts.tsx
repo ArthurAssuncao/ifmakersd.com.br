@@ -8,10 +8,12 @@ import { Section } from "../Section";
 
 interface PropsPosts {
   posts?: Array<PostCMS>;
+  hasMoreButton: boolean;
 }
 
 const Posts = (props: PropsPosts) => {
   const { posts } = props.posts ? props : useContext(PostContext);
+  const { hasMoreButton } = props;
 
   const button = (
     <Button
@@ -23,7 +25,7 @@ const Posts = (props: PropsPosts) => {
   return (
     <Section
       title="Saiba mais sobre a Indústria 4.0"
-      moreButton={button}
+      moreButton={hasMoreButton && button}
       backgroundColor="neutral"
     >
       {posts ? (

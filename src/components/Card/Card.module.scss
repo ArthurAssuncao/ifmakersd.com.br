@@ -65,10 +65,10 @@
         .tag {
           position: absolute;
           right: 0;
-          top: ($text-small * -2) - 0.2rem;
-          font-size: $text-small;
-          padding: 0.5rem;
-          padding-left: 1rem;
+          top: ($text-caption * -2.3) - 0.1rem;
+          font-size: $text-caption;
+          padding: 0.8rem;
+          padding-left: 1.5rem;
           background-color: var(--color-accent, $color-accent);
           border-top-left-radius: 2rem;
           color: var(--color-text-alt, $color-text-alt);

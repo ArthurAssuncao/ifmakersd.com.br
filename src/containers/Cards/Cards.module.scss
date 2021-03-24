@@ -1,0 +1,30 @@
+@import "../../assets/styles/sass/resources";
+
+.container {
+  padding: 3rem;
+  width: 100%;
+
+  .containerInner {
+    .title {
+      margin: 3rem 0;
+      font-weight: bold;
+    }
+
+    .cards {
+      @supports not (display: grid) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      @supports (display: grid) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 40rem));
+        grid-auto-flow: dense;
+        gap: 3rem;
+        place-content: center;
+      }
+    }
+  }
+}

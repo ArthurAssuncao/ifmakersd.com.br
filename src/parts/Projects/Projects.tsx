@@ -4,14 +4,15 @@ import { Loading } from "../../components/Loading";
 import { Project } from "../../components/Project";
 import { ProjectCMS, ProjectContext } from "../../services/ProjectContext";
 import { Section } from "../Section";
-
+import styles from "./Projects.module.scss";
 interface ProjectsProps {
   projects?: Array<ProjectCMS>;
-  moreButton: boolean;
+  hasMoreButton: boolean;
 }
 
 const Projects = (props: ProjectsProps) => {
   const { projects } = props.projects ? props : useContext(ProjectContext);
+  const { hasMoreButton } = props;
 
   const button = (
     <Button
@@ -24,8 +25,9 @@ const Projects = (props: ProjectsProps) => {
   return (
     <Section
       title="Conheça nossos projetos"
-      moreButton={button}
+      moreButton={hasMoreButton && button}
       backgroundColor="purple"
+      className={styles.container}
     >
       {projects ? (
         projects.map((project: ProjectCMS) => {

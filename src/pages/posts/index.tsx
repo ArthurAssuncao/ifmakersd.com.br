@@ -1,8 +1,8 @@
 import Head from "next/head";
-import { useContext } from "react";
+import { Loading } from "../../components/Loading";
+import { Post } from "../../components/Post";
+import { Cards } from "../../containers/Cards";
 import { PageTemplate } from "../../parts/PageTemplate";
-import { Section } from "../../parts/Section";
-import { PostContext } from "../../services/PostContext";
 import { fetchPosts } from "../api/post";
 import { PostCMS } from "../api/schema/post";
 
@@ -16,7 +16,7 @@ interface PostsPageProps {
 
 const ProjectPage = (props: PostsPageProps) => {
   const { meta, data } = props;
-  const context = useContext(PostContext);
+
   const posts = data;
 
   return (
@@ -26,13 +26,15 @@ const ProjectPage = (props: PostsPageProps) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={meta.description} />
       </Head>
-      <Section
-        data={data}
-        moreButton={false}
-        type="post"
-        context={context}
-        title="Saiba mais sobre a indústria 4.0"
-      />
+      <Cards title="Conheça mais sobre a indústria 4.0">
+        {posts ? (
+          posts.map((post: PostCMS) => {
+            return <Post post={post} key={post.slug} />;
+          })
+        ) : (
+          <Loading />
+        )}
+      </Cards>
     </PageTemplate>
   );
 };

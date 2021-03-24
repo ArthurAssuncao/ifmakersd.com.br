@@ -83,7 +83,7 @@ const fetchProject = async (slug: string) => {
 };
 
 const generateProjectUrl = (slug: string) => {
-  return `/projects/${slug}`;
+  return `/projetos/${slug}`;
 };
 
 export default handleRequest;

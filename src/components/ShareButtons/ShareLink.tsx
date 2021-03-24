@@ -4,7 +4,7 @@ import { Share } from "../../util/Share";
 interface ShareLinkProps {
   url: string;
   title: string;
-  tags: [string];
+  tags: string[];
   type: "facebook" | "twitter" | "linkedin" | "instagram" | "whastapp";
   children: ReactNode;
   className?: string;
@@ -12,7 +12,9 @@ interface ShareLinkProps {
 
 const ShareLink = (props: ShareLinkProps) => {
   const { url, title, tags, type, children, className } = props;
+  let shareTitle = `Compartilhar o post ${title} no {$type}`;
   const shareGenerator = Share(url, title, tags);
+
   let shareUrl: string = "";
   if (type === "facebook") {
     shareUrl = shareGenerator.facebook.generateUrl();
@@ -27,7 +29,7 @@ const ShareLink = (props: ShareLinkProps) => {
   }
 
   return (
-    <a href={shareUrl} title={title} className={className}>
+    <a href={shareUrl} title={shareTitle} className={className}>
       {children}
     </a>
   );

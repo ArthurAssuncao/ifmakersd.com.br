@@ -13,12 +13,13 @@ interface ShareButtonsProps {
   direction: "toTop" | "toBottom";
   url: string;
   title: string;
-  tags: [string];
+  tags?: string[];
   widthCSSVar: string;
 }
 
 const ShareButtons = (props: ShareButtonsProps) => {
-  const { direction, url, title, tags, widthCSSVar } = props;
+  const { direction, url, title, widthCSSVar } = props;
+  const tags = props.tags ? props.tags : [""];
   const [isOpen, setIsOpen] = useState(false);
 
   const shareButtonStyle = {

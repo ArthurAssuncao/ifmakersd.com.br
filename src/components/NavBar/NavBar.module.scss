@@ -35,6 +35,34 @@
   }
 }
 
+@keyframes searchSlideOut {
+  0% {
+    max-width: 85%;
+    max-height: 4rem;
+  }
+  99% {
+    max-height: 4rem;
+  }
+  100% {
+    max-width: 0;
+    max-height: 0;
+  }
+}
+
+@keyframes searchSlideIn {
+  0% {
+    max-width: 0;
+    max-height: 0;
+  }
+  1% {
+    max-height: 4rem;
+  }
+  100% {
+    max-width: 85%;
+    max-height: 4rem;
+  }
+}
+
 .containerMenuTop {
   position: absolute;
   width: 100%;
@@ -52,6 +80,17 @@
 
     .menuIconTop {
       height: inherit;
+    }
+  }
+}
+
+.containerMenuMainSpaceFix {
+  @include tablet-up {
+    &[data-floating-will-disappear="true"],
+    &[data-floating="true"] {
+      height: 8.6rem;
+      position: relative;
+      top: 0;
     }
   }
 }
@@ -96,6 +135,13 @@
     }
   }
 
+  &[data-floating-will-disappear="true"] {
+    &[data-floating="false"] {
+      position: fixed;
+      animation: menuFloatingDisappear 0.4s ease forwards;
+    }
+  }
+
   &[data-floating="true"] {
     @include tablet-up {
       position: fixed;
@@ -116,6 +162,9 @@
         .menuMainList {
           .menuMainItem {
             font-size: var(--text-body, $text-body);
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             &:hover {
               color: var(--color-text-highlight, $color-text-highlight);
@@ -228,8 +277,6 @@
         }
 
         .menuMainItemIcon {
-          margin-right: 0.5rem;
-
           @include tablet-up {
             font-size: 3.6rem;
           }
@@ -290,6 +337,42 @@
       position: relative;
       &:hover {
         color: var(--color-primary, $color-primary);
+      }
+    }
+
+    .menuBottomSearchField {
+      width: 85%;
+      top: -4.1rem;
+      position: absolute;
+      height: 4rem;
+      transform: translateY(-0%);
+      border: none;
+      background: black;
+      padding: 0 1.5rem;
+      background-color: var(--color-background-alpha, $color-background-alpha);
+      border-radius: 0.5rem;
+      box-shadow: 0 0 1rem var(--color-card-shadow, $color-card-shadow);
+      backdrop-filter: blur(10px);
+
+      transition: max-width 0.5s ease;
+
+      &[data-neveropened="true"] {
+        max-width: 0;
+        max-height: 0;
+      }
+
+      &::placeholder {
+        text-align: center;
+      }
+
+      &[data-active="true"] {
+        animation: searchSlideIn 1s ease forwards;
+      }
+
+      &[data-active="false"] {
+        &[data-neveropened="false"] {
+          animation: searchSlideOut 1s ease forwards;
+        }
       }
     }
   }

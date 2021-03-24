@@ -1,7 +1,8 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { Loading } from "../../components/Loading";
+import { Project } from "../../components/Project";
+import { Cards } from "../../containers/Cards";
 import { PageTemplate } from "../../parts/PageTemplate";
-import { Projects } from "../../parts/Projects";
 import { ProjectCMS } from "../../services/ProjectContext";
 import { fetchProjects } from "../api/project";
 
@@ -16,7 +17,6 @@ interface ProjectsPageProps {
 const ProjectPage = (props: ProjectsPageProps) => {
   const { meta, data } = props;
   const projects = data;
-  const router = useRouter();
 
   return (
     <PageTemplate>
@@ -25,7 +25,15 @@ const ProjectPage = (props: ProjectsPageProps) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={meta.description} />
       </Head>
-      <Projects projects={projects} />
+      <Cards title="Conheça nossos projetos">
+        {projects ? (
+          projects.map((project: ProjectCMS) => {
+            return <Project project={project} key={project.slug} />;
+          })
+        ) : (
+          <Loading />
+        )}
+      </Cards>
     </PageTemplate>
   );
 };

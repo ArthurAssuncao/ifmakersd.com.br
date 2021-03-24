@@ -22,10 +22,10 @@ html {
   // width: 98.4vw;
   overflow-x: hidden;
 
-  #__next{
+  #__next {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
@@ -37,8 +37,12 @@ body {
     $color-background
   );
   @include property_compat("color", --color-text, $color-text);
-  @include property_compat("background-color", --color-background, $color-background);
+  @include property_compat(
+    "background-color",
+    --color-background,
+    $color-background
+  );
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }

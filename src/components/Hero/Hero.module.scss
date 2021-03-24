@@ -21,19 +21,26 @@
 }
 
 .tooltip {
-  width: 300px;
-  max-width: 50vw;
+  width: 30rem;
+  max-width: 90vw;
   // background-color: #525252ee;
   // visibility: visible;
   opacity: 0;
+  z-index: $z-index-over-all;
+  position: relative;
+  font-size: $text-body;
 
   .tooltipMsg {
-    &.tooltipMsgLeft {
-      text-align: right;
-      float: right;
-    }
-    &.tooltipMsgRight {
-      text-align: left;
+    font-size: $text-body;
+
+    @include tablet-up {
+      &.tooltipMsgLeft {
+        text-align: right;
+        float: right;
+      }
+      &.tooltipMsgRight {
+        text-align: left;
+      }
     }
   }
 
@@ -52,6 +59,8 @@
 .container {
   width: 100%;
   height: clamp(600px, 100vh, 100vh);
+  // content-visibility: auto;
+  // contain-intrinsic-size: 100vh;
 
   overflow: hidden;
 
@@ -79,6 +88,7 @@
       position: absolute;
       transition: all 0.5s ease;
       cursor: pointer;
+      z-index: $z-index-default;
 
       $angle: 360 - 90;
       $dangle: 360 / 9; /* 9 itens */
@@ -122,6 +132,7 @@
 
       &:hover {
         border-color: var(--color-primary, $color-primary);
+        z-index: $z-index-over;
         .heroIcon,
         .heroIconText {
           color: var(--color-primary, $color-primary);
@@ -167,14 +178,14 @@
       align-items: center;
       justify-content: center;
       animation: logo-pulse 5s alternate infinite;
+      z-index: $z-index-default;
+      position: relative;
 
       @include tablet-up {
         width: 25rem;
         height: 25rem;
       }
       .heroLogoIcon {
-        z-index: $z-index-default;
-        position: relative;
       }
     }
   }

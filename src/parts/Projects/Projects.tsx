@@ -1,33 +1,42 @@
 import { useContext } from "react";
+import { Button } from "../../components/Button";
 import { Loading } from "../../components/Loading";
 import { Project } from "../../components/Project";
-import { Wave } from "../../components/Wave";
 import { ProjectCMS, ProjectContext } from "../../services/ProjectContext";
+import { Section } from "../Section";
 import styles from "./Projects.module.scss";
-
 interface ProjectsProps {
   projects?: Array<ProjectCMS>;
+  hasMoreButton: boolean;
 }
 
 const Projects = (props: ProjectsProps) => {
   const { projects } = props.projects ? props : useContext(ProjectContext);
+  const { hasMoreButton } = props;
+
+  const button = (
+    <Button
+      text="Veja mais projetos"
+      href="/projects"
+      backgroundColor="purple"
+    />
+  );
 
   return (
-    <section className={styles.container}>
-      <Wave className={styles.wave} />
-      <div className={styles.containerInner}>
-        <h3 className={styles.title}>Conheça nossos projetos</h3>
-        <div className={styles.projects}>
-          {projects ? (
-            projects.map((project: ProjectCMS) => {
-              return <Project project={project} key={project.slug} />;
-            })
-          ) : (
-            <Loading />
-          )}
-        </div>
-      </div>
-    </section>
+    <Section
+      title="Conheça nossos projetos"
+      moreButton={hasMoreButton && button}
+      backgroundColor="purple"
+      className={styles.container}
+    >
+      {projects ? (
+        projects.map((project: ProjectCMS) => {
+          return <Project project={project} key={project.slug} />;
+        })
+      ) : (
+        <Loading />
+      )}
+    </Section>
   );
 };
 

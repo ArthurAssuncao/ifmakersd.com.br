@@ -5,7 +5,7 @@ const Loading = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="360"
-      height="360"
+      height="420"
       version="1.1"
       viewBox="0 0 360 360"
       className={styles.container}

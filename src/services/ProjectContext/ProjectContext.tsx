@@ -40,4 +40,4 @@ const ProjectProvider = ({ children }: ProjectProviderProps) => {
 };
 
 export { ProjectContext, ProjectProvider };
-export type { ProjectCMS };
+export type { ProjectCMS, ProjectContextData };

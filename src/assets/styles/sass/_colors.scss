@@ -1,7 +1,7 @@
 @import "mixins";
 
 $color-background: #fff;
-$color-background-alpha: toRGBA($color-background, 0.8);
+$color-background-alpha: toRGBA($color-background, 0.5);
 $color-background-alt: #7b7ff6;
 $color-background-alt-contrast: #fff;
 $color-gray-line: #dcdde0;
@@ -17,10 +17,10 @@ $color-secondary: #4adede;
 $color-secondary-light: #a5efef;
 $color-warning: #ffa061;
 $color-error: #ff6961;
-$color-card-shadow: rgba(0, 0, 0, 0.1);
+$color-card-shadow: rgba(0, 0, 0, 0.2);
 
 $color-background-dark: #525252;
-$color-background-dark-alpha: toRGBA($color-background-dark, 0.8);
+$color-background-dark-alpha: toRGBA($color-background-dark, 0.5);
 $color-gray-line-dark: #5a5a5a;
 $color-text-dark: #e4e4e4;
 $color-text-gray-dark: #dbdbdb;

@@ -1,6 +1,9 @@
 import Head from "next/head";
+import { useEffect, useRef, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { BodyRender } from "../../components/BodyRender";
+import { ShareButtons } from "../../components/ShareButtons";
+import { generatePostUrl } from "../../pages/api/post";
 import { PageTemplate } from "../../parts/PageTemplate";
 import { ProjectCMS } from "../../services/ProjectContext";
 import { ImageUrl } from "../../util/ImageUrl";
@@ -14,6 +17,62 @@ interface ProjectProps {
 const Project = (props: ProjectProps) => {
   const { project, meta } = props;
   const projectImageURl = ImageUrl.generateDesktopSrcMedia(project.photo.url);
+
+  const [width, setWidth] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [onScroll, setOnScroll] = useState(false);
+
+  let shareButtonRef = useRef<HTMLDivElement | null>(null);
+
+  const verifyIsMobile = (width: number) => {
+    if (width < 768) {
+      setIsMobile(true);
+      return;
+    }
+    setIsMobile(false);
+  };
+
+  const handleWindowSizeChange = () => {
+    const width = window.innerWidth;
+    setWidth(width);
+    verifyIsMobile(width);
+  };
+
+  const setOnScrollCheck = (value: boolean) => {
+    if (
+      value !== onScroll ||
+      value !== Boolean(shareButtonRef.current?.dataset.onscroll)
+    ) {
+      setOnScroll(value);
+    }
+  };
+
+  const checkScrollTop = () => {
+    const heightBase = 60 * 1.5;
+    const limitHeight = heightBase;
+
+    if (window.pageYOffset > limitHeight) {
+      setOnScrollCheck(true);
+    } else {
+      setOnScrollCheck(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", checkScrollTop);
+    return () => {
+      window.removeEventListener("scroll", checkScrollTop);
+    };
+  }, []);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+    verifyIsMobile(width);
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
 
   return (
     <PageTemplate>
@@ -55,6 +114,23 @@ const Project = (props: ProjectProps) => {
           <footer></footer>
         </article>
       </main>
+      <div
+        className={styles.shareButton}
+        data-mobile={isMobile}
+        data-onscroll={onScroll}
+        ref={shareButtonRef}
+      >
+        <ShareButtons
+          url={
+            typeof window !== "undefined"
+              ? window.location.href
+              : generatePostUrl(project.slug)
+          }
+          title={project.title}
+          direction={isMobile ? "toBottom" : "toTop"}
+          widthCSSVar={"--share-size"}
+        />
+      </div>
     </PageTemplate>
   );
 };

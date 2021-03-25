@@ -10,7 +10,7 @@ const createEquipment = (item: any) => {
   }
 
   const equipment: EquipmentCMS = {
-    title: item.fields.title,
+    name: item.fields.name,
     slug: item.fields.slug,
     image: {
       url: item.fields.image.fields.file.url,

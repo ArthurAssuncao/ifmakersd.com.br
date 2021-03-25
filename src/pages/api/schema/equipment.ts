@@ -1,5 +1,5 @@
 interface EquipmentCMS {
-  title: string;
+  name: string;
   slug: string;
   image: {
     url: string;

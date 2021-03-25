@@ -11,7 +11,7 @@ const Equipment = (props: EquipmentProps) => {
   const equipmentItem: ItemCard = {
     slug: equipment.slug,
     imageUrl: equipment.image.url,
-    title: equipment.title,
+    title: equipment.name,
     description: equipment.description,
     href: "/#",
   };

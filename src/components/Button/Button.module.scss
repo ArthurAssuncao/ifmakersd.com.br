@@ -1,8 +1,9 @@
 @import "../../assets/styles/sass/resources";
 
 .container {
-  width: 20rem;
-  height: 5rem;
+  min-width: 20rem;
+  padding: 0.5rem 2rem;
+  min-height: 5rem;
   border: 0.3rem solid;
   display: flex;
   align-items: center;
@@ -12,6 +13,7 @@
   cursor: pointer;
   transition: all 0.5s ease;
   position: relative;
+  margin: 1rem;
 
   &:hover {
     box-shadow: 0 0 2rem var(--color-card-shadow, $color-card-shadow);

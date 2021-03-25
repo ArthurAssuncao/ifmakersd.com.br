@@ -3,7 +3,13 @@ import { Icon } from "@iconify/react";
 import { useEffect, useRef, useState } from "react";
 import styles from "./ButtonScrollToTop.module.scss";
 
-const ButtonScrollToTop = () => {
+interface ButtonScrollToTopProps {
+  className?: string;
+}
+
+const ButtonScrollToTop = (props: ButtonScrollToTopProps) => {
+  const { className } = props;
+
   const [showScroll, setShowScroll] = useState(false);
   let buttonRef = useRef<HTMLDivElement | null>(null);
 
@@ -40,7 +46,7 @@ const ButtonScrollToTop = () => {
 
   return (
     <div
-      className={styles.container}
+      className={`${styles.container} ${className}`}
       data-show={showScroll}
       onClick={scrollTop}
       ref={buttonRef}

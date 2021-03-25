@@ -29,7 +29,7 @@ const PageTemplate = (props: PageTemplateProps) => {
       <ToastContainer />
       <Header>{headerChildren}</Header>
       {children}
-      <ButtonScrollToTop />
+      <ButtonScrollToTop className={styles.buttonToTop} />
     </div>
   );
 };

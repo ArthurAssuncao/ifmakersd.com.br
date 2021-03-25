@@ -288,7 +288,8 @@
 
 .containerMenuBottom {
   width: 100%;
-  height: 6rem;
+  height: 60px; // fallback
+  height: clamp(60px, 60px, 6rem);
   display: flex;
   align-items: center;
   justify-content: space-around;

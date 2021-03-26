@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { ContactForm } from "../../components/ContactForm";
+import { Copyright } from "../../components/Copyright";
 import { SocialButtons } from "../../components/SocialButtons";
 import { Wave } from "../../components/Wave";
 import styles from "./Footer.module.scss";
@@ -16,6 +17,7 @@ const Footer = (props: FooterProps) => {
       <h3 className={styles.title}>Entre em contato com nossa equipe</h3>
       <ContactForm />
       <SocialButtons />
+      <Copyright />
       {children}
     </footer>
   );

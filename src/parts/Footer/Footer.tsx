@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { ContactForm } from "../../components/ContactForm";
+import { SocialButtons } from "../../components/SocialButtons";
 import { Wave } from "../../components/Wave";
 import styles from "./Footer.module.scss";
 
@@ -14,6 +15,7 @@ const Footer = (props: FooterProps) => {
       <Wave className={styles.wave} />
       <h3 className={styles.title}>Entre em contato com nossa equipe</h3>
       <ContactForm />
+      <SocialButtons />
       {children}
     </footer>
   );

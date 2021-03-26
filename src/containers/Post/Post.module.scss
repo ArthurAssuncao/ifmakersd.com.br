@@ -78,6 +78,17 @@
 
           img {
             width: 100%;
+            @include tablet-up {
+              max-width: $max-page-size-tablet;
+            }
+
+            @include desktop-up {
+              max-width: $max-page-size-desktop;
+            }
+
+            @include desktop-big-up {
+              max-width: $max-page-size-desktop-big;
+            }
             max-width: 960px;
             object-fit: contain;
 

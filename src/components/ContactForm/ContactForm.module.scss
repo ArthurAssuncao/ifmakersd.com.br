@@ -9,7 +9,15 @@
   width: 100%;
 
   @include tablet-up {
-    max-width: 960px;
+    max-width: $max-page-size-tablet;
+  }
+
+  @include desktop-up {
+    max-width: $max-page-size-desktop;
+  }
+
+  @include desktop-big-up {
+    max-width: $max-page-size-desktop-big;
   }
 
   .nameEmailWrapper {

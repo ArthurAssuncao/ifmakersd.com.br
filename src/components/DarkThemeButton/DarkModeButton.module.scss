@@ -29,18 +29,6 @@
 }
 
 .container {
-  position: absolute;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  width: 100%;
-  top: 0rem;
-  z-index: $z-index-over;
-
-  @include tablet-up {
-    max-width: 960px;
-  }
-
   .containerInner {
     width: 3.6rem;
     height: 3.6rem;

@@ -1,0 +1,118 @@
+@import "../../assets/styles/sass/resources";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3rem 3rem;
+  width: 100%;
+
+  @include tablet-up {
+    max-width: 960px;
+  }
+
+  .nameEmailWrapper {
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+
+    @include tablet-up {
+      flex-direction: row;
+      justify-content: space-between;
+
+      .fieldWrapper {
+        flex: 0 0 48%;
+
+        .field {
+        }
+      }
+    }
+  }
+
+  .fieldWrapper {
+    width: inherit;
+    margin: 0.75rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .field {
+      width: 100%;
+      min-height: 4rem;
+      border-radius: 0.7rem;
+      outline: none;
+      border: none;
+      margin: 0.75rem 0;
+      padding: 1.5rem;
+      background-color: var(--color-background, $color-background);
+      color: var(--color-text, $color-text);
+
+      @include tablet-up {
+        min-height: 6rem;
+      }
+
+      &::placeholder {
+        color: var(--color-text, $color-text);
+      }
+
+      &[data-error="true"] {
+        border: 1px solid var(--color-error, $color-error);
+        box-shadow: 0 0 1rem var(--color-error, $color-error);
+      }
+    }
+
+    .inputField--focus {
+      &:focus {
+        box-shadow: 0 0 1rem var(--color-secondary, $color-secondary);
+      }
+    }
+
+    .nameField,
+    .emailField,
+    .messageField {
+      @extend .field;
+      @extend .inputField--focus;
+    }
+
+    .fieldError {
+      background-color: var(--color-error, $color-error);
+      padding: 0.7rem 1rem;
+      border-radius: 0.3rem;
+      max-width: 98%;
+    }
+
+    .messageField {
+      line-height: 1.5;
+    }
+  }
+
+  .submitButton {
+    min-height: 4rem;
+    border-radius: 0.7rem;
+    outline: none;
+    border: none;
+    margin: 0.75rem 0;
+    padding: 1.5rem;
+    width: 75%;
+    color: var(--color-text-alt, $color-text-alt);
+    background-color: var(--color-accent, $color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include tablet-up {
+      width: 50%;
+    }
+
+    .submitButtonIcon {
+      font-size: 3rem;
+      margin-right: 1rem;
+    }
+
+    .submitButtonText {
+      font-weight: bold;
+    }
+  }
+}

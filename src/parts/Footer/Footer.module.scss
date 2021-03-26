@@ -1,0 +1,29 @@
+@import "../../assets/styles/sass/resources";
+
+.container {
+  position: relative;
+  min-height: 60rem;
+  padding: 3rem 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  background: var(--color-primary, $color-primary);
+  color: var(--color-text-alt, $color-text-alt);
+
+  @include tablet-up {
+    min-height: 70rem;
+  }
+
+  .wave {
+    path {
+      fill: var(--color-primary, $color-primary);
+    }
+  }
+
+  .title {
+    font-weight: bold;
+  }
+}

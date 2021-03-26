@@ -2,6 +2,7 @@ import { ReactNode, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ButtonScrollToTop } from "../../components/ButtonScrollToTop";
+import { Footer } from "../Footer";
 import { Header } from "../Header";
 import styles from "./PageTemplate.module.scss";
 
@@ -30,6 +31,7 @@ const PageTemplate = (props: PageTemplateProps) => {
       <Header>{headerChildren}</Header>
       {children}
       <ButtonScrollToTop className={styles.buttonToTop} />
+      <Footer />
     </div>
   );
 };

@@ -17,7 +17,7 @@ interface NavBarProps {
   children?: ReactNode;
 }
 
-const NavBar = (props) => {
+const NavBar = (props: NavBarProps) => {
   const { children } = props;
   const [isMobileSideMenuActive, setIsMobileSideMenuActive] = useState(false);
   const [showFloating, setShowFloating] = useState(false);

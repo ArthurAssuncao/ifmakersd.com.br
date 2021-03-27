@@ -1,11 +1,9 @@
-import { useContext } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Button } from "../../components/Button";
 import { Loading } from "../../components/Loading";
 import { Post } from "../../components/Post";
 import { PostCMS } from "../../pages/api/schema/post";
 import { Cards } from "../../parts/Cards";
-import { PostContext } from "../../services/PostContext";
 import { Section } from "../Section";
 
 interface PropsPosts {
@@ -14,7 +12,7 @@ interface PropsPosts {
 }
 
 const Posts = (props: PropsPosts) => {
-  const { posts } = props.posts ? props : useContext(PostContext);
+  const posts = props.posts ? props.posts : ([] as Array<PostCMS>);
   const { hasMoreButton } = props;
 
   const button = (

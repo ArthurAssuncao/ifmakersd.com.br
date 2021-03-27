@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Button } from "../../components/Button";
 import { Loading } from "../../components/Loading";
 import { Project } from "../../components/Project";
-import { ProjectCMS, ProjectContext } from "../../services/ProjectContext";
+import { ProjectCMS } from "../../services/ProjectContext";
 import { Cards } from "../Cards";
 import { Section } from "../Section";
 import styles from "./Projects.module.scss";
@@ -13,7 +12,7 @@ interface ProjectsProps {
 }
 
 const Projects = (props: ProjectsProps) => {
-  const { projects } = props.projects ? props : useContext(ProjectContext);
+  const projects = props.projects ? props.projects : ([] as Array<ProjectCMS>);
   const { hasMoreButton } = props;
 
   const button = (

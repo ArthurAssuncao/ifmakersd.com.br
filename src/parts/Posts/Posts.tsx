@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Fade } from "react-awesome-reveal";
 import { Button } from "../../components/Button";
 import { Loading } from "../../components/Loading";
 import { Post } from "../../components/Post";
@@ -30,13 +31,15 @@ const Posts = (props: PropsPosts) => {
       backgroundColor="neutral"
     >
       <Cards>
-        {posts ? (
-          posts.map((post: PostCMS) => {
-            return <Post post={post} key={post.slug} />;
-          })
-        ) : (
-          <Loading />
-        )}
+        <Fade duration={1500} cascade>
+          {posts ? (
+            posts.map((post: PostCMS) => {
+              return <Post post={post} key={post.slug} />;
+            })
+          ) : (
+            <Loading />
+          )}
+        </Fade>
       </Cards>
     </Section>
   );

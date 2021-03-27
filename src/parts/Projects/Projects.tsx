@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Fade } from "react-awesome-reveal";
 import { Button } from "../../components/Button";
 import { Loading } from "../../components/Loading";
 import { Project } from "../../components/Project";
@@ -31,13 +32,15 @@ const Projects = (props: ProjectsProps) => {
       className={styles.container}
     >
       <Cards>
-        {projects ? (
-          projects.map((project: ProjectCMS) => {
-            return <Project project={project} key={project.slug} />;
-          })
-        ) : (
-          <Loading />
-        )}
+        <Fade duration={1500} cascade>
+          {projects ? (
+            projects.map((project: ProjectCMS) => {
+              return <Project project={project} key={project.slug} />;
+            })
+          ) : (
+            <Loading />
+          )}
+        </Fade>
       </Cards>
     </Section>
   );

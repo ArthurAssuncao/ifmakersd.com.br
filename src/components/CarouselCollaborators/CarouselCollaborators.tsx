@@ -1,4 +1,5 @@
 import { CSSProperties, useEffect, useRef, useState } from "react";
+import { Fade } from "react-awesome-reveal";
 import { CollaboratorCMS } from "../../pages/api/schema/collaborator";
 import { Collaborator } from "../Collaborator";
 import styles from "./CarouselCollaborators.module.scss";
@@ -59,16 +60,18 @@ const CarouselCollaborators = (props: CarouselCollaboratorsProps) => {
   return (
     <div className={styles.container} style={collaboratorsLengthCSSVar}>
       <ul className={styles.itemList} ref={itemListRef}>
-        {collaborators.map((collaborator: CollaboratorCMS, index: number) => {
-          return (
-            <li className={styles.item} key={index}>
-              <Collaborator
-                collaborator={collaborator}
-                key={collaborator.slug}
-              />
-            </li>
-          );
-        })}
+        <Fade duration={1500} cascade>
+          {collaborators.map((collaborator: CollaboratorCMS, index: number) => {
+            return (
+              <li className={styles.item} key={index}>
+                <Collaborator
+                  collaborator={collaborator}
+                  key={collaborator.slug}
+                />
+              </li>
+            );
+          })}
+        </Fade>
       </ul>
       <ul className={styles.dotList}>
         {collaborators.map((_collaborator: CollaboratorCMS, index: number) => {

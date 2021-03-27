@@ -1,3 +1,4 @@
+import "intersection-observer";
 import "react-toastify/dist/ReactToastify.css";
 import { Hero } from "../../components/Hero";
 import { CollaboratorCMS } from "../../pages/api/schema/collaborator";

@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Fade } from "react-awesome-reveal";
 import { Button } from "../../components/Button";
 import { Equipment } from "../../components/Equipment";
 import { Loading } from "../../components/Loading";
@@ -32,13 +33,15 @@ const Equipments = (props: EquipmentProps) => {
       backgroundColor="purple"
     >
       <Cards>
-        {equipments ? (
-          equipments.map((equipment: EquipmentCMS) => {
-            return <Equipment equipment={equipment} key={equipment.slug} />;
-          })
-        ) : (
-          <Loading />
-        )}
+        <Fade duration={1500} cascade>
+          {equipments ? (
+            equipments.map((equipment: EquipmentCMS) => {
+              return <Equipment equipment={equipment} key={equipment.slug} />;
+            })
+          ) : (
+            <Loading />
+          )}
+        </Fade>
       </Cards>
     </Section>
   );

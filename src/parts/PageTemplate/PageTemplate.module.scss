@@ -11,4 +11,14 @@
     width: 100vw;
     min-height: 100vh;
   }
+
+  .buttonToTop {
+    position: fixed;
+    bottom: 7rem;
+    right: 1.5rem;
+
+    @include tablet-up {
+      bottom: 1.5rem;
+    }
+  }
 }

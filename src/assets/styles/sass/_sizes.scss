@@ -21,5 +21,9 @@ $z-index-default: auto;
 $z-index-over: 99;
 $z-index-over-all: 999;
 
-$max-page-size: 960px;
+$max-page-size-tablet: 960px;
+$max-page-size-desktop: 1000px;
+$max-page-size-desktop-big: 1200px;
 $size-pages-header: 30rem;
+
+$mobile-padding-size: 1.5rem;

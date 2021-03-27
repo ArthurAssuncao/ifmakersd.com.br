@@ -1,0 +1,74 @@
+@import "../../assets/styles/sass/resources";
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+.container {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .itemList {
+    display: flex;
+    flex-direction: row;
+    transition: all 0.5s ease;
+    // transform: translateX(-50%);
+
+    &[data-animation="left"] {
+      // animation: slide-left 0.5s ease forwards;
+    }
+
+    &[data-animation="right"] {
+      // animation: slide-right 0.5s ease forwards;
+    }
+  }
+
+  .dotList {
+    width: 100%;
+    display: flex;
+    padding: 1.5rem;
+
+    .dotItem {
+      width: calc(100% / var(--number-itens));
+      background-color: var(--color-accent, $color-accent);
+      height: 3rem;
+      border-left: 1px solid var(--color-gray-line, $color-gray-line);
+      border-right: 1px solid var(--color-gray-line, $color-gray-line);
+      transition: background-color 0.5s ease;
+
+      &:first-child {
+        border-left: none;
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+
+      &[data-active="true"] {
+        background-color: var(--color-accent-active, $color-accent-active);
+      }
+
+      &:hover {
+        background-color: var(--color-accent-active, $color-accent-active);
+        cursor: pointer;
+      }
+    }
+  }
+}

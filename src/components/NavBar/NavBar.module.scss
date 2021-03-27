@@ -200,7 +200,19 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      max-width: 960px;
+
+      @include tablet-up {
+        max-width: $max-page-size-tablet;
+      }
+
+      @include desktop-up {
+        max-width: $max-page-size-desktop;
+      }
+
+      @include desktop-big-up {
+        max-width: $max-page-size-desktop-big;
+      }
+
       background-color: initial;
       background-color: transparent;
       color: var(--color-text-alt, $color-text-alt);
@@ -255,7 +267,9 @@
       flex-direction: column;
 
       @include tablet-up {
+        width: 100%;
         flex-direction: row;
+        justify-content: space-evenly;
       }
 
       .menuMainItem {
@@ -288,7 +302,8 @@
 
 .containerMenuBottom {
   width: 100%;
-  height: 6rem;
+  height: 60px; // fallback
+  height: clamp(60px, 60px, 6rem);
   display: flex;
   align-items: center;
   justify-content: space-around;

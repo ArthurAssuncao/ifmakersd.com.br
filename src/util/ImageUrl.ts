@@ -3,6 +3,8 @@ const generateUrl = (url: string, size: number) => {
 };
 
 const ImageUrl = {
+  generateUrl: (url: string, size: number) => generateUrl(url, size),
+
   generateCardSrcMedia: (url: string) => {
     const size = 350;
     return {

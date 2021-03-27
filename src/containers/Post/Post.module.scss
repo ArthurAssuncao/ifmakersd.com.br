@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 2rem;
+  padding: 0 0rem;
 
   @include tablet-up {
     max-width: 960px;
@@ -78,6 +78,17 @@
 
           img {
             width: 100%;
+            @include tablet-up {
+              max-width: $max-page-size-tablet;
+            }
+
+            @include desktop-up {
+              max-width: $max-page-size-desktop;
+            }
+
+            @include desktop-big-up {
+              max-width: $max-page-size-desktop-big;
+            }
             max-width: 960px;
             object-fit: contain;
 
@@ -175,7 +186,7 @@
   --share-size: 5rem;
   position: fixed;
   right: 1.5rem;
-  z-index: $z-index-over-all;
+  z-index: $z-index-over;
   transition: top 0.5s ease;
 
   &[data-mobile="true"] {

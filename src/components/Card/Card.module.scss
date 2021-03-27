@@ -3,6 +3,12 @@
 .container {
   // background-color: var(--color-background, $color-background);
   color: var(--color-text, $color-text);
+  min-width: 35rem;
+
+  @include tablet-up {
+    min-width: 25rem;
+    min-width: clamp(25rem, 35rem, 350px);
+  }
 
   display: flex;
   flex-direction: column;

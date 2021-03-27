@@ -20,7 +20,7 @@ const Section = (props: SectionProps) => {
       <Wave className={styles.wave} />
       <div className={styles.containerInner}>
         <h3 className={styles.title}>{title}</h3>
-        <div className={styles.cards}>{children}</div>
+        {children}
         {moreButton && moreButton}
       </div>
     </section>

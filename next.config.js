@@ -22,7 +22,6 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join (__dirname, 'src/assets/styles')],
   },
-  experimental: {scss: true},
 };
 
 module.exports = withPlugins (

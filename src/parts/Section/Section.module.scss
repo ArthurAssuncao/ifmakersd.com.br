@@ -41,51 +41,21 @@
     width: 100%;
 
     @include tablet-up {
-      max-width: 960px;
+      max-width: $max-page-size-tablet;
       width: auto;
+    }
+
+    @include desktop-up {
+      max-width: $max-page-size-desktop;
+    }
+
+    @include desktop-big-up {
+      max-width: $max-page-size-desktop-big;
     }
 
     .title {
       font-weight: bold;
       padding: 3rem 0;
-    }
-
-    .cards {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      padding: 0 3rem;
-      width: 100%;
-
-      @include tablet-up {
-        flex-direction: row;
-        width: auto;
-      }
-
-      & > * {
-        margin: 1.5rem 0;
-
-        @include tablet-up {
-          margin: 2rem;
-        }
-
-        &:first-child {
-          margin-left: 0;
-        }
-
-        &:last-child {
-          margin-right: 0;
-        }
-
-        max-width: 100%;
-        width: 100%;
-
-        @include tablet-up {
-          $idealSize: (960px - (20px * 3)) / 3;
-          max-width: clamp(10%, #{$idealSize}, 100%);
-          width: auto;
-        }
-      }
     }
   }
 }

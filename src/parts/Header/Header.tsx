@@ -11,8 +11,9 @@ const Header = (props: HeaderProps) => {
   const { children } = props;
   return (
     <header className={styles.container}>
-      <DarkModeButton />
-      <NavBar />
+      <NavBar>
+        <DarkModeButton />
+      </NavBar>
 
       {children}
     </header>

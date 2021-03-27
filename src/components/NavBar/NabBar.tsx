@@ -9,11 +9,16 @@ import news20Regular from "@iconify/icons-fluent/news-20-regular";
 import targetEdit16Regular from "@iconify/icons-fluent/target-edit-16-regular";
 import toolsIcon from "@iconify/icons-la/tools";
 import { Icon } from "@iconify/react";
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import Logo from "../../assets/images/ifmaker/logo.svg";
 import styles from "./NavBar.module.scss";
 
-const NavBar = () => {
+interface NavBarProps {
+  children?: ReactNode;
+}
+
+const NavBar = (props: NavBarProps) => {
+  const { children } = props;
   const [isMobileSideMenuActive, setIsMobileSideMenuActive] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
   const [floatingWillDisappear, setFloatingWillDisappear] = useState(false);
@@ -145,6 +150,7 @@ const NavBar = () => {
               />
               <span className={styles.menuMainItemText}>Contato</span>
             </li>
+            {children && <li className={styles.menuMainItem}>{children}</li>}
           </ul>
         </div>
       </nav>

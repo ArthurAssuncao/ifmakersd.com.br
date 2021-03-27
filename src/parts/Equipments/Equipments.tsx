@@ -4,6 +4,7 @@ import { Equipment } from "../../components/Equipment";
 import { Loading } from "../../components/Loading";
 import { EquipmentCMS } from "../../pages/api/schema/equipment";
 import { EquipmentContext } from "../../services/EquipmentContext";
+import { Cards } from "../Cards";
 import { Section } from "../Section";
 
 interface EquipmentProps {
@@ -30,13 +31,15 @@ const Equipments = (props: EquipmentProps) => {
       moreButton={hasMoreButton && button}
       backgroundColor="purple"
     >
-      {equipments ? (
-        equipments.map((equipment: EquipmentCMS) => {
-          return <Equipment equipment={equipment} key={equipment.slug} />;
-        })
-      ) : (
-        <Loading />
-      )}
+      <Cards>
+        {equipments ? (
+          equipments.map((equipment: EquipmentCMS) => {
+            return <Equipment equipment={equipment} key={equipment.slug} />;
+          })
+        ) : (
+          <Loading />
+        )}
+      </Cards>
     </Section>
   );
 };

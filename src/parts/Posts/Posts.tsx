@@ -3,6 +3,7 @@ import { Button } from "../../components/Button";
 import { Loading } from "../../components/Loading";
 import { Post } from "../../components/Post";
 import { PostCMS } from "../../pages/api/schema/post";
+import { Cards } from "../../parts/Cards";
 import { PostContext } from "../../services/PostContext";
 import { Section } from "../Section";
 
@@ -28,13 +29,15 @@ const Posts = (props: PropsPosts) => {
       moreButton={hasMoreButton && button}
       backgroundColor="neutral"
     >
-      {posts ? (
-        posts.map((post: PostCMS) => {
-          return <Post post={post} key={post.slug} />;
-        })
-      ) : (
-        <Loading />
-      )}
+      <Cards>
+        {posts ? (
+          posts.map((post: PostCMS) => {
+            return <Post post={post} key={post.slug} />;
+          })
+        ) : (
+          <Loading />
+        )}
+      </Cards>
     </Section>
   );
 };

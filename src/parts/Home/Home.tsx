@@ -37,7 +37,7 @@ const Home = (props: HomeProps) => {
         <Equipments equipments={equipments} hasMoreButton={true} />
       </EquipmentProvider>
       <CollaboratorProvider>
-        <Collaborators collaborators={collaborators} hasMoreButton={true} />
+        <Collaborators collaborators={collaborators} hasMoreButton={false} />
       </CollaboratorProvider>
     </PageTemplate>
   );

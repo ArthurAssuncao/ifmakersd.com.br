@@ -3,6 +3,7 @@ import { Button } from "../../components/Button";
 import { Loading } from "../../components/Loading";
 import { Project } from "../../components/Project";
 import { ProjectCMS, ProjectContext } from "../../services/ProjectContext";
+import { Cards } from "../Cards";
 import { Section } from "../Section";
 import styles from "./Projects.module.scss";
 interface ProjectsProps {
@@ -29,13 +30,15 @@ const Projects = (props: ProjectsProps) => {
       backgroundColor="purple"
       className={styles.container}
     >
-      {projects ? (
-        projects.map((project: ProjectCMS) => {
-          return <Project project={project} key={project.slug} />;
-        })
-      ) : (
-        <Loading />
-      )}
+      <Cards>
+        {projects ? (
+          projects.map((project: ProjectCMS) => {
+            return <Project project={project} key={project.slug} />;
+          })
+        ) : (
+          <Loading />
+        )}
+      </Cards>
     </Section>
   );
 };

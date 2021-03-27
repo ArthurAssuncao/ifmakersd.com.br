@@ -6,8 +6,10 @@
   justify-content: flex-start;
   flex-direction: column;
   min-width: 35rem;
-  min-width: clamp(25rem, 35rem, 350px);
+  max-width: 35rem;
+  // min-width: clamp(25rem, 35rem, 350px);
   box-shadow: 0 0 2rem var(--color-card-shadow, $color-card-shadow);
+  margin: 1.5rem;
   padding: 1.5rem;
 
   .photo {

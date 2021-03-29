@@ -1,5 +1,7 @@
-import Document, { Head, Html, Main, NextScript } from "next/document";
+import Document, { Html, Main } from "next/document";
 import React from "react";
+import { HeadWithoutPreload } from "../components/CustomHead";
+import { DeferredNextScript } from "../components/CustomNextScript";
 
 export default class MyDocument extends Document {
   linkRef: React.RefObject<HTMLLinkElement>;
@@ -18,7 +20,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="pt-BR">
-        <Head>
+        <HeadWithoutPreload>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="preconnect" href="https://images.weserv.nl" />
 
@@ -34,10 +36,10 @@ export default class MyDocument extends Document {
               rel="stylesheet"
             />
           </noscript>
-        </Head>
+        </HeadWithoutPreload>
         <body>
           <Main />
-          <NextScript />
+          <DeferredNextScript />
         </body>
       </Html>
     );

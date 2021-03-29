@@ -7,10 +7,18 @@ import SEO from "../../next-seo.config";
 import "../assets/styles/globals.scss";
 import { PWATags } from "../parts/PWATags";
 
+interface ReactGAProps {
+  debug: string;
+}
+
 const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   Component,
   pageProps,
 }) => {
+  const reactGAOptions: ReactGAProps = {
+    debug: process.env.NODE_ENV === "production" ? "false" : "true",
+  };
+
   return (
     <>
       <Head>
@@ -34,6 +42,15 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
       </Head>
       <DefaultSeo {...SEO} />
       <Component {...pageProps} />
+      <script
+        src="/path/to/bower_components/react-ga/dist/react-ga.min.js"
+        async
+      ></script>
+
+      <script async>
+        ReactGA.initialize('G-7ZXTBVBQEE', reactGAOptions );
+        ReactGA.pageview(window.location.pathname + window.location.search);
+      </script>
     </>
   );
 };

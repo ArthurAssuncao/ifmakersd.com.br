@@ -77,6 +77,11 @@
   .menuIconTopWrapper {
     height: inherit;
     padding: 1.5rem;
+    display: none;
+
+    @include tablet-up {
+      display: flex;
+    }
 
     .menuIconTop {
       height: inherit;

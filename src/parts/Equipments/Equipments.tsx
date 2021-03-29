@@ -1,10 +1,8 @@
-import { useContext } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Button } from "../../components/Button";
 import { Equipment } from "../../components/Equipment";
 import { Loading } from "../../components/Loading";
 import { EquipmentCMS } from "../../pages/api/schema/equipment";
-import { EquipmentContext } from "../../services/EquipmentContext";
 import { Cards } from "../Cards";
 import { Section } from "../Section";
 
@@ -14,9 +12,9 @@ interface EquipmentProps {
 }
 
 const Equipments = (props: EquipmentProps) => {
-  const { equipments } = props.equipments
-    ? props
-    : useContext(EquipmentContext);
+  const equipments = props.equipments
+    ? props.equipments
+    : ([] as Array<EquipmentCMS>);
   const { hasMoreButton } = props;
 
   const button = (

@@ -1,10 +1,15 @@
+import dynamic from "next/dynamic";
 import { ReactNode, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ButtonScrollToTop } from "../../components/ButtonScrollToTop";
-import { Footer } from "../Footer";
+import { Loading } from "../../components/Loading";
 import { Header } from "../Header";
 import styles from "./PageTemplate.module.scss";
+
+const Footer = dynamic(import("../Footer"), {
+  loading: () => <Loading />,
+});
+const ButtonScrollToTop = dynamic(import("../../components/ButtonScrollToTop"));
 
 interface PageTemplateProps {
   children: ReactNode;

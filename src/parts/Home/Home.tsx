@@ -4,10 +4,7 @@ import { Hero } from "../../components/Hero";
 import { CollaboratorCMS } from "../../pages/api/schema/collaborator";
 import { EquipmentCMS } from "../../pages/api/schema/equipment";
 import { PostCMS } from "../../pages/api/schema/post";
-import { CollaboratorProvider } from "../../services/CollaboratorContext";
-import { EquipmentProvider } from "../../services/EquipmentContext";
-import { PostProvider } from "../../services/PostContext";
-import { ProjectCMS, ProjectProvider } from "../../services/ProjectContext";
+import { ProjectCMS } from "../../services/ProjectContext";
 import { Collaborators } from "../Collaborators";
 import { Equipments } from "../Equipments";
 import { Objectives } from "../Objectives";
@@ -28,18 +25,14 @@ const Home = (props: HomeProps) => {
   return (
     <PageTemplate headerChildren={<Hero />}>
       <Objectives />
-      <ProjectProvider>
-        <Projects projects={projects} hasMoreButton={true} />
-      </ProjectProvider>
-      <PostProvider>
-        <Posts posts={posts} hasMoreButton={true} />
-      </PostProvider>
-      <EquipmentProvider>
-        <Equipments equipments={equipments} hasMoreButton={true} />
-      </EquipmentProvider>
-      <CollaboratorProvider>
-        <Collaborators collaborators={collaborators} hasMoreButton={false} />
-      </CollaboratorProvider>
+
+      <Projects projects={projects} hasMoreButton={true} />
+
+      <Posts posts={posts} hasMoreButton={true} />
+
+      <Equipments equipments={equipments} hasMoreButton={true} />
+
+      <Collaborators collaborators={collaborators} hasMoreButton={false} />
     </PageTemplate>
   );
 };

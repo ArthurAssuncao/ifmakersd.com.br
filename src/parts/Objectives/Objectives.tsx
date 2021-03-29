@@ -22,19 +22,40 @@ const Objectives = () => {
           <Fade duration={1500} cascade>
             <Objective
               icon={<Icon icon={welcomeLearnMore} />}
-              image={<img src={objective01} />}
+              image={
+                <img
+                  src={objective01}
+                  alt="Aprendizado com base em projetos reais"
+                  width="300"
+                  height="180"
+                />
+              }
               title="Aprender fazendo"
               description="Aprendizado com base em projetos reais"
             />
             <Objective
               icon={<Icon icon={peopleCarry} />}
-              image={<img src={objective02} />}
+              image={
+                <img
+                  src={objective02}
+                  width="300"
+                  height="180"
+                  alt="Projetos realizados para uma sociedade 4.0"
+                />
+              }
               title="Transformação da sociedade"
               description="Projetos realizados para uma sociedade 4.0"
             />
             <Objective
               icon={<Icon icon={lightbulbOnOutline} />}
-              image={<img src={objective03} />}
+              image={
+                <img
+                  src={objective03}
+                  width="300"
+                  height="180"
+                  alt="Geração de valor com ideias inovadoras"
+                />
+              }
               title="Inovação"
               description="Geração de valor com ideias inovadoras"
             />

@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+<img src="https://raw.githubusercontent.com/ArthurAssuncao/ifmakersd.com.br/main/src/assets/images/ifmaker/logo.svg" width="200" />
+</p>
 
+![Vercel](http://therealsujitk-vercel-badge.vercel.app/?app=ifmakersd-com-br)
+
+## Índice
+ 1. [O que é o projeto?](#abstract)
+ 2. [Imagens do proojeto](#images)
+ 3. [Tecnologias utilizadas](#stack)
+ 4. [Como rodar o código](#how-to-run)
+
+<div id='abstract'/>
+## O que é Lab IFMakerSD
+> O projeto ifmakersd é um site para divulgação do laboratório If maker do if Sudeste mg campus Santos Dumont que começou a ser criado no final de 2020. O site conta com uma landing page e páginas para projetos, artigos e equipamentos, essas páginas são postadas por um gerenciador de conteúdo.
+
+<div id='images'/>
+## Imagens do projeto
+
+<div id='stack'/>
+## Tecnologias utilizadas
+O Front end do site é feito utilizando:
+- **Nextjs** com o uso de geração de páginas estáticas, inclusive as páginas que são criadas a partir de dados da api do Headless CMS.
+- **ReactJS**: diversos pacotes são utilizados, dentre eles destaco:
+- **CSS Modules com SASS**: para isolar os componentes e ter maior controle 
+- **Variáveis CSS** para manter consistência nos valores de propriedades. 
+- **Temas light e dark**: os temas claro e escuro são criados com o uso de variáveis css, facilitando o uso e manutenção
+- **CSS Animation**: diversas animações são usadas, quase todas criadas "na mão".
+
+<div id='how-to-run'/>
 ## Getting Started
 
-First, run the development server:
+Para rodar localmente utilize o comando abaixo:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Para realizar o build local, utilize o comando:
+```bash
+yarn build
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Abra [http://localhost:3000](http://localhost:3000) no navegador para ver o resultado.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

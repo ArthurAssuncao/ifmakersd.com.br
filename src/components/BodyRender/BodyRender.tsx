@@ -1,6 +1,6 @@
 import {
   documentToReactComponents,
-  Options,
+  Options
 } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types";
 import { ReactNode } from "react";
@@ -17,7 +17,7 @@ const BodyRender = (props: BodyProps) => {
       [MARKS.BOLD]: (text: ReactNode) => <strong>{text}</strong>,
       [MARKS.CODE]: (embedded: ReactNode) => (
         <div className={styles.embeddedWrapper}>
-          {ReactHtmlParser(embedded ? embedded?.toString() : "")}
+          {ReactHtmlParser(embedded ? embedded?.toString().replaceAll('youtube.com/watch?v=', 'youtube.com/embed/') : "")}
         </div>
       ),
     },

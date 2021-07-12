@@ -17,7 +17,7 @@ const BodyRender = (props: BodyProps) => {
       [MARKS.BOLD]: (text: ReactNode) => <strong>{text}</strong>,
       [MARKS.CODE]: (embedded: ReactNode) => (
         <div className={styles.embeddedWrapper}>
-          {ReactHtmlParser(embedded ? embedded?.toString()?.replaceAll('youtube.com/watch?v=', 'youtube.com/embed/') : "")}
+          {ReactHtmlParser(embedded ? embedded?.toString()?.replace(/youtube.com\/watch?v=/g, 'youtube.com/embed/') : "")}
         </div>
       ),
     },

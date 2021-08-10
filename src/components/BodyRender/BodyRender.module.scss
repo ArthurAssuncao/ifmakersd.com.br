@@ -1,4 +1,4 @@
-@import "../../assets/styles/sass/resources";
+@import '../../assets/styles/sass/resources';
 
 .container {
   h1,
@@ -8,6 +8,7 @@
   h5,
   h6 {
     font-weight: 500;
+    margin: 1rem 0;
   }
 
   ul,
@@ -38,17 +39,7 @@
     word-wrap: break-word;
     hyphens: auto;
     hyphenate-limit-chars: 10 4 4;
-
-    &:first-letter {
-      // color: var(--color-primary, $color-primary);
-      font-size: 200%;
-      text-transform: capitalize;
-      cursor: text;
-    }
-
-    &::first-line {
-      line-height: 1.4;
-    }
+    margin-bottom: 1rem;
   }
 
   .embeddedWrapper {
@@ -93,7 +84,7 @@
     }
 
     &:after {
-      content: "";
+      content: '';
       bottom: 0;
       background-color: var(--color-background, $color-background);
       position: absolute;

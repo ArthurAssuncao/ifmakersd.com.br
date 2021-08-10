@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import styles from "./Cards.module.scss";
+import { ReactNode } from 'react';
+import styles from './Cards.module.scss';
 
 interface CardsProps {
   title: string;
@@ -7,7 +7,7 @@ interface CardsProps {
   className?: string;
 }
 
-const Cards = (props: CardsProps) => {
+const Cards = (props: CardsProps): JSX.Element => {
   const { className, title, children } = props;
   return (
     <section className={`${styles.container} ${className}`}>

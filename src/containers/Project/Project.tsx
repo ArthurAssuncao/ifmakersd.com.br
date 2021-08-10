@@ -1,20 +1,20 @@
-import Head from "next/head";
-import { useEffect, useRef, useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { BodyRender } from "../../components/BodyRender";
-import { ShareButtons } from "../../components/ShareButtons";
-import { generatePostUrl } from "../../pages/api/post";
-import { PageTemplate } from "../../parts/PageTemplate";
-import { ProjectCMS } from "../../services/ProjectContext";
-import { ImageUrl } from "../../util/ImageUrl";
-import styles from "./Project.module.scss";
+import Head from 'next/head';
+import { useEffect, useRef, useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { BodyRender } from '../../components/BodyRender';
+import { ShareButtons } from '../../components/ShareButtons';
+import { generatePostUrl } from '../../pages/api/post';
+import { PageTemplate } from '../../parts/PageTemplate';
+import { ProjectCMS } from '../../services/ProjectContext';
+import { ImageUrl } from '../../util/ImageUrl';
+import styles from './Project.module.scss';
 
 interface ProjectProps {
   project: ProjectCMS;
   meta: { title: string; description: string };
 }
 
-const Project = (props: ProjectProps) => {
+const Project = (props: ProjectProps): JSX.Element => {
   const { project, meta } = props;
   const projectImageURl = ImageUrl.generateDesktopSrcMedia(project.photo.url);
 
@@ -32,47 +32,47 @@ const Project = (props: ProjectProps) => {
     setIsMobile(false);
   };
 
-  const handleWindowSizeChange = () => {
-    const width = window.innerWidth;
-    setWidth(width);
-    verifyIsMobile(width);
-  };
-
-  const setOnScrollCheck = (value: boolean) => {
-    if (
-      value !== onScroll ||
-      value !== Boolean(shareButtonRef.current?.dataset.onscroll)
-    ) {
-      setOnScroll(value);
-    }
-  };
-
-  const checkScrollTop = () => {
-    const heightBase = 60 * 1.5;
-    const limitHeight = heightBase;
-
-    if (window.pageYOffset > limitHeight) {
-      setOnScrollCheck(true);
-    } else {
-      setOnScrollCheck(false);
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", checkScrollTop);
-    return () => {
-      window.removeEventListener("scroll", checkScrollTop);
+    const setOnScrollCheck = (value: boolean) => {
+      if (
+        value !== onScroll ||
+        value !== Boolean(shareButtonRef.current?.dataset.onscroll)
+      ) {
+        setOnScroll(value);
+      }
     };
-  }, []);
+
+    const checkScrollTop = () => {
+      const heightBase = 60 * 1.5;
+      const limitHeight = heightBase;
+
+      if (window.pageYOffset > limitHeight) {
+        setOnScrollCheck(true);
+      } else {
+        setOnScrollCheck(false);
+      }
+    };
+
+    window.addEventListener('scroll', checkScrollTop);
+    return () => {
+      window.removeEventListener('scroll', checkScrollTop);
+    };
+  }, [onScroll]);
 
   useEffect(() => {
+    const handleWindowSizeChange = () => {
+      const width = window.innerWidth;
+      setWidth(width);
+      verifyIsMobile(width);
+    };
+
     setWidth(window.innerWidth);
     verifyIsMobile(width);
-    window.addEventListener("resize", handleWindowSizeChange);
+    window.addEventListener('resize', handleWindowSizeChange);
     return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
+      window.removeEventListener('resize', handleWindowSizeChange);
     };
-  }, []);
+  }, [width]);
 
   return (
     <PageTemplate>
@@ -96,7 +96,7 @@ const Project = (props: ProjectProps) => {
                 className={styles.background}
                 style={
                   {
-                    "--project-image": `url('${projectImageURl.src}')`,
+                    '--project-image': `url('${projectImageURl.src}')`,
                   } as React.CSSProperties
                 }
               ></div>
@@ -122,13 +122,13 @@ const Project = (props: ProjectProps) => {
       >
         <ShareButtons
           url={
-            typeof window !== "undefined"
+            typeof window !== 'undefined'
               ? window.location.href
               : generatePostUrl(project.slug)
           }
           title={project.title}
-          direction={isMobile ? "toBottom" : "toTop"}
-          widthCSSVar={"--share-size"}
+          direction={isMobile ? 'toBottom' : 'toTop'}
+          widthCSSVar={'--share-size'}
         />
       </div>
     </PageTemplate>

@@ -15,3 +15,8 @@ test.js
 !.eslintrc.js
 /src/tests/mocks/*.js
 src/serviceWorker.ts
+/public/*.js
+next.config.js
+next-seo.config.js
+next-env.d.ts
+lint-staged.config.js

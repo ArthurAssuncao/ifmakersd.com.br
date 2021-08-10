@@ -1,27 +1,27 @@
-import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-import bxsTimeFive from "@iconify/icons-bx/bxs-time-five";
-import bxsUser from "@iconify/icons-bx/bxs-user";
-import dateLine from "@iconify/icons-clarity/date-line";
-import { Icon } from "@iconify/react";
-import { format, parseISO } from "date-fns";
-import * as localePtBr from "date-fns/locale/pt-BR/index.js";
-import Head from "next/head";
-import { useEffect, useRef, useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import readingTime from "reading-time";
-import { BodyRender } from "../../components/BodyRender/BodyRender";
-import { ShareButtons } from "../../components/ShareButtons";
-import { generatePostUrl } from "../../pages/api/post";
-import { PostCMS } from "../../pages/api/schema/post";
-import { PageTemplate } from "../../parts/PageTemplate";
-import { ImageUrl } from "../../util/ImageUrl";
-import styles from "./Post.module.scss";
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
+import bxsTimeFive from '@iconify/icons-bx/bxs-time-five';
+import bxsUser from '@iconify/icons-bx/bxs-user';
+import dateLine from '@iconify/icons-clarity/date-line';
+import { Icon } from '@iconify/react';
+import { format, parseISO } from 'date-fns';
+import * as localePtBr from 'date-fns/locale/pt-BR/index.js';
+import Head from 'next/head';
+import { useEffect, useRef, useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import readingTime from 'reading-time';
+import { BodyRender } from '../../components/BodyRender/BodyRender';
+import { ShareButtons } from '../../components/ShareButtons';
+import { generatePostUrl } from '../../pages/api/post';
+import { PostCMS } from '../../pages/api/schema/post';
+import { PageTemplate } from '../../parts/PageTemplate';
+import { ImageUrl } from '../../util/ImageUrl';
+import styles from './Post.module.scss';
 interface PostProps {
   post: PostCMS;
   meta: { title: string; description: string };
 }
 
-const Post = (props: PostProps) => {
+const Post = (props: PostProps): JSX.Element => {
   const { post, meta } = props;
   const postImageURl = ImageUrl.generateDesktopSrcMedia(post.hero_image.url);
   const publishDate = parseISO(post.publish_date);
@@ -46,47 +46,47 @@ const Post = (props: PostProps) => {
     setIsMobile(false);
   };
 
-  const handleWindowSizeChange = () => {
-    const width = window.innerWidth;
-    setWidth(width);
-    verifyIsMobile(width);
-  };
-
-  const setOnScrollCheck = (value: boolean) => {
-    if (
-      value !== onScroll ||
-      value !== Boolean(shareButtonRef.current?.dataset.onscroll)
-    ) {
-      setOnScroll(value);
-    }
-  };
-
-  const checkScrollTop = () => {
-    const heightBase = 60 * 1.5;
-    const limitHeight = heightBase;
-
-    if (window.pageYOffset > limitHeight) {
-      setOnScrollCheck(true);
-    } else {
-      setOnScrollCheck(false);
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", checkScrollTop);
-    return () => {
-      window.removeEventListener("scroll", checkScrollTop);
+    const setOnScrollCheck = (value: boolean) => {
+      if (
+        value !== onScroll ||
+        value !== Boolean(shareButtonRef.current?.dataset.onscroll)
+      ) {
+        setOnScroll(value);
+      }
     };
-  }, []);
+
+    const checkScrollTop = () => {
+      const heightBase = 60 * 1.5;
+      const limitHeight = heightBase;
+
+      if (window.pageYOffset > limitHeight) {
+        setOnScrollCheck(true);
+      } else {
+        setOnScrollCheck(false);
+      }
+    };
+
+    window.addEventListener('scroll', checkScrollTop);
+    return () => {
+      window.removeEventListener('scroll', checkScrollTop);
+    };
+  }, [onScroll]);
 
   useEffect(() => {
+    const handleWindowSizeChange = () => {
+      const width = window.innerWidth;
+      setWidth(width);
+      verifyIsMobile(width);
+    };
+
     setWidth(window.innerWidth);
     verifyIsMobile(width);
-    window.addEventListener("resize", handleWindowSizeChange);
+    window.addEventListener('resize', handleWindowSizeChange);
     return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
+      window.removeEventListener('resize', handleWindowSizeChange);
     };
-  }, []);
+  }, [width]);
 
   return (
     <PageTemplate>
@@ -110,7 +110,7 @@ const Post = (props: PostProps) => {
                 className={styles.background}
                 style={
                   {
-                    "--post-image": `url('${postImageURl.src}')`,
+                    '--post-image': `url('${postImageURl.src}')`,
                   } as React.CSSProperties
                 }
               ></div>
@@ -155,14 +155,14 @@ const Post = (props: PostProps) => {
       >
         <ShareButtons
           url={
-            typeof window !== "undefined"
+            typeof window !== 'undefined'
               ? window.location.href
               : generatePostUrl(post.slug)
           }
           title={post.title}
           tags={post.tags}
-          direction={isMobile ? "toBottom" : "toTop"}
-          widthCSSVar={"--share-size"}
+          direction={isMobile ? 'toBottom' : 'toTop'}
+          widthCSSVar={'--share-size'}
         />
       </div>
     </PageTemplate>

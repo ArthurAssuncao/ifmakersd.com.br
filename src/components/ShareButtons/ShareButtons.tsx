@@ -1,32 +1,32 @@
-import bxlFacebook from "@iconify/icons-bx/bxl-facebook";
-import bxlInstagram from "@iconify/icons-bx/bxl-instagram";
-import bxlLinkedin from "@iconify/icons-bx/bxl-linkedin";
-import bxlTwitter from "@iconify/icons-bx/bxl-twitter";
-import bxlWhatsapp from "@iconify/icons-bx/bxl-whatsapp";
-import shareSolid from "@iconify/icons-clarity/share-solid";
-import { Icon } from "@iconify/react";
-import { CSSProperties, useState } from "react";
-import styles from "./ShareButtons.module.scss";
-import { ShareLink } from "./ShareLink";
+import bxlFacebook from '@iconify/icons-bx/bxl-facebook';
+import bxlInstagram from '@iconify/icons-bx/bxl-instagram';
+import bxlLinkedin from '@iconify/icons-bx/bxl-linkedin';
+import bxlTwitter from '@iconify/icons-bx/bxl-twitter';
+import bxlWhatsapp from '@iconify/icons-bx/bxl-whatsapp';
+import shareSolid from '@iconify/icons-clarity/share-solid';
+import { Icon } from '@iconify/react';
+import { CSSProperties, useState } from 'react';
+import styles from './ShareButtons.module.scss';
+import { ShareLink } from './ShareLink';
 
 interface ShareButtonsProps {
-  direction: "toTop" | "toBottom";
+  direction: 'toTop' | 'toBottom';
   url: string;
   title: string;
   tags?: string[];
   widthCSSVar: string;
 }
 
-const ShareButtons = (props: ShareButtonsProps) => {
+const ShareButtons = (props: ShareButtonsProps): JSX.Element => {
   const { direction, url, title, widthCSSVar } = props;
-  const tags = props.tags ? props.tags : [""];
+  const tags = props.tags ? props.tags : [''];
   const [isOpen, setIsOpen] = useState(false);
 
   const shareButtonStyle = {
-    "--share-button-size": `var(${widthCSSVar}, 4rem)`,
+    '--share-button-size': `var(${widthCSSVar}, 4rem)`,
   } as CSSProperties;
 
-  const openButtons = (e: React.MouseEvent) => {
+  const openButtons = () => {
     // if (e.target !== e.currentTarget) return;
     setIsOpen(!isOpen);
   };
@@ -37,10 +37,7 @@ const ShareButtons = (props: ShareButtonsProps) => {
       data-direction={direction}
       style={shareButtonStyle}
     >
-      <div
-        className={styles.shareIconWrapper}
-        onClick={(e: React.MouseEvent) => openButtons(e)}
-      >
+      <div className={styles.shareIconWrapper} onClick={() => openButtons()}>
         <Icon icon={shareSolid} className={styles.shareIcon} />
       </div>
       <ul className={styles.shareList} data-open={isOpen}>

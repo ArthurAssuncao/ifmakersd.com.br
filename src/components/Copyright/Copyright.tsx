@@ -1,25 +1,26 @@
-import ReactTooltip, { Effect, Type } from "react-tooltip";
-import styles from "./Copyright.module.scss";
+import ReactTooltip, { Effect, Type } from 'react-tooltip';
+import styles from './Copyright.module.scss';
 
 interface TooltipConfig {
   type: Type;
   effect: Effect;
   delayHide: number;
   delayShow: number;
-  className: { styles: any; "": any };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  className: { styles: any; '': any };
   colorBG: string;
 }
 
-const Copyright = () => {
+const Copyright = (): JSX.Element => {
   const year = new Date().getFullYear();
 
   const tooltipConfig: TooltipConfig = {
-    type: "dark",
-    effect: "solid",
+    type: 'dark',
+    effect: 'solid',
     delayHide: 200,
     delayShow: 100,
     className: styles.tooltip,
-    colorBG: "#283036",
+    colorBG: '#283036',
   };
 
   return (

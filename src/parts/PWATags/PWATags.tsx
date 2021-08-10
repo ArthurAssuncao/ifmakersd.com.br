@@ -1,4 +1,4 @@
-const PWATags = () => {
+const PWATags = (): JSX.Element => {
   return (
     <>
       {/* <!-- Must --> */}

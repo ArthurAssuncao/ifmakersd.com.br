@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "importsNotUsedAsValues": "preserve",
     "allowJs": true,
     "skipLibCheck": true,
@@ -19,17 +15,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "sourceMap": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "rootDirs": [
-    "src",
-    "stories"
-  ],
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.js"
-  ]
+  "rootDirs": ["src", "stories"],
+  "include": ["src"],
+  "exclude": ["node_modules", "**/*.js"]
 }

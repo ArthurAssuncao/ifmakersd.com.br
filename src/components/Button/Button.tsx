@@ -1,12 +1,12 @@
-import styles from "./Button.module.scss";
+import styles from './Button.module.scss';
 
 interface ButtonProps {
   text: string;
   href: string;
-  backgroundColor: "purple" | "neutral";
+  backgroundColor: 'purple' | 'neutral';
 }
 
-const Button = (props: ButtonProps) => {
+const Button = (props: ButtonProps): JSX.Element => {
   const { text, href, backgroundColor } = props;
 
   return (

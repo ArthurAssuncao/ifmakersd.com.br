@@ -1,6 +1,7 @@
 {
   "plugins": [
-    "stylelint-scss"
+    "stylelint-scss",
+    "stylelint-prettier"
   ],
   "extends": [
     "stylelint-config-standard",
@@ -10,11 +11,23 @@
   "parser": "typescript-eslint-parser",
   "syntax": "scss",
   "rules": {
+    "prettier/prettier": true,
     "indentation": 2,
     "string-quotes": "single",
     "no-duplicate-selectors": true,
     "block-no-empty": null,
-    "unit-whitelist": ["px", "rem", "vw", "vh", "s", "vmin", "vmax", "ex", "ch", "%"],
+    "unit-whitelist": [
+      "px",
+      "rem",
+      "vw",
+      "vh",
+      "s",
+      "vmin",
+      "vmax",
+      "ex",
+      "ch",
+      "%"
+    ],
     "max-empty-lines": 2,
     "color-hex-case": "upper",
     "selector-max-id": 0,

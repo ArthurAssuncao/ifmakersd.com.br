@@ -1,10 +1,32 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { CmsClient } from "../../services/ContentfulClient";
-import { PostCMS } from "./schema/post";
+import { Document } from '@contentful/rich-text-types';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { CmsClient } from '../../services/ContentfulClient';
+import { PostCMS } from './schema/post';
 
-const CONTENT_TYPE = "post";
+const CONTENT_TYPE = 'post';
 
-const createPost = (item: any) => {
+interface PostContentfull {
+  fields: {
+    title: string;
+    slug: string;
+    hero_image: {
+      fields: {
+        file: {
+          url: string;
+          contentType: string;
+        };
+      };
+    };
+    description: string;
+    body: Document;
+    author: [string];
+    publish_date: string;
+    tags: [string];
+    category: [string];
+  };
+}
+
+const createPost = (item: PostContentfull) => {
   if (!item || !item.fields) {
     return null;
   }
@@ -26,7 +48,7 @@ const createPost = (item: any) => {
   return post;
 };
 
-const createPostsAndParse = (items: any) => {
+const createPostsAndParse = (items: PostContentfull[]) => {
   const posts = [];
   for (let item of items) {
     const formatedPost = createPost(item);
@@ -37,11 +59,14 @@ const createPostsAndParse = (items: any) => {
   return posts;
 };
 
-const handleRequest = async (req: NextApiRequest, res: NextApiResponse) => {
+const handleRequest = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> => {
   const { limit = 10 } = req.query;
   const data = await CmsClient.getEntries({
     content_type: CONTENT_TYPE,
-    order: "-sys.createdAt",
+    order: '-sys.createdAt',
     limit,
   });
 
@@ -50,11 +75,11 @@ const handleRequest = async (req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json(newData);
 };
 
-const fetchPosts = async (limitReq?: number) => {
+const fetchPosts = async (limitReq?: number): Promise<PostCMS[]> => {
   const limit = limitReq && 10;
   const data = await CmsClient.getEntries({
     content_type: CONTENT_TYPE,
-    order: "-sys.createdAt",
+    order: '-sys.createdAt',
     limit,
   });
 
@@ -63,11 +88,11 @@ const fetchPosts = async (limitReq?: number) => {
   return newData;
 };
 
-const fetchPost = async (slug: string) => {
+const fetchPost = async (slug: string): Promise<null | PostCMS> => {
   const data = await CmsClient.getEntries({
     content_type: CONTENT_TYPE,
     limit: 1,
-    "fields.slug": slug,
+    'fields.slug': slug,
   });
 
   const newData = data ? createPost(data.items[0]) : null;
@@ -75,7 +100,7 @@ const fetchPost = async (slug: string) => {
   return newData;
 };
 
-const generatePostUrl = (slug: string) => {
+const generatePostUrl = (slug: string): string => {
   return `/posts/${slug}`;
 };
 

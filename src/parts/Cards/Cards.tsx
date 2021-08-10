@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
-import styles from "./Cards.module.scss";
+import { ReactNode } from 'react';
+import styles from './Cards.module.scss';
 
 interface CardsProps {
   children?: ReactNode;
 }
 
-const Cards = (props: CardsProps) => {
+const Cards = (props: CardsProps): JSX.Element => {
   const { children } = props;
   return <div className={styles.cards}>{children}</div>;
 };

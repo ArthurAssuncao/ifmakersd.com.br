@@ -1,4 +1,4 @@
-@import "../../assets/styles/sass/resources";
+@import '../../assets/styles/sass/resources';
 
 $num-itens: 5;
 
@@ -54,11 +54,12 @@ $num-itens: 5;
   align-items: center;
   justify-content: center;
 
-  &[data-direction="toTop"] {
+  &[data-direction='toTop'] {
     flex-direction: column-reverse;
 
     .shareList {
-      &[data-open="false"] {
+      &[data-open='false'],
+      &:hover {
         .shareItem {
           @for $i from 1 through $num-itens {
             &:nth-child(#{$i}n) {
@@ -72,7 +73,7 @@ $num-itens: 5;
         }
       }
 
-      &[data-open="true"] {
+      &[data-open='true'] {
         // animation: slide-open 1s ease forwards;
 
         .shareItem {
@@ -97,11 +98,11 @@ $num-itens: 5;
     }
   }
 
-  &[data-direction="toBottom"] {
+  &[data-direction='toBottom'] {
     flex-direction: column;
 
     .shareList {
-      &[data-open="false"] {
+      &[data-open='false'] {
         .shareItem {
           @for $i from 1 through $num-itens {
             &:nth-child(#{$i}n) {
@@ -125,7 +126,7 @@ $num-itens: 5;
         }
       }
 
-      &[data-open="true"] {
+      &[data-open='true'] {
         // animation: slide-open 1s ease forwards;
 
         .shareItem {

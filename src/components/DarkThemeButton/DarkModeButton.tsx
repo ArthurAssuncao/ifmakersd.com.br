@@ -1,21 +1,21 @@
-import moonLine from "@iconify/icons-clarity/moon-line";
-import sunLine from "@iconify/icons-clarity/sun-line";
-import { Icon } from "@iconify/react";
-import { useEffect, useState } from "react";
-import styles from "./DarkModeButton.module.scss";
+import moonLine from '@iconify/icons-clarity/moon-line';
+import sunLine from '@iconify/icons-clarity/sun-line';
+import { Icon } from '@iconify/react';
+import { useEffect, useState } from 'react';
+import styles from './DarkModeButton.module.scss';
 
-const DarkModeButton = () => {
-  const [theme, setTheme] = useState("light");
+const DarkModeButton = (): JSX.Element => {
+  const [theme, setTheme] = useState('light');
   const [isAnimationActive, setAnimationActive] = useState(false);
 
   useEffect(() => {
-    const preferColor = window.matchMedia("(prefers-color-scheme: dark)");
+    const preferColor = window.matchMedia('(prefers-color-scheme: dark)');
 
-    preferColor.addEventListener("change", function (evt) {
-      setTheme(evt.matches ? "dark" : "light");
+    preferColor.addEventListener('change', function (evt) {
+      setTheme(evt.matches ? 'dark' : 'light');
     });
     const prefersDark = preferColor.matches;
-    const actualTheme = prefersDark ? "dark" : "light";
+    const actualTheme = prefersDark ? 'dark' : 'light';
     setTheme(actualTheme);
     document.body.dataset.theme = actualTheme;
   }, []);
@@ -26,7 +26,7 @@ const DarkModeButton = () => {
 
   const changeTheme = () => {
     setAnimationActive(true);
-    setTheme(theme === "light" ? "dark" : "light");
+    setTheme(theme === 'light' ? 'dark' : 'light');
 
     setTimeout(() => {
       setAnimationActive(false);
@@ -37,7 +37,7 @@ const DarkModeButton = () => {
     <div className={styles.container}>
       <div
         className={`${styles.containerInner} ${
-          isAnimationActive ? styles.animation : ""
+          isAnimationActive ? styles.animation : ''
         }`}
       >
         <div className={styles.iconWrapper} onClick={() => changeTheme()}>

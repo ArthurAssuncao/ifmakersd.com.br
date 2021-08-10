@@ -2,6 +2,7 @@ import { NextComponentType } from 'next';
 import { DefaultSeo } from 'next-seo';
 import { AppContext, AppInitialProps, AppProps } from 'next/app';
 import Head from 'next/head';
+import { useEffect } from 'react';
 import ReactGA from 'react-ga';
 // import your default seo configuration
 import SEO from '../../next-seo.config';
@@ -19,6 +20,11 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   const reactGAOptions: ReactGAProps = {
     debug: process.env.NODE_ENV === 'production' ? false : true,
   };
+
+  useEffect(() => {
+    ReactGA.initialize('G-7ZXTBVBQEE', reactGAOptions);
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  });
 
   return (
     <>
@@ -47,8 +53,6 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
         src="/path/to/bower_components/react-ga/dist/react-ga.min.js"
         async
       ></script>
-      {ReactGA.initialize('G-7ZXTBVBQEE', reactGAOptions)}
-      {ReactGA.pageview(window.location.pathname + window.location.search)}
     </>
   );
 };

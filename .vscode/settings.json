@@ -47,13 +47,16 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": true,
     "source.fixAll.format": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll.stylelint": true,
+    "source.fixAll.eslint": true
   },
+  "eslint.packageManager": "yarn",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.organizeImports": true,
   "editor.letterSpacing": 0.2,
   "editor.lineHeight": 20,
   "editor.renderWhitespace": "none",
   "editor.fontFamily": "Fira Code Retina",
   "editor.fontLigatures": true,
-  "terminal.integrated.shell.osx": "/bin/zsh"
+  "terminal.integrated.defaultProfile.osx": "/bin/zsh"
 }

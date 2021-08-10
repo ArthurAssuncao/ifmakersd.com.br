@@ -1,13 +1,13 @@
-import { ReactNode } from "react";
-import { DarkModeButton } from "../../components/DarkThemeButton";
-import { NavBar } from "../../components/NavBar";
-import styles from "./Header.module.scss";
+import { ReactNode } from 'react';
+import { DarkModeButton } from '../../components/DarkThemeButton';
+import { NavBar } from '../../components/NavBar';
+import styles from './Header.module.scss';
 
 interface HeaderProps {
   children?: ReactNode;
 }
 
-const Header = (props: HeaderProps) => {
+const Header = (props: HeaderProps): JSX.Element => {
   const { children } = props;
   return (
     <header className={styles.container}>

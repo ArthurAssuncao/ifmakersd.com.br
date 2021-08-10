@@ -1,12 +1,12 @@
-import { generatePostUrl } from "../../pages/api/post";
-import { PostCMS } from "../../pages/api/schema/post";
-import { Card, ItemCard } from "../Card";
+import { generatePostUrl } from '../../pages/api/post';
+import { PostCMS } from '../../pages/api/schema/post';
+import { Card, ItemCard } from '../Card';
 
 interface PostProps {
   post: PostCMS;
 }
 
-const Post = (props: PostProps) => {
+const Post = (props: PostProps): JSX.Element => {
   const { post } = props;
 
   const postItem: ItemCard = {

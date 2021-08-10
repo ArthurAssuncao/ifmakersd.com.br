@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import styles from "./Objective.module.scss";
+import { ReactElement } from 'react';
+import styles from './Objective.module.scss';
 
 interface ObjectiveProps {
   icon: ReactElement;
@@ -8,7 +8,7 @@ interface ObjectiveProps {
   description: string;
 }
 
-const Objective = (props: ObjectiveProps) => {
+const Objective = (props: ObjectiveProps): JSX.Element => {
   const { icon, image, title, description } = props;
 
   return (

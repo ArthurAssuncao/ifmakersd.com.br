@@ -1,17 +1,17 @@
-import { Fade } from "react-awesome-reveal";
-import { Button } from "../../components/Button";
-import { Loading } from "../../components/Loading";
-import { Project } from "../../components/Project";
-import { ProjectCMS } from "../../services/ProjectContext";
-import { Cards } from "../Cards";
-import { Section } from "../Section";
-import styles from "./Projects.module.scss";
+import { Fade } from 'react-awesome-reveal';
+import { Button } from '../../components/Button';
+import { Loading } from '../../components/Loading';
+import { Project } from '../../components/Project';
+import { ProjectCMS } from '../../services/ProjectContext';
+import { Cards } from '../Cards';
+import { Section } from '../Section';
+import styles from './Projects.module.scss';
 interface ProjectsProps {
   projects?: Array<ProjectCMS>;
   hasMoreButton: boolean;
 }
 
-const Projects = (props: ProjectsProps) => {
+const Projects = (props: ProjectsProps): JSX.Element => {
   const projects = props.projects ? props.projects : ([] as Array<ProjectCMS>);
   const { hasMoreButton } = props;
 

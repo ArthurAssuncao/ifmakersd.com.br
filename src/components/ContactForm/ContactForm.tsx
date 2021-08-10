@@ -1,13 +1,13 @@
-import { useForm } from "@formspree/react";
-import sendPlaneFill from "@iconify/icons-ri/send-plane-fill";
-import { Icon } from "@iconify/react";
-import { ErrorMessage, Field, Form, Formik, FormikProps } from "formik";
-import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import * as Yup from "yup";
-import { ptForm } from "yup-locale-pt";
-import styles from "./ContactForm.module.scss";
+import { useForm } from '@formspree/react';
+import sendPlaneFill from '@iconify/icons-ri/send-plane-fill';
+import { Icon } from '@iconify/react';
+import { ErrorMessage, Field, Form, Formik, FormikProps } from 'formik';
+import { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import * as Yup from 'yup';
+import { ptForm } from 'yup-locale-pt';
+import styles from './ContactForm.module.scss';
 
 Yup.setLocale(ptForm);
 
@@ -28,30 +28,30 @@ interface ContactFormStatusProps {
 
 const formStatusProps: ContactFormStatusProps = {
   success: {
-    message: "Mensagem enviada com sucesso.",
-    type: "success",
+    message: 'Mensagem enviada com sucesso.',
+    type: 'success',
   },
   error: {
-    message: "Houve algum erro, tente novamente, por favor.",
-    type: "error",
+    message: 'Houve algum erro, tente novamente, por favor.',
+    type: 'error',
   },
 };
 
-const ContactForm = () => {
-  const intialValues = { name: "", email: "", message: "" };
-  const [formValues, setFormValues] = useState(intialValues);
+const ContactForm = (): JSX.Element => {
+  const intialValues = { name: '', email: '', message: '' };
+  // const [formValues, setFormValues] = useState(intialValues);
   const [displayFormStatus, setDisplayFormStatus] = useState(false);
   const [formStatus, setFormStatus] = useState<ContactFormStatus>({
-    message: "",
-    type: "",
+    message: '',
+    type: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [state, handleSubmit] = useForm("xbjqrpqy");
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  const [, handleSubmit] = useForm('xbjqrpqy');
 
   const fieldsHelper = {
-    name: "Por favor, digite o seu nome!",
-    email: "Por favor, digite o seu e-mail!",
-    message: "Por favor, digite a mensagem que quer nos enviar!",
+    name: 'Por favor, digite o seu nome!',
+    email: 'Por favor, digite o seu e-mail!',
+    message: 'Por favor, digite a mensagem que quer nos enviar!',
   };
 
   const validation = Yup.object().shape({
@@ -61,17 +61,17 @@ const ContactForm = () => {
     message: Yup.string().required(fieldsHelper.message),
   });
 
-  const submitForm = async (data: ContactFormData, resetForm: Function) => {
+  const submitForm = async (data: ContactFormData, resetForm: () => void) => {
     console.log(data);
     try {
       const res = await handleSubmit(data);
       if (res) {
         setFormStatus(formStatusProps.success);
-        resetForm({});
+        resetForm();
       }
     } catch (error) {
       const response = error.response;
-      if (response.data === "user already exist" && response.status === 400) {
+      if (response.data === 'user already exist' && response.status === 400) {
         setFormStatus(formStatusProps.duplicate);
       } else {
         setFormStatus(formStatusProps.error);
@@ -82,9 +82,9 @@ const ContactForm = () => {
   };
 
   const showFormStatus = (status: ContactFormStatus) => {
-    if (status.type === "error") {
+    if (status.type === 'error') {
       toast.error(formStatus.message);
-    } else if (status.type === "success") {
+    } else if (status.type === 'success') {
       toast.success(formStatus.message);
     } else {
       toast.warning(formStatus.message);

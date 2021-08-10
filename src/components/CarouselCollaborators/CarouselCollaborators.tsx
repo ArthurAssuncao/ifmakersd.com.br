@@ -1,21 +1,23 @@
-import { CSSProperties, useEffect, useRef, useState } from "react";
-import { Fade } from "react-awesome-reveal";
-import { CollaboratorCMS } from "../../pages/api/schema/collaborator";
-import { Collaborator } from "../Collaborator";
-import styles from "./CarouselCollaborators.module.scss";
+import { CSSProperties, useEffect, useRef, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
+import { CollaboratorCMS } from '../../pages/api/schema/collaborator';
+import { Collaborator } from '../Collaborator';
+import styles from './CarouselCollaborators.module.scss';
 
 interface CarouselCollaboratorsProps {
   collaborators: Array<CollaboratorCMS>;
 }
 
-const CarouselCollaborators = (props: CarouselCollaboratorsProps) => {
+const CarouselCollaborators = (
+  props: CarouselCollaboratorsProps
+): JSX.Element => {
   const { collaborators } = props;
   const collaboratorsLengthCSSVar = {
-    "--number-itens": collaborators.length,
+    '--number-itens': collaborators.length,
   } as CSSProperties;
   const middleIndex = Math.floor(collaborators.length / 2);
   const [currentIndex, setCurrentIndex] = useState(middleIndex);
-  const [direction, setDirection] = useState<"left" | "right" | "">("");
+  const [direction, setDirection] = useState<'left' | 'right' | ''>('');
   const itemListRef = useRef<HTMLUListElement | null>(null);
 
   const changeCurrentIndex = (index: number) => {
@@ -26,18 +28,18 @@ const CarouselCollaborators = (props: CarouselCollaboratorsProps) => {
     if (newIndex === oldIndex) {
       return;
     }
-    setDirection(newIndex > oldIndex ? "right" : "left");
-  };
-
-  const dispatchAnimation = () => {
-    const itemList = itemListRef && (itemListRef.current as HTMLUListElement);
-    itemList.dataset.animation = direction;
-    setTimeout(() => {
-      itemList.dataset.animation = "";
-    }, 1000);
+    setDirection(newIndex > oldIndex ? 'right' : 'left');
   };
 
   useEffect(() => {
+    const dispatchAnimation = () => {
+      const itemList = itemListRef && (itemListRef.current as HTMLUListElement);
+      itemList.dataset.animation = direction;
+      setTimeout(() => {
+        itemList.dataset.animation = '';
+      }, 1000);
+    };
+
     if (itemListRef) {
       const itemList = itemListRef && (itemListRef.current as HTMLUListElement);
       const listSize = collaborators.length;
@@ -55,7 +57,7 @@ const CarouselCollaborators = (props: CarouselCollaboratorsProps) => {
       }
       dispatchAnimation();
     }
-  }, [currentIndex]);
+  }, [currentIndex, collaborators.length, direction]);
 
   return (
     <div className={styles.container} style={collaboratorsLengthCSSVar}>
@@ -83,7 +85,7 @@ const CarouselCollaborators = (props: CarouselCollaboratorsProps) => {
                 changeCurrentIndex(index);
                 changeDirection(currentIndex, index);
               }}
-              data-active={currentIndex == index ? "true" : "false"}
+              data-active={currentIndex == index ? 'true' : 'false'}
             ></li>
           );
         })}

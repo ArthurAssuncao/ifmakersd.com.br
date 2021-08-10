@@ -1,3 +1,3 @@
-import { DarkModeButton } from "./DarkModeButton";
+import { DarkModeButton } from './DarkModeButton';
 
 export { DarkModeButton };

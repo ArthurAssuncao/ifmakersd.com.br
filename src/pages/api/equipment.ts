@@ -1,10 +1,26 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { CmsClient } from "../../services/ContentfulClient";
-import { EquipmentCMS } from "./schema/equipment";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { CmsClient } from '../../services/ContentfulClient';
+import { EquipmentCMS } from './schema/equipment';
 
-const CONTENT_TYPE = "equipment";
+const CONTENT_TYPE = 'equipment';
 
-const createEquipment = (item: any) => {
+interface EquipmentContentfull {
+  fields: {
+    name: string;
+    slug: string;
+    image: {
+      fields: {
+        file: {
+          url: string;
+          contentType: string;
+        };
+      };
+    };
+    description: string;
+  };
+}
+
+const createEquipment = (item: EquipmentContentfull) => {
   if (!item || !item.fields) {
     return null;
   }
@@ -21,7 +37,7 @@ const createEquipment = (item: any) => {
   return equipment;
 };
 
-const createEquipmentsAndParse = (items: any) => {
+const createEquipmentsAndParse = (items: EquipmentContentfull[]) => {
   const equipments = [];
   for (let item of items) {
     const formatedEquipment = createEquipment(item);
@@ -32,11 +48,14 @@ const createEquipmentsAndParse = (items: any) => {
   return equipments;
 };
 
-const handleRequest = async (req: NextApiRequest, res: NextApiResponse) => {
+const handleRequest = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> => {
   const { limit = 10 } = req.query;
   const data = await CmsClient.getEntries({
     content_type: CONTENT_TYPE,
-    order: "-sys.createdAt",
+    order: '-sys.createdAt',
     limit,
   });
 
@@ -45,11 +64,11 @@ const handleRequest = async (req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json(newData);
 };
 
-const fetchEquipments = async (limitReq?: number) => {
+const fetchEquipments = async (limitReq?: number): Promise<EquipmentCMS[]> => {
   const limit = limitReq && 10;
   const data = await CmsClient.getEntries({
     content_type: CONTENT_TYPE,
-    order: "-sys.createdAt",
+    order: '-sys.createdAt',
     limit,
   });
 
@@ -58,11 +77,11 @@ const fetchEquipments = async (limitReq?: number) => {
   return newData;
 };
 
-const fetchEquipment = async (slug: string) => {
+const fetchEquipment = async (slug: string): Promise<null | EquipmentCMS> => {
   const data = await CmsClient.getEntries({
     content_type: CONTENT_TYPE,
     limit: 1,
-    "fields.slug": slug,
+    'fields.slug': slug,
   });
 
   const newData = data ? createEquipment(data.items[0]) : null;
@@ -70,7 +89,7 @@ const fetchEquipment = async (slug: string) => {
   return newData;
 };
 
-const generateEquipmentUrl = (slug: string) => {
+const generateEquipmentUrl = (slug: string): string => {
   return `/equipments/${slug}`;
 };
 

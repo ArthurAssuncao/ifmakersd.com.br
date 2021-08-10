@@ -1,17 +1,17 @@
-import { Fade } from "react-awesome-reveal";
-import { Button } from "../../components/Button";
-import { Loading } from "../../components/Loading";
-import { Post } from "../../components/Post";
-import { PostCMS } from "../../pages/api/schema/post";
-import { Cards } from "../../parts/Cards";
-import { Section } from "../Section";
+import { Fade } from 'react-awesome-reveal';
+import { Button } from '../../components/Button';
+import { Loading } from '../../components/Loading';
+import { Post } from '../../components/Post';
+import { PostCMS } from '../../pages/api/schema/post';
+import { Cards } from '../../parts/Cards';
+import { Section } from '../Section';
 
 interface PropsPosts {
   posts?: Array<PostCMS>;
   hasMoreButton: boolean;
 }
 
-const Posts = (props: PropsPosts) => {
+const Posts = (props: PropsPosts): JSX.Element => {
   const posts = props.posts ? props.posts : ([] as Array<PostCMS>);
   const { hasMoreButton } = props;
 

@@ -1,4 +1,5 @@
-import { Document } from "@contentful/rich-text-types";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Document } from '@contentful/rich-text-types';
 
 interface PostCMS {
   title: string;

@@ -1,32 +1,34 @@
-import "intersection-observer";
-import dynamic from "next/dynamic";
-import "react-toastify/dist/ReactToastify.css";
-import { Hero } from "../../components/Hero";
-import { Loading } from "../../components/Loading";
-import { CollaboratorCMS } from "../../pages/api/schema/collaborator";
-import { EquipmentCMS } from "../../pages/api/schema/equipment";
-import { PostCMS } from "../../pages/api/schema/post";
-import { ProjectCMS } from "../../services/ProjectContext";
-import { PageTemplate } from "../PageTemplate";
+import 'intersection-observer';
+import dynamic from 'next/dynamic';
+import 'react-toastify/dist/ReactToastify.css';
+import { Hero } from '../../components/Hero';
+import { Loading } from '../../components/Loading';
+import { CollaboratorCMS } from '../../pages/api/schema/collaborator';
+import { EquipmentCMS } from '../../pages/api/schema/equipment';
+import { PostCMS } from '../../pages/api/schema/post';
+import { ProjectCMS } from '../../services/ProjectContext';
+import { PageTemplate } from '../PageTemplate';
 
-const Collaborators = dynamic(import("../Collaborators"), {
-  loading: () => <Loading />,
+const LocalLoading = () => <Loading />;
+
+const Collaborators = dynamic(import('../Collaborators'), {
+  loading: LocalLoading,
 });
 
-const Equipments = dynamic(import("../Equipments"), {
-  loading: () => <Loading />,
+const Equipments = dynamic(import('../Equipments'), {
+  loading: LocalLoading,
 });
 
-const Objectives = dynamic(import("../Objectives"), {
-  loading: () => <Loading />,
+const Objectives = dynamic(import('../Objectives'), {
+  loading: LocalLoading,
 });
 
-const Posts = dynamic(import("../Posts"), {
-  loading: () => <Loading />,
+const Posts = dynamic(import('../Posts'), {
+  loading: LocalLoading,
 });
 
-const Projects = dynamic(import("../Projects"), {
-  loading: () => <Loading />,
+const Projects = dynamic(import('../Projects'), {
+  loading: LocalLoading,
 });
 
 interface HomeProps {
@@ -36,7 +38,7 @@ interface HomeProps {
   collaborators: Array<CollaboratorCMS>;
 }
 
-const Home = (props: HomeProps) => {
+const Home = (props: HomeProps): JSX.Element => {
   const { projects, posts, equipments, collaborators } = props;
 
   return (

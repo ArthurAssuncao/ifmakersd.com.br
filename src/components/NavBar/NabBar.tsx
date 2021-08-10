@@ -1,23 +1,24 @@
-import homeOutlined from "@iconify/icons-ant-design/home-outlined";
-import bxMenu from "@iconify/icons-bx/bx-menu";
-import bxMessageAltDetail from "@iconify/icons-bx/bx-message-alt-detail";
-import bxSearch from "@iconify/icons-bx/bx-search";
-import chartLine from "@iconify/icons-cil/chart-line";
-import groupSolid from "@iconify/icons-clarity/group-solid";
-import windowCloseLine from "@iconify/icons-clarity/window-close-line";
-import news20Regular from "@iconify/icons-fluent/news-20-regular";
-import targetEdit16Regular from "@iconify/icons-fluent/target-edit-16-regular";
-import toolsIcon from "@iconify/icons-la/tools";
-import { Icon } from "@iconify/react";
-import { ReactNode, useEffect, useRef, useState } from "react";
-import Logo from "../../assets/images/ifmaker/logo.svg";
-import styles from "./NavBar.module.scss";
+import homeOutlined from '@iconify/icons-ant-design/home-outlined';
+import bxMenu from '@iconify/icons-bx/bx-menu';
+import bxMessageAltDetail from '@iconify/icons-bx/bx-message-alt-detail';
+import bxSearch from '@iconify/icons-bx/bx-search';
+import chartLine from '@iconify/icons-cil/chart-line';
+import groupSolid from '@iconify/icons-clarity/group-solid';
+import windowCloseLine from '@iconify/icons-clarity/window-close-line';
+import news20Regular from '@iconify/icons-fluent/news-20-regular';
+import targetEdit16Regular from '@iconify/icons-fluent/target-edit-16-regular';
+import toolsIcon from '@iconify/icons-la/tools';
+import { Icon } from '@iconify/react';
+import Image from 'next/image';
+import { ReactNode, useEffect, useRef, useState } from 'react';
+import Logo from '../../assets/images/ifmaker/logo.svg';
+import styles from './NavBar.module.scss';
 
 interface NavBarProps {
   children?: ReactNode;
 }
 
-const NavBar = (props: NavBarProps) => {
+const NavBar = (props: NavBarProps): JSX.Element => {
   const { children } = props;
   const [isMobileSideMenuActive, setIsMobileSideMenuActive] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
@@ -27,22 +28,6 @@ const NavBar = (props: NavBarProps) => {
 
   let navRef = useRef<HTMLElement | null>(null);
   let inputSearchRef = useRef<HTMLInputElement | null>(null);
-
-  const setShowFloatingCheck = (value: boolean) => {
-    if (
-      value !== showFloating ||
-      value !== Boolean(navRef.current?.dataset.floating)
-    ) {
-      setShowFloating(value);
-      if (!value) {
-        setTimeout(() => {
-          setFloatingWillDisappear(false);
-        }, 600);
-      } else {
-        setFloatingWillDisappear(true);
-      }
-    }
-  };
 
   const setIsSearchActiveCheck = (value: boolean) => {
     setTimeout(() => {
@@ -63,16 +48,6 @@ const NavBar = (props: NavBarProps) => {
     }, 100);
   };
 
-  const checkScroll = () => {
-    const limitHeight = window.innerHeight; // window.innerHeight
-
-    if (window.pageYOffset > limitHeight) {
-      setShowFloatingCheck(true);
-    } else {
-      setShowFloatingCheck(false);
-    }
-  };
-
   const openMobileSideMenu = () => {
     setIsMobileSideMenuActive(true);
   };
@@ -83,17 +58,49 @@ const NavBar = (props: NavBarProps) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", checkScroll);
-    return () => {
-      window.removeEventListener("scroll", checkScroll);
+    const setShowFloatingCheck = (value: boolean) => {
+      if (
+        value !== showFloating ||
+        value !== Boolean(navRef.current?.dataset.floating)
+      ) {
+        setShowFloating(value);
+        if (!value) {
+          setTimeout(() => {
+            setFloatingWillDisappear(false);
+          }, 600);
+        } else {
+          setFloatingWillDisappear(true);
+        }
+      }
     };
-  }, []);
+
+    const checkScroll = () => {
+      const limitHeight = window.innerHeight; // window.innerHeight
+
+      if (window.pageYOffset > limitHeight) {
+        setShowFloatingCheck(true);
+      } else {
+        setShowFloatingCheck(false);
+      }
+    };
+
+    window.addEventListener('scroll', checkScroll);
+    return () => {
+      window.removeEventListener('scroll', checkScroll);
+    };
+  }, [showFloating]);
 
   return (
     <>
       <nav className={styles.containerMenuTop}>
         <div className={styles.menuIconTopWrapper}>
-          <Logo className={styles.menuIconTop} />
+          <Image
+            src={Logo}
+            alt="Logo do Hackathon"
+            width={150}
+            height={60}
+            className={styles.menuIconTop}
+          />
         </div>
       </nav>
       <div
@@ -111,7 +118,13 @@ const NavBar = (props: NavBarProps) => {
       >
         <div className={styles.containerInnerMenuMain}>
           <div className={styles.menuMainIconWrapper}>
-            <Logo className={styles.menuMainIcon} />
+            <Image
+              src={Logo}
+              alt="Logo do Hackathon"
+              width={150}
+              height={60}
+              className={styles.menuMainIcon}
+            />
           </div>
           <span
             onClick={(e: React.MouseEvent) => closeMobileSideMenu(e)}

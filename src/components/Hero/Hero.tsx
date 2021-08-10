@@ -1,36 +1,38 @@
-import barChart from "@iconify/icons-bi/bar-chart";
-import bxCloudUpload from "@iconify/icons-bx/bx-cloud-upload";
-import bxData from "@iconify/icons-bx/bx-data";
-import bxsMicrochip from "@iconify/icons-bx/bxs-microchip";
-import lockLine from "@iconify/icons-clarity/lock-line";
-import mobilePhoneSolid from "@iconify/icons-clarity/mobile-phone-solid";
-import baselinePrecisionManufacturing from "@iconify/icons-ic/baseline-precision-manufacturing";
-import outlineScience from "@iconify/icons-ic/outline-science";
-import augmentedReality from "@iconify/icons-openmoji/augmented-reality";
-import { Icon } from "@iconify/react";
-import { useEffect, useState } from "react";
-import ReactTooltip, { Effect, Type } from "react-tooltip";
-import Logo from "../../assets/images/ifmaker/logo.svg";
-import styles from "./Hero.module.scss";
+import barChart from '@iconify/icons-bi/bar-chart';
+import bxCloudUpload from '@iconify/icons-bx/bx-cloud-upload';
+import bxData from '@iconify/icons-bx/bx-data';
+import bxsMicrochip from '@iconify/icons-bx/bxs-microchip';
+import lockLine from '@iconify/icons-clarity/lock-line';
+import mobilePhoneSolid from '@iconify/icons-clarity/mobile-phone-solid';
+import baselinePrecisionManufacturing from '@iconify/icons-ic/baseline-precision-manufacturing';
+import outlineScience from '@iconify/icons-ic/outline-science';
+import augmentedReality from '@iconify/icons-openmoji/augmented-reality';
+import { Icon } from '@iconify/react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import ReactTooltip, { Effect, Type } from 'react-tooltip';
+import Logo from '../../assets/images/ifmaker/logo.svg';
+import styles from './Hero.module.scss';
 
 interface TooltipConfig {
   type: Type;
   effect: Effect;
   delayHide: number;
   delayShow: number;
-  className: { styles: any; "": any };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  className: { styles: any; '': any };
   classNameMsgLeft: string;
   classNameMsgRight: string;
   buttonMsg: string;
   colorBG: string;
 }
 
-const Hero = () => {
+const Hero = (): JSX.Element => {
   const [width, setWidth] = useState<number>(0);
 
   const tooltipConfig: TooltipConfig = {
-    type: "dark",
-    effect: "solid",
+    type: 'dark',
+    effect: 'solid',
     delayHide: 200,
     delayShow: 100,
     className: styles.tooltip,
@@ -38,9 +40,9 @@ const Hero = () => {
     classNameMsgRight: `${styles.tooltipMsg} ${styles.tooltipMsgRight}`,
     buttonMsg:
       width >= 768
-        ? "Clique no ícone para aprender mais"
-        : "Clique aqui para aprender mais",
-    colorBG: "#283036",
+        ? 'Clique no ícone para aprender mais'
+        : 'Clique aqui para aprender mais',
+    colorBG: '#283036',
   };
 
   const handleWindowSizeChange = () => {
@@ -48,9 +50,9 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
+    window.addEventListener('resize', handleWindowSizeChange);
     return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
+      window.removeEventListener('resize', handleWindowSizeChange);
     };
   }, []);
 
@@ -214,8 +216,9 @@ const Hero = () => {
             arrowColor={tooltipConfig.colorBG}
           >
             <span className={tooltipConfig.classNameMsgLeft}>
-              Sistemas Integrados consistem em sistemas que "conversam" entre
-              si, podendo até estar em computação nas nuvens.
+              Sistemas Integrados consistem em sistemas que
+              &ldquo;conversam&rdquol; entre si, podendo até estar em computação
+              nas nuvens.
               <span className={styles.tooltipButton}>
                 {tooltipConfig.buttonMsg}
               </span>
@@ -305,7 +308,11 @@ const Hero = () => {
         </div>
 
         <h1 className={styles.heroLogoWrapper}>
-          <Logo
+          <Image
+            src={Logo}
+            alt="Logo do Hackathon"
+            width={150}
+            height={60}
             className={styles.heroLogoIcon}
             aria-label="Logo do Laboratório IFMaker"
           />

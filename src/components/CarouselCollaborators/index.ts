@@ -1,3 +1,3 @@
-import { CarouselCollaborators } from "./CarouselCollaborators";
+import { CarouselCollaborators } from './CarouselCollaborators';
 
 export { CarouselCollaborators };

@@ -1,17 +1,17 @@
-import { Fade } from "react-awesome-reveal";
-import { Button } from "../../components/Button";
-import { Equipment } from "../../components/Equipment";
-import { Loading } from "../../components/Loading";
-import { EquipmentCMS } from "../../pages/api/schema/equipment";
-import { Cards } from "../Cards";
-import { Section } from "../Section";
+import { Fade } from 'react-awesome-reveal';
+import { Button } from '../../components/Button';
+import { Equipment } from '../../components/Equipment';
+import { Loading } from '../../components/Loading';
+import { EquipmentCMS } from '../../pages/api/schema/equipment';
+import { Cards } from '../Cards';
+import { Section } from '../Section';
 
 interface EquipmentProps {
   equipments?: Array<EquipmentCMS>;
   hasMoreButton: boolean;
 }
 
-const Equipments = (props: EquipmentProps) => {
+const Equipments = (props: EquipmentProps): JSX.Element => {
   const equipments = props.equipments
     ? props.equipments
     : ([] as Array<EquipmentCMS>);

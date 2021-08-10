@@ -1,6 +1,6 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { ImageUrl } from "../../util/ImageUrl";
-import styles from "./Card.module.scss";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { ImageUrl } from '../../util/ImageUrl';
+import styles from './Card.module.scss';
 
 interface ItemCard {
   slug: string;
@@ -15,7 +15,7 @@ interface CardProps {
   item: ItemCard;
 }
 
-const Card = (props: CardProps) => {
+const Card = (props: CardProps): JSX.Element => {
   const { item } = props;
   const { src } = ImageUrl.generateCardSrcMedia(item.imageUrl);
 

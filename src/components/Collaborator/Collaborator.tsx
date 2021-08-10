@@ -1,17 +1,17 @@
-import { CSSProperties } from "react";
-import { CollaboratorCMS } from "../../pages/api/schema/collaborator";
-import { ImageUrl } from "../../util/ImageUrl";
-import styles from "./Collaborator.module.scss";
+import { CSSProperties } from 'react';
+import { CollaboratorCMS } from '../../pages/api/schema/collaborator';
+import { ImageUrl } from '../../util/ImageUrl';
+import styles from './Collaborator.module.scss';
 
 interface CollaboratorProps {
   collaborator: CollaboratorCMS;
 }
 
-const Collaborator = (props: CollaboratorProps) => {
+const Collaborator = (props: CollaboratorProps): JSX.Element => {
   const { collaborator } = props;
   const urlResized = ImageUrl.generateUrl(collaborator.photo.url, 180);
   const urlResizedCSSVar = {
-    "--collaborator-photo-url": `url(${urlResized})`,
+    '--collaborator-photo-url': `url(${urlResized})`,
   } as CSSProperties;
 
   return (

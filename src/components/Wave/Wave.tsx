@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { default as Wavify } from "react-wavify";
-import styles from "./Wave.module.scss";
+import { useEffect, useState } from 'react';
+import { default as Wavify } from 'react-wavify';
+import styles from './Wave.module.scss';
 
 interface WaveProps {
   className: string;
 }
 
-const Wave = (props: WaveProps) => {
+const Wave = (props: WaveProps): JSX.Element => {
   const { className } = props;
 
   const [width, setWidth] = useState<number>(0);
@@ -20,20 +20,20 @@ const Wave = (props: WaveProps) => {
     setIsMobile(false);
   };
 
-  const handleWindowSizeChange = () => {
-    const width = window.innerWidth;
-    setWidth(width);
-    verifyIsMobile(width);
-  };
-
   useEffect(() => {
+    const handleWindowSizeChange = () => {
+      const width = window.innerWidth;
+      setWidth(width);
+      verifyIsMobile(width);
+    };
+
     setWidth(window.innerWidth);
     verifyIsMobile(width);
-    window.addEventListener("resize", handleWindowSizeChange);
+    window.addEventListener('resize', handleWindowSizeChange);
     return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
+      window.removeEventListener('resize', handleWindowSizeChange);
     };
-  }, []);
+  }, [width]);
 
   return (
     <Wavify

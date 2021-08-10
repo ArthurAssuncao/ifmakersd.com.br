@@ -1,11 +1,11 @@
-import { EquipmentCMS } from "../../pages/api/schema/equipment";
-import { Card, ItemCard } from "../Card";
+import { EquipmentCMS } from '../../pages/api/schema/equipment';
+import { Card, ItemCard } from '../Card';
 
 interface EquipmentProps {
   equipment: EquipmentCMS;
 }
 
-const Equipment = (props: EquipmentProps) => {
+const Equipment = (props: EquipmentProps): JSX.Element => {
   const { equipment } = props;
 
   const equipmentItem: ItemCard = {
@@ -13,7 +13,7 @@ const Equipment = (props: EquipmentProps) => {
     imageUrl: equipment.image.url,
     title: equipment.name,
     description: equipment.description,
-    href: "/#",
+    href: '/#',
   };
 
   return <Card item={equipmentItem} />;

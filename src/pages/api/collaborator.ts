@@ -1,10 +1,29 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { CmsClient } from "../../services/ContentfulClient";
-import { CollaboratorCMS } from "./schema/collaborator";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { CmsClient } from '../../services/ContentfulClient';
+import { CollaboratorCMS } from './schema/collaborator';
 
-const CONTENT_TYPE = "author";
+const CONTENT_TYPE = 'author';
 
-const createCollaborator = (item: any) => {
+interface CollaboratorContentfull {
+  fields: {
+    name: string;
+    slug: string;
+    photo: {
+      fields: {
+        file: {
+          url: string;
+          contentType: string;
+        };
+      };
+    };
+    description: string;
+    webpage: string;
+  };
+}
+
+const createCollaborator = (
+  item: null | CollaboratorContentfull
+): CollaboratorCMS | null => {
   if (!item || !item.fields) {
     return null;
   }
@@ -22,7 +41,7 @@ const createCollaborator = (item: any) => {
   return collaborator;
 };
 
-const createCollaboratorsAndParse = (items: any) => {
+const createCollaboratorsAndParse = (items: CollaboratorContentfull[]) => {
   const collaborators = [];
   for (let item of items) {
     const formatedCollaborator = createCollaborator(item);
@@ -33,11 +52,14 @@ const createCollaboratorsAndParse = (items: any) => {
   return collaborators;
 };
 
-const handleRequest = async (req: NextApiRequest, res: NextApiResponse) => {
+const handleRequest = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> => {
   const { limit = 10 } = req.query;
   const data = await CmsClient.getEntries({
     content_type: CONTENT_TYPE,
-    order: "-sys.createdAt",
+    order: '-sys.createdAt',
     limit,
   });
 
@@ -46,11 +68,13 @@ const handleRequest = async (req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json(newData);
 };
 
-const fetchCollaborators = async (limitReq?: number) => {
+const fetchCollaborators = async (
+  limitReq?: number
+): Promise<CollaboratorCMS[]> => {
   const limit = limitReq && 10;
   const data = await CmsClient.getEntries({
     content_type: CONTENT_TYPE,
-    order: "-sys.createdAt",
+    order: '-sys.createdAt',
     limit,
   });
 
@@ -59,11 +83,13 @@ const fetchCollaborators = async (limitReq?: number) => {
   return newData;
 };
 
-const fetchCollaborator = async (slug: string) => {
+const fetchCollaborator = async (
+  slug: string
+): Promise<null | CollaboratorCMS> => {
   const data = await CmsClient.getEntries({
     content_type: CONTENT_TYPE,
     limit: 1,
-    "fields.slug": slug,
+    'fields.slug': slug,
   });
 
   const newData = data ? createCollaborator(data.items[0]) : null;
@@ -71,7 +97,7 @@ const fetchCollaborator = async (slug: string) => {
   return newData;
 };
 
-const generateCollaboratorUrl = (slug: string) => {
+const generateCollaboratorUrl = (slug: string): string => {
   return `/collaborators/${slug}`;
 };
 

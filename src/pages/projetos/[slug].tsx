@@ -1,24 +1,30 @@
-import { GetStaticPaths } from "next";
-import ErrorPage from "next/error";
-import { Project } from "../../containers/Project";
-import { ProjectCMS } from "../../services/ProjectContext";
-import { fetchProject, fetchProjects } from "../api/project";
+import { GetStaticPaths, GetStaticPropsResult } from 'next';
+import ErrorPage from 'next/error';
+import { Project } from '../../containers/Project';
+import { ProjectCMS } from '../../services/ProjectContext';
+import { fetchProject, fetchProjects } from '../api/project';
 
 interface ProjectsPageProps {
-  meta: {
+  meta?: {
     title: string;
     description: string;
   };
-  data: ProjectCMS;
-  type: string;
+  data?: ProjectCMS;
+  type?: string;
 }
 
-const ProjectPageSlug = (props: ProjectsPageProps) => {
-  if (!props || props === undefined || Object.keys(props).length === 0) {
+const ProjectPageSlug = (props: ProjectsPageProps): JSX.Element => {
+  if (
+    !props ||
+    props === undefined ||
+    Object.keys(props).length === 0 ||
+    !props.meta ||
+    !props.data
+  ) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const { meta, data, type } = props;
+  const { meta, data } = props;
   const project = data;
 
   return <Project project={project} meta={meta} />;
@@ -45,11 +51,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }: Params) => {
+export async function getStaticProps({
+  params,
+}: Params): Promise<GetStaticPropsResult<ProjectsPageProps>> {
   const { slug } = params;
 
   // specific project
-  const slugComplete = typeof slug === "string" ? slug : slug.join("/");
+  const slugComplete = typeof slug === 'string' ? slug : slug.join('/');
 
   const project: ProjectCMS | null = await fetchProject(slugComplete);
 
@@ -64,7 +72,7 @@ export const getStaticProps = async ({ params }: Params) => {
         description: `${project.description} | IFMakerSD`,
       },
       data: project,
-      type: "single",
+      type: 'single',
     },
   };
-};
+}

@@ -1,3 +1,3 @@
-import { Collaborator } from "./Collaborator";
+import { Collaborator } from './Collaborator';
 
 export { Collaborator };

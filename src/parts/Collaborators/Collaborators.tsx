@@ -1,16 +1,16 @@
-import { Button } from "../../components/Button";
-import { CarouselCollaborators } from "../../components/CarouselCollaborators";
-import { Loading } from "../../components/Loading";
-import { CollaboratorCMS } from "../../pages/api/schema/collaborator";
-import { Section } from "../Section";
-import styles from "./Collaborators.module.scss";
+import { Button } from '../../components/Button';
+import { CarouselCollaborators } from '../../components/CarouselCollaborators';
+import { Loading } from '../../components/Loading';
+import { CollaboratorCMS } from '../../pages/api/schema/collaborator';
+import { Section } from '../Section';
+import styles from './Collaborators.module.scss';
 
 interface CollaboratorProps {
   collaborators?: Array<CollaboratorCMS>;
   hasMoreButton: boolean;
 }
 
-const Collaborators = (props: CollaboratorProps) => {
+const Collaborators = (props: CollaboratorProps): JSX.Element => {
   const collaborators = props.collaborators
     ? props.collaborators
     : ([] as Array<CollaboratorCMS>);

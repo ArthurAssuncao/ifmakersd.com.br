@@ -1,6 +1,6 @@
-import styles from "./Loading.module.scss";
+import styles from './Loading.module.scss';
 
-const Loading = () => {
+const Loading = (): JSX.Element => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

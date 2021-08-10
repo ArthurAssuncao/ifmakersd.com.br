@@ -1,3 +1,3 @@
-import { HeadWithoutPreload } from "./HeadWithoutPreload";
+import { HeadWithoutPreload } from './HeadWithoutPreload';
 
 export { HeadWithoutPreload };

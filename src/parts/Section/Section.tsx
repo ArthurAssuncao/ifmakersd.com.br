@@ -1,15 +1,15 @@
-import { Wave } from "../../components/Wave";
-import styles from "./Section.module.scss";
+import { Wave } from '../../components/Wave';
+import styles from './Section.module.scss';
 
 interface SectionProps {
   title: string;
   children: React.ReactNode;
   moreButton?: React.ReactNode;
-  backgroundColor: "neutral" | "purple";
+  backgroundColor: 'neutral' | 'purple';
   className?: string;
 }
 
-const Section = (props: SectionProps) => {
+const Section = (props: SectionProps): JSX.Element => {
   const { className, backgroundColor, children, title, moreButton } = props;
 
   return (

@@ -1,7 +1,9 @@
-import Document, { Html, Main } from "next/document";
-import React from "react";
-import { HeadWithoutPreload } from "../components/CustomHead";
-import { DeferredNextScript } from "../components/CustomNextScript";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import Document, { Html, Main } from 'next/document';
+import React from 'react';
+import { HeadWithoutPreload } from '../components/CustomHead';
+import { DeferredNextScript } from '../components/CustomNextScript';
 
 export default class MyDocument extends Document {
   linkRef: React.RefObject<HTMLLinkElement>;
@@ -11,13 +13,13 @@ export default class MyDocument extends Document {
     this.linkRef = React.createRef<HTMLLinkElement>();
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     if (this.linkRef.current) {
-      this.linkRef.current.removeAttribute("media");
+      this.linkRef.current.removeAttribute('media');
     }
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <Html lang="pt-BR">
         <HeadWithoutPreload>

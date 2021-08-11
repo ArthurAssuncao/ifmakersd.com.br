@@ -1,24 +1,30 @@
-import { GetStaticPaths } from "next";
-import ErrorPage from "next/error";
-import { Post } from "../../containers/Post";
-import { fetchPost, fetchPosts } from "../api/post";
-import { PostCMS } from "../api/schema/post";
+import { GetStaticPaths, GetStaticPropsResult } from 'next';
+import ErrorPage from 'next/error';
+import { Post } from '../../containers/Post';
+import { fetchPost, fetchPosts } from '../api/post';
+import { PostCMS } from '../api/schema/post';
 
 interface ProjectsPageProps {
-  meta: {
+  meta?: {
     title: string;
     description: string;
   };
-  data: PostCMS;
-  type: string;
+  data?: PostCMS;
+  type?: string;
 }
 
-const PostPageSlug = (props: ProjectsPageProps) => {
-  if (!props || props === undefined || Object.keys(props).length === 0) {
+const PostPageSlug = (props: ProjectsPageProps): JSX.Element => {
+  if (
+    !props ||
+    props === undefined ||
+    Object.keys(props).length === 0 ||
+    !props.meta ||
+    !props.data
+  ) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const { meta, data, type } = props;
+  const { meta, data } = props;
   const post = data;
 
   return <Post post={post} meta={meta} />;
@@ -45,11 +51,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }: Params) => {
+export async function getStaticProps({
+  params,
+}: Params): Promise<GetStaticPropsResult<ProjectsPageProps>> {
   const { slug } = params;
 
   // specific project
-  const slugComplete = typeof slug === "string" ? slug : slug.join("/");
+  const slugComplete = typeof slug === 'string' ? slug : slug.join('/');
 
   const post: PostCMS | null = await fetchPost(slugComplete);
 
@@ -64,7 +72,7 @@ export const getStaticProps = async ({ params }: Params) => {
         description: `${post.description} | IFMakerSD`,
       },
       data: post,
-      type: "single",
+      type: 'single',
     },
   };
-};
+}

@@ -1,10 +1,11 @@
-import Head from "next/head";
-import { Loading } from "../../components/Loading";
-import { Post } from "../../components/Post";
-import { Cards } from "../../containers/Cards";
-import { PageTemplate } from "../../parts/PageTemplate";
-import { fetchPosts } from "../api/post";
-import { PostCMS } from "../api/schema/post";
+import { GetStaticPropsResult } from 'next';
+import Head from 'next/head';
+import { Loading } from '../../components/Loading';
+import { Post } from '../../components/Post';
+import { Cards } from '../../containers/Cards';
+import { PageTemplate } from '../../parts/PageTemplate';
+import { fetchPosts } from '../api/post';
+import { PostCMS } from '../api/schema/post';
 
 interface PostsPageProps {
   meta: {
@@ -14,7 +15,7 @@ interface PostsPageProps {
   data: Array<PostCMS>;
 }
 
-const ProjectPage = (props: PostsPageProps) => {
+const ProjectPage = (props: PostsPageProps): JSX.Element => {
   const { meta, data } = props;
 
   const posts = data;
@@ -41,15 +42,17 @@ const ProjectPage = (props: PostsPageProps) => {
 
 export default ProjectPage;
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<PostsPageProps>
+> {
   const posts: Array<PostCMS> = await fetchPosts();
 
   return {
     props: {
       meta: {
-        title: "IFMakerSD | Projetos de professores",
+        title: 'IFMakerSD | Projetos de professores',
         description:
-          "Página de publicações de professores do Laboratório IF Maker SD",
+          'Página de publicações de professores do Laboratório IF Maker SD',
       },
       data: posts,
     },

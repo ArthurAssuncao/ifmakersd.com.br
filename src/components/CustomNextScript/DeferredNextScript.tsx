@@ -1,5 +1,5 @@
-import { NextScript } from "next/document";
-import React from "react";
+import { NextScript } from 'next/document';
+import React from 'react';
 
 type DocumentFiles = {
   sharedFiles: readonly string[];
@@ -22,33 +22,34 @@ function dedupe<T extends { file: string }>(bundles: T[]): T[] {
 }
 
 export class DeferredNextScript extends NextScript {
-  getScripts(files: DocumentFiles) {
-    return super.getScripts(files).map((script: JSX.Element) => {
-      return React.cloneElement(script, {
-        // eslint-disable-next-line @typescript-eslint/tslint/config
+  getScripts(files: DocumentFiles): JSX.Element[] {
+    return super.getScripts(files).map((script: JSX.Element) =>
+      React.cloneElement(script, {
         key: script.props.src,
         defer: true,
         async: false,
-      });
-    });
+      })
+    );
   }
-  getDynamicChunks(files: DocumentFiles) {
-    const {
-      dynamicImports,
-      assetPrefix,
-      devOnlyCacheBusterQueryString,
-    } = this.context;
 
-    return dedupe(dynamicImports).map((bundle) => {
+  getDynamicChunks(files: DocumentFiles): (JSX.Element | null)[] {
+    const { dynamicImports, assetPrefix, devOnlyCacheBusterQueryString } =
+      this.context;
+
+    const newDynamicImports: {
+      file: string;
+    }[] = dynamicImports.map((item) => ({ file: item }));
+
+    return dedupe(newDynamicImports).map((bundle) => {
       let modernProps = {};
       if (process.env.__NEXT_MODERN_BUILD) {
-        modernProps = bundle.file.endsWith(".module.js")
-          ? { type: "module" }
+        modernProps = bundle.file.endsWith('.module.js')
+          ? { type: 'module' }
           : { noModule: true };
       }
 
       if (
-        !bundle.file.endsWith(".js") ||
+        !bundle.file.endsWith('.js') ||
         files.allFiles.includes(bundle.file)
       ) {
         return null;
@@ -56,7 +57,7 @@ export class DeferredNextScript extends NextScript {
 
       return (
         <script
-          defer={true}
+          defer
           key={bundle.file}
           src={`${assetPrefix}/_next/${encodeURI(
             bundle.file

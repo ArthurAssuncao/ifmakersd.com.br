@@ -1,15 +1,15 @@
-import { ReactNode } from "react";
-import { ContactForm } from "../../components/ContactForm";
-import { Copyright } from "../../components/Copyright";
-import { SocialButtons } from "../../components/SocialButtons";
-import { Wave } from "../../components/Wave";
-import styles from "./Footer.module.scss";
+import { ReactNode } from 'react';
+import { ContactForm } from '../../components/ContactForm';
+import { Copyright } from '../../components/Copyright';
+import { SocialButtons } from '../../components/SocialButtons';
+import { Wave } from '../../components/Wave';
+import styles from './Footer.module.scss';
 
 interface FooterProps {
   children?: ReactNode;
 }
 
-const Footer = (props: FooterProps) => {
+const Footer = (props: FooterProps): JSX.Element => {
   const { children } = props;
   return (
     <footer className={styles.container}>

@@ -1,3 +1,3 @@
-import { DeferredNextScript } from "./DeferredNextScript";
+import { DeferredNextScript } from './DeferredNextScript';
 
 export { DeferredNextScript };

@@ -1,6 +1,11 @@
 {
-  "plugins": ["prettier", "react"],
-  "extends": ["airbnb-typescript", "prettier/react", ".eslintrc-base.js"],
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
   "root": true,
   "parserOptions": {
     "ecmaFeatures": {
@@ -16,6 +21,19 @@
     }
   },
   "rules": {
-    "no-underscore-dangle": ["error", { "allow": ["_user"] }]
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "_user",
+          "__NEXT_MODERN_BUILD",
+          "__NEXT_CROSS_ORIGIN",
+          "__WB_DISABLE_DEV_LOGS"
+        ]
+      }
+    ],
+    "prefer-const": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error"
   }
 }

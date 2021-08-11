@@ -1,13 +1,12 @@
-const withPlugins = require ('next-compose-plugins');
-const withImages = require ('next-images');
-const withPWA = require ('next-pwa');
-const withTranspileModules = require ('next-transpile-modules');
-const path = require ('path');
-const withReactSvg = require ('next-react-svg');
+const withPlugins = require('next-compose-plugins');
+const withPWA = require('next-pwa');
+const path = require('path');
+
+const prod = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
   webpack: function (config) {
-    config.module.rules.push ({
+    config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|mp3|svg)$/,
       use: {
         loader: 'url-loader',
@@ -20,30 +19,27 @@ const nextConfig = {
     return config;
   },
   sassOptions: {
-    includePaths: [path.join (__dirname, 'src/assets/styles')],
+    includePaths: [path.join(__dirname, 'src/assets/styles')],
   },
 };
 
-module.exports = withPlugins (
+module.exports = withPlugins(
   [
+    [
+      {
+        images: {
+          domains: ['images.ctfassets.net'],
+        },
+      },
+    ],
     [
       withPWA,
       {
         pwa: {
           dest: 'public',
+          disable: prod ? false : true,
         },
       },
-    ],
-    [
-      withReactSvg (
-        withImages ({
-          include: path.resolve (__dirname, 'src/assets/images'),
-          fileExtensions: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
-          webpack (config, options) {
-            return config;
-          },
-        })
-      ),
     ],
   ],
   nextConfig

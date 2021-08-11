@@ -1,12 +1,12 @@
-import { generateProjectUrl } from "../../pages/api/project";
-import { ProjectCMS } from "../../services/ProjectContext";
-import { Card, ItemCard } from "../Card";
+import { generateProjectUrl } from '../../pages/api/project';
+import { ProjectCMS } from '../../services/ProjectContext';
+import { Card, ItemCard } from '../Card';
 
 interface ProjectProps {
   project: ProjectCMS;
 }
 
-const Project = (props: ProjectProps) => {
+const Project = (props: ProjectProps): JSX.Element => {
   const { project } = props;
   const projectItem: ItemCard = {
     slug: project.slug,

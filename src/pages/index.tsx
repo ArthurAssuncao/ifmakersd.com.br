@@ -1,12 +1,13 @@
-import { Home } from "../parts/Home";
-import { ProjectCMS, ProjectProvider } from "../services/ProjectContext";
-import { fetchCollaborators } from "./api/collaborator";
-import { fetchEquipments } from "./api/equipment";
-import { fetchPosts } from "./api/post";
-import { fetchProjects } from "./api/project";
-import { CollaboratorCMS } from "./api/schema/collaborator";
-import { EquipmentCMS } from "./api/schema/equipment";
-import { PostCMS } from "./api/schema/post";
+import { GetStaticPropsResult } from 'next';
+import { Home } from '../parts/Home';
+import { ProjectCMS, ProjectProvider } from '../services/ProjectContext';
+import { fetchCollaborators } from './api/collaborator';
+import { fetchEquipments } from './api/equipment';
+import { fetchPosts } from './api/post';
+import { fetchProjects } from './api/project';
+import { CollaboratorCMS } from './api/schema/collaborator';
+import { EquipmentCMS } from './api/schema/equipment';
+import { PostCMS } from './api/schema/post';
 
 interface InitialPageProps {
   data: {
@@ -17,7 +18,7 @@ interface InitialPageProps {
   };
 }
 
-const InitialPage = (props: InitialPageProps) => {
+const InitialPage = (props: InitialPageProps): JSX.Element => {
   const { data } = props;
   const { projects, posts, equipments, collaborators } = data;
   return (
@@ -32,7 +33,9 @@ const InitialPage = (props: InitialPageProps) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<InitialPageProps>
+> {
   const projects: Array<ProjectCMS> = await fetchProjects();
   const posts: Array<PostCMS> = await fetchPosts();
   const equipments: Array<EquipmentCMS> = await fetchEquipments();

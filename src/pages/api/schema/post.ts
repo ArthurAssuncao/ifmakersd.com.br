@@ -1,4 +1,5 @@
-import { Document } from "@contentful/rich-text-types";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Document } from '@contentful/rich-text-types';
 
 interface PostCMS {
   title: string;
@@ -12,7 +13,7 @@ interface PostCMS {
   authors: [any];
   publish_date: any;
   tags: [string];
-  category: [any];
+  category: string[];
 }
 
 export type { PostCMS };

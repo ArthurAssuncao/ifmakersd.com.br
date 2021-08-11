@@ -1,16 +1,25 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { CmsClient } from "../../services/ContentfulClient";
-import { ProjectCMS } from "../../services/ProjectContext";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { CmsClient } from '../../services/ContentfulClient';
+import { ProjectCMS } from '../../services/ProjectContext';
 
-// const { pageIndex = 1, limit = 3 } = req.query
-//     const data = await client.getEntries({
-//         content_type: 'posts',
-//         skip: pageIndex * limit,
-//         order: '-fields.publishDate',
-//         limit,
-//     })
+interface ProjectContentfull {
+  fields: {
+    title: string;
+    slug: string;
+    photo: {
+      fields: {
+        file: {
+          url: string;
+          contentType: string;
+        };
+      };
+    };
+    description: string;
+    body: Document;
+  };
+}
 
-const createProject = (item: any) => {
+const createProject = (item: ProjectContentfull) => {
   if (!item || !item.fields) {
     return null;
   }
@@ -33,7 +42,7 @@ const createProject = (item: any) => {
   return project;
 };
 
-const createProjectsAndParse = (items: any) => {
+const createProjectsAndParse = (items: ProjectContentfull[]) => {
   const projects = [];
   for (let item of items) {
     const formatedProject = createProject(item);
@@ -44,11 +53,14 @@ const createProjectsAndParse = (items: any) => {
   return projects;
 };
 
-const handleRequest = async (req: NextApiRequest, res: NextApiResponse) => {
+const handleRequest = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> => {
   const { limit = 10 } = req.query;
   const data = await CmsClient.getEntries({
-    content_type: "project",
-    order: "-sys.createdAt",
+    content_type: 'project',
+    order: '-sys.createdAt',
     limit,
   });
 
@@ -57,11 +69,11 @@ const handleRequest = async (req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json(newData);
 };
 
-const fetchProjects = async (limitReq?: number) => {
+const fetchProjects = async (limitReq?: number): Promise<ProjectCMS[]> => {
   const limit = limitReq && 10;
   const data = await CmsClient.getEntries({
-    content_type: "project",
-    order: "-sys.createdAt",
+    content_type: 'project',
+    order: '-sys.createdAt',
     limit,
   });
 
@@ -70,11 +82,11 @@ const fetchProjects = async (limitReq?: number) => {
   return newData;
 };
 
-const fetchProject = async (slug: string) => {
+const fetchProject = async (slug: string): Promise<null | ProjectCMS> => {
   const data = await CmsClient.getEntries({
-    content_type: "project",
+    content_type: 'project',
     limit: 1,
-    "fields.slug": slug,
+    'fields.slug': slug,
   });
 
   const newData = data ? createProject(data.items[0]) : null;
@@ -82,7 +94,7 @@ const fetchProject = async (slug: string) => {
   return newData;
 };
 
-const generateProjectUrl = (slug: string) => {
+const generateProjectUrl = (slug: string): string => {
   return `/projetos/${slug}`;
 };
 

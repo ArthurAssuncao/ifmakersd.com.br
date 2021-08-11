@@ -1,8 +1,8 @@
-import bxlFacebookSquare from "@iconify/icons-bx/bxl-facebook-square";
-import bxlInstagramAlt from "@iconify/icons-bx/bxl-instagram-alt";
-import { Icon } from "@iconify/react";
-import { ReactNode } from "react";
-import styles from "./SocialButtons.module.scss";
+import bxlFacebookSquare from '@iconify/icons-bx/bxl-facebook-square';
+import bxlInstagramAlt from '@iconify/icons-bx/bxl-instagram-alt';
+import { Icon } from '@iconify/react';
+import { ReactNode } from 'react';
+import styles from './SocialButtons.module.scss';
 
 interface SocialButtonProps {
   name: string;
@@ -11,7 +11,7 @@ interface SocialButtonProps {
   children: ReactNode;
 }
 
-const SocialButton = (props: SocialButtonProps) => {
+const SocialButton = (props: SocialButtonProps): JSX.Element => {
   const { name, href, className, children } = props;
   return (
     <a
@@ -24,7 +24,7 @@ const SocialButton = (props: SocialButtonProps) => {
   );
 };
 
-const SocialButtons = () => {
+const SocialButtons = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <SocialButton name="Facebook" className={styles.iconWrapper} href="#">

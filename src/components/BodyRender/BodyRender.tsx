@@ -10,7 +10,7 @@ import {
   MARKS,
 } from '@contentful/rich-text-types';
 import Image from 'next/image';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import styles from './BodyRender.module.scss';
 
@@ -58,14 +58,27 @@ const RenderEmbeddedAsset = (node: Block | Inline): ReactNode => {
   const mimeType = file.contentType;
   const mimeGroup = mimeType.split('/')[0];
 
+  const fixUrlImage = (urlImage: string): string => {
+    if (urlImage.startsWith('//')) {
+      return `https:${urlImage}`;
+    }
+    return urlImage;
+  };
+
   switch (mimeGroup) {
     case 'image':
       return (
-        <figure>
+        <figure
+          style={
+            {
+              '--img-caption-content': description ? '' : 'none',
+            } as CSSProperties
+          }
+        >
           <Image
             title={title ? title : null}
             alt={description ? description : null}
-            src={file.url}
+            src={fixUrlImage(file.url)}
             width={640}
             height={480}
           />

@@ -10,7 +10,6 @@ import styles from './ShareButtons.module.scss';
 import { ShareLink } from './ShareLink';
 
 interface ShareButtonsProps {
-  direction: 'toTop' | 'toBottom';
   url: string;
   title: string;
   tags?: string[];
@@ -18,7 +17,7 @@ interface ShareButtonsProps {
 }
 
 const ShareButtons = (props: ShareButtonsProps): JSX.Element => {
-  const { direction, url, title, widthCSSVar } = props;
+  const { url, title, widthCSSVar } = props;
   const tags = props.tags ? props.tags : [''];
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,11 +31,7 @@ const ShareButtons = (props: ShareButtonsProps): JSX.Element => {
   };
 
   return (
-    <div
-      className={styles.container}
-      data-direction={direction}
-      style={shareButtonStyle}
-    >
+    <div className={styles.container} style={shareButtonStyle}>
       <div className={styles.shareIconWrapper} onClick={() => openButtons()}>
         <Icon icon={shareSolid} className={styles.shareIcon} />
       </div>

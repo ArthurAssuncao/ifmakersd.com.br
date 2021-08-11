@@ -1,4 +1,13 @@
-@import "../../assets/styles/sass/resources";
+@import '../../assets/styles/sass/resources';
+
+@keyframes bg-pan-left {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
 .container {
   display: flex;
@@ -6,10 +15,18 @@
   align-items: center;
   justify-content: flex-start;
   position: relative;
+  background-color: var(--color-background, $color-background);
 
   @include mobile-up {
     width: 100vw;
     min-height: 100vh;
+  }
+
+  .headerHero {
+    width: 100%;
+    background: var(--color-gradiant, $color-gradient);
+    background-size: 200% 100%;
+    animation: bg-pan-left 8s alternate infinite;
   }
 
   .buttonToTop {

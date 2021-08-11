@@ -1,8 +1,8 @@
-@import "colors";
-@import "mixins";
+@import 'colors';
+@import 'mixins';
 
 :root,
-:root body[data-theme="light"] {
+:root body[data-theme='light'] {
   --color-background: #{$color-background};
   --color-background-alpha: #{$color-background-alpha};
   --color-background-alt: #{$color-background-alt};
@@ -22,9 +22,10 @@
   --color-warning: #{$color-warning};
   --color-error: #{$color-error};
   --color-card-shadow: #{$color-card-shadow};
+  --color-gradient: $color-gradient;
 }
 
-:root body[data-theme="dark"] {
+:root body[data-theme='dark'] {
   --color-background: #{$color-background-dark};
   --color-background-alpha: #{$color-background-dark-alpha};
   --color-background-alt: #{$color-background-alt};
@@ -43,12 +44,13 @@
   --color-warning: #{$color-warning};
   --color-error: #{$color-error};
   --color-container-shadow: #{$color-container-shadow-dark};
+  --color-gradient: $color-gradient;
 }
 
 ::selection {
-  @include property_compat("color", --color-background, $color-background);
+  @include property_compat('color', --color-background, $color-background);
   @include property_compat(
-    "background-color",
+    'background-color',
     --color-text-highlight,
     $color-text-highlight
   );

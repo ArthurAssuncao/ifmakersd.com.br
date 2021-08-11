@@ -121,7 +121,7 @@ const ContactForm = (): JSX.Element => {
                   type="text"
                   name="name"
                   value={values.name}
-                  helperText={
+                  helpertext={
                     errors.name && touched.name
                       ? errors.name
                       : fieldsHelper.name
@@ -144,7 +144,7 @@ const ContactForm = (): JSX.Element => {
                   type="email"
                   name="email"
                   value={values.email}
-                  helperText={
+                  helpertext={
                     errors.email && touched.email
                       ? errors.email
                       : fieldsHelper.email
@@ -169,7 +169,7 @@ const ContactForm = (): JSX.Element => {
                 name="message"
                 value={values.message}
                 rows={3}
-                helperText={
+                helpertext={
                   errors.message && touched.message
                     ? errors.message
                     : fieldsHelper.message

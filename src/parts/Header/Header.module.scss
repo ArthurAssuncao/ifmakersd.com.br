@@ -1,32 +1,19 @@
-@import "../../assets/styles/sass/resources";
-
-@keyframes bg-pan-left {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+@import '../../assets/styles/sass/resources';
 
 .container {
   position: relative;
-  min-height: 9rem;
-
-  background: linear-gradient(
-    45deg,
-    var(--color-secondary, $color-secondary),
-    var(--color-primary, $color-primary)
-  );
-  background-size: 200% 100%;
+  min-height: 7rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  background-color: transparent;
   overflow: hidden;
-  animation: bg-pan-left 8s alternate infinite;
 
-  @include mobile-up {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  @include tablet-up {
+    position: relative;
+    min-height: 9rem;
   }
 }

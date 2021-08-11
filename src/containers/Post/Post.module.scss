@@ -1,4 +1,24 @@
-@import "../../assets/styles/sass/resources";
+@import '../../assets/styles/sass/resources';
+
+$tablet-img-width: 720px;
+$tablet-img-height: 320px;
+$desktop-img-width: 960px;
+$desktop-img-height: 480px;
+
+@keyframes type-flip {
+  0%,
+  20% {
+    transform: translate3d(0, 0%, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(0, -100%, 0);
+  }
+  80%,
+  100% {
+    transform: translate3d(0, -200%, 0);
+  }
+}
 
 .container {
   display: flex;
@@ -6,178 +26,181 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 0rem;
+  padding: 0;
 
   @include tablet-up {
     max-width: 960px;
-    padding: 0;
+    padding: 0 5rem 0 5rem;
+    padding-bottom: 6rem;
+  }
+
+  @include desktop-up {
   }
 
   .content {
     background-color: var(--color-background, $color-background);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 
-    .imageHeaderWrapper {
-      position: relative;
+    @include tablet-up {
+      align-items: center;
+    }
+
+    .imageWrapper {
       display: flex;
-      flex-direction: column-reverse;
+      @include tablet-up {
+        display: none;
+      }
+      .imageWrapperInner {
+      }
+    }
+
+    .contentWrapper {
+      width: 90%;
+      top: -7rem;
+      position: relative;
+      padding: 2rem 3rem 2rem 2rem;
+      background-color: var(--color-background, $color-background);
 
       @include tablet-up {
-        flex-direction: column;
-      }
-
-      @include tablet-up {
-        &:after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          height: $size-pages-header;
-          width: 100%;
-          background-color: var(
-            --color-background-alpha,
-            $color-background-alpha
-          );
-          backdrop-filter: blur(5px);
-          z-index: 1;
-        }
-      }
-
-      .imageBackgroundWrapper {
-        position: relative;
+        top: 0;
         width: 100%;
-
-        @include tablet-up {
-          .background {
-            position: absolute;
-            content: "";
-            top: 0;
-            left: 0;
-            transform: translateX(-50%);
-            width: 200vw;
-            z-index: -1;
-            height: 98%;
-            background-image: var(--post-image, "");
-            background-position: center;
-            background-size: 100% 100%;
-            filter: blur(8px);
-
-            @include desktop-up {
-              // left: -20%;
-            }
-          }
-        }
-
-        .imageWrapper {
-          height: auto;
-          position: relative;
-          padding: 0 3rem;
-
-          @include tablet-up {
-            height: $size-pages-header * 2.3;
-            padding: 0;
-          }
-
-          img {
-            width: 100%;
-            @include tablet-up {
-              max-width: $max-page-size-tablet;
-            }
-
-            @include desktop-up {
-              max-width: $max-page-size-desktop;
-            }
-
-            @include desktop-big-up {
-              max-width: $max-page-size-desktop-big;
-            }
-            max-width: 960px;
-            object-fit: contain;
-
-            @include tablet-up {
-              object-fit: fill;
-              height: 98%;
-            }
-          }
-        }
+        padding: 0;
       }
 
       .header {
+        margin-bottom: 2rem;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        bottom: 0;
-        height: $size-pages-header;
-        width: 100%;
-        color: var(--color-text, $color-text);
-        z-index: 2;
-        filter: contrast(2);
-        padding: 1.5rem;
 
-        @include tablet-up {
-          position: absolute;
-        }
-
-        .title {
-          line-height: 1.15;
-          font-weight: bold;
-          text-align: center;
-        }
-
-        .info {
-          display: flex;
-          flex-direction: column;
-          flex-wrap: wrap;
-          align-items: flex-start;
-          justify-content: center;
-          margin: 1rem 0;
-          align-self: flex-start;
+        .imageWrapper {
+          display: none;
 
           @include tablet-up {
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            align-self: center;
-          }
-
-          > * {
-            margin: 0 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-basis: 40%;
-            @include tablet-up {
-              flex-basis: initial;
+
+            margin: 4rem 0 3rem 0;
+            max-height: $tablet-img-height;
+            width: $tablet-img-width;
+
+            > * {
+              width: 100%;
+              display: flex !important;
+              align-items: center;
+              justify-content: center;
+            }
+
+            img {
+              border-radius: 2rem;
+              max-width: $tablet-img-width;
+              max-height: $tablet-img-height;
+              width: 100%;
             }
           }
 
-          .infoIcon {
-            font-size: $text-h5;
-            margin: 0.5rem;
+          @include desktop-up {
+            max-height: $desktop-img-height;
+            width: $desktop-img-width;
+
+            img {
+              max-width: $desktop-img-width;
+              max-height: $desktop-img-height;
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+
+        .imageTypeWrapper {
+          @include tablet-up {
+            position: relative;
+            width: $tablet-img-width;
+            align-self: center;
+          }
+
+          @include desktop-up {
+            width: $desktop-img-width;
+          }
+
+          .type {
+            overflow: hidden;
+            height: 2rem;
+            margin-bottom: 1rem;
+
+            @include tablet-up {
+              height: 5rem;
+              margin-bottom: 0rem;
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              background-color: var(--color-accent, $color-accent);
+              padding: 0rem 1.5rem 0 1.5rem;
+              border-bottom-right-radius: 2rem;
+              border-top-left-radius: 2rem;
+              margin: 4rem 0 3rem 0;
+            }
+
+            .typeList {
+              font-weight: bold;
+              height: 2rem;
+              color: var(--color-primary, $color-primary);
+              animation: type-flip 6s ease-out infinite alternate;
+
+              @include tablet-up {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                color: var(--color-text-alt, $color-text-alt);
+                height: 5rem;
+                line-height: 5rem;
+              }
+            }
+          }
+        }
+
+        .title {
+          font-weight: bold;
+          margin-bottom: 1rem;
+        }
+
+        .info {
+          height: 4rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: var(--text-description, $text-description);
+          color: var(--color-text-label, $color-text-label);
+          border-bottom: 1px solid var(--color-gray-line, $color-gray-line);
+          margin-bottom: 1rem;
+
+          @include tablet-up {
+            justify-content: flex-start;
+            > * {
+              margin-right: 1rem;
+            }
+          }
+
+          .infoSeparator {
+            font-size: var(--text-small, $text-small);
+            color: var(--color-gray-line, $color-gray-line);
           }
         }
 
         .description {
-          padding: 1rem;
-          width: 96%;
-          line-height: 1.5;
+          font-style: italic;
+          color: var(--color-text-label, $color-text-label);
           text-align: justify;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          max-height: 13rem;
-          overflow: hidden;
-
-          @include tablet-up {
-            width: 60%;
-          }
+          line-height: 1.3;
         }
       }
     }
 
     .body {
       line-height: 1.5;
-      padding: 2.5rem;
     }
   }
 }
@@ -189,12 +212,12 @@
   z-index: $z-index-over;
   transition: top 0.5s ease;
 
-  &[data-mobile="true"] {
-    &[data-onscroll="false"] {
+  &[data-mobile='true'] {
+    &[data-onscroll='false'] {
       top: 10rem;
     }
 
-    &[data-onscroll="true"] {
+    &[data-onscroll='true'] {
       top: 1.5rem;
     }
   }

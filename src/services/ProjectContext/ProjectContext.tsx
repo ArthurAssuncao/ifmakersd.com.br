@@ -1,7 +1,8 @@
-import "isomorphic-fetch";
-import { createContext, ReactNode, useEffect } from "react";
-import useSWR from "swr";
+import 'isomorphic-fetch';
+import { createContext, ReactNode } from 'react';
+import useSWR from 'swr';
 interface ProjectCMS {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body: any;
   description: string;
   photo: {
@@ -24,13 +25,8 @@ const ProjectContext = createContext({} as ProjectContextData);
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const ProjectProvider = ({ children }: ProjectProviderProps) => {
-  const { data, error } = useSWR<Array<ProjectCMS>>(
-    "/api/project?limit=3",
-    fetcher
-  );
-
-  useEffect(() => {}, []);
+const ProjectProvider = ({ children }: ProjectProviderProps): JSX.Element => {
+  const { data } = useSWR<Array<ProjectCMS>>('/api/project?limit=3', fetcher);
 
   return (
     <ProjectContext.Provider value={{ projects: data }}>

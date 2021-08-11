@@ -44,7 +44,7 @@ $num-itens: 5;
 
 .container {
   width: calc(var(--share-button-size, fit-content) + 1rem);
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   overflow: hidden;
   min-height: fit-content;
   position: relative;
@@ -53,44 +53,46 @@ $num-itens: 5;
 
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
-  &[data-direction='toTop'] {
+  @include tablet-up {
     flex-direction: column-reverse;
+  }
 
-    .shareList {
-      &[data-open='false'],
-      &:hover {
-        .shareItem {
-          @for $i from 1 through $num-itens {
-            &:nth-child(#{$i}n) {
-              animation: fade-out 0.5s #{($i - 1) * 0.2}s ease forwards;
+  .shareList,
+  &[data-open='false'] {
+    .shareItem {
+      @for $i from 1 through $num-itens {
+        $newI: $i;
+        &:nth-child(#{$newI}) {
+          animation: fade-out 0.5s #{($num-itens - $i) * 0.2}s ease forwards;
 
-              .shareItemIcon {
-                animation: fade-out-icon 1s #{($i - 1) * 0.1}s ease forwards;
-              }
-            }
+          .shareItemIcon {
+            animation: fade-out-icon
+              1s
+              #{($num-itens - $i) *
+              0.1}s
+              ease
+              forwards;
           }
         }
       }
+    }
 
-      &[data-open='true'] {
-        // animation: slide-open 1s ease forwards;
+    .shareItem {
+      @include tablet-up {
+        @for $i from 1 through $num-itens {
+          $newI: $num-itens - ($i - 1);
+          &:nth-child(#{$newI}) {
+            animation: fade-out 0.5s #{($num-itens - $i) * 0.2}s ease forwards;
 
-        .shareItem {
-          opacity: 0;
-
-          @for $i from 1 through $num-itens {
-            &:nth-child(#{$i}n) {
-              // animation-delay: #{(4 - $i) * 0.2}s;
-              animation: fade-in 0.5s #{($num-itens - $i) * 0.2}s ease forwards;
-
-              .shareItemIcon {
-                animation: fade-in-icon
-                  #{(($num-itens - $i) * 0.2) +
-                  1}s
-                  ease
-                  forwards;
-              }
+            .shareItemIcon {
+              animation: fade-out-icon
+                1s
+                #{($num-itens - $i) *
+                0.1}s
+                ease
+                forwards;
             }
           }
         }
@@ -98,47 +100,47 @@ $num-itens: 5;
     }
   }
 
-  &[data-direction='toBottom'] {
-    flex-direction: column;
+  .shareList,
+  &:hover {
+    &:hover,
+    &[data-open='true'] {
+      // max-height: inherit;
 
-    .shareList {
-      &[data-open='false'] {
-        .shareItem {
-          @for $i from 1 through $num-itens {
-            &:nth-child(#{$i}n) {
-              animation: fade-out
-                0.5s
+      .shareItem {
+        @for $i from 1 through $num-itens {
+          $newI: $num-itens - ($i - 1);
+          &:nth-child(#{$newI}) {
+            opacity: 0;
+            animation: fade-in 0.5s #{($num-itens - $i) * 0.2}s ease forwards;
+
+            .shareItemIcon {
+              animation: fade-in-icon
+                1s
                 #{($num-itens - $i) *
-                0.2}s
+                0.1}s
                 ease
                 forwards;
-
-              .shareItemIcon {
-                animation: fade-out-icon
-                  1s
-                  #{($num-itens - $i) *
-                  0.1}s
-                  ease
-                  forwards;
-              }
             }
           }
         }
       }
 
-      &[data-open='true'] {
-        // animation: slide-open 1s ease forwards;
-
-        .shareItem {
-          opacity: 0;
-
+      .shareItem {
+        @include tablet-up {
           @for $i from 1 through $num-itens {
-            &:nth-child(#{$i}n) {
-              // animation-delay: #{(4 - $i) * 0.2}s;
-              animation: fade-in 0.5s #{($i - 1) * 0.2}s ease forwards;
+            $newI: $i;
+
+            &:nth-child(#{$newI}) {
+              opacity: 0;
+              animation: fade-in 0.5s #{($num-itens - $i) * 0.2}s ease forwards;
 
               .shareItemIcon {
-                animation: fade-in-icon #{(($i - 1) * 0.2) + 1}s ease forwards;
+                animation: fade-in-icon
+                  1s
+                  #{($num-itens - $i) *
+                  0.1}s
+                  ease
+                  forwards;
               }
             }
           }

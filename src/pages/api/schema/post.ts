@@ -13,7 +13,7 @@ interface PostCMS {
   authors: [any];
   publish_date: any;
   tags: [string];
-  category: [any];
+  category: string[];
 }
 
 export type { PostCMS };

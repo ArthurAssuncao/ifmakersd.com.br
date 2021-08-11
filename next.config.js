@@ -26,6 +26,13 @@ const nextConfig = {
 module.exports = withPlugins(
   [
     [
+      {
+        images: {
+          domains: ['images.ctfassets.net'],
+        },
+      },
+    ],
+    [
       withPWA,
       {
         pwa: {

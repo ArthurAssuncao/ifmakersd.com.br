@@ -15,7 +15,7 @@ const Post = (props: PostProps): JSX.Element => {
     title: post.title,
     description: post.description,
     href: generatePostUrl(post.slug),
-    tag: post.category[0].fields.title,
+    tag: post.category[0],
   };
 
   return <Card item={postItem} />;

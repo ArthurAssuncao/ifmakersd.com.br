@@ -8,25 +8,52 @@
   h5,
   h6 {
     font-weight: 500;
-    margin: 1rem 0;
+    margin: 2rem 0 0.5rem 0;
+    border-bottom: 3px solid var(--color-primary, $color-primary);
+    display: inline-block;
   }
 
   ul,
   ol {
-    padding-left: 3rem;
     li {
-      text-indent: 1.5rem;
+      // text-indent: 1.5rem;
       list-style-type: initial;
       list-style-position: inside;
+      display: flex;
+
+      &:before {
+        content: '';
+        height: 5px;
+        width: 5px;
+        min-height: 5px;
+        min-width: 5px;
+        border-radius: 50%;
+        background: #333;
+        margin: 10px 5px 0px 5px;
+      }
+
       p {
-        display: inline;
+        text-align: justify;
       }
       li {
-        text-indent: 3rem;
+        text-indent: 1rem;
         list-style-type: initial;
         list-style-position: inside;
+        display: flex;
+
+        &:before {
+          content: '';
+          height: 5px;
+          width: 5px;
+          min-height: 5px;
+          min-width: 5px;
+          border-radius: 50%;
+          background: #333;
+          margin: 10px 5px 0px 5px;
+        }
+
         p {
-          display: inline;
+          text-align: justify;
         }
       }
     }
@@ -47,15 +74,25 @@
     padding-bottom: 56.25%; /* 16:9 */
     height: 0;
     margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include tablet-up {
+      margin: 2rem auto 1rem auto;
+    }
 
     iframe {
       position: absolute;
       top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-
       display: block;
+
+      @include tablet-up {
+        width: 90%;
+        height: 90%;
+      }
     }
   }
 
@@ -65,6 +102,11 @@
     display: flex;
     flex-direction: column;
     position: relative;
+
+    @include tablet-up {
+      max-width: 90%;
+      margin: 2rem auto 2rem auto;
+    }
 
     figcaption {
       position: absolute;
@@ -84,7 +126,7 @@
     }
 
     &:after {
-      content: '';
+      content: var(--img-caption-content, '');
       bottom: 0;
       background-color: var(--color-background, $color-background);
       position: absolute;

@@ -22,7 +22,14 @@ interface PostContentfull {
     author: [string];
     publish_date: string;
     tags: [string];
-    category: [string];
+    category: [
+      {
+        fields: {
+          title: string;
+          slug: string;
+        };
+      }
+    ];
   };
 }
 
@@ -30,6 +37,8 @@ const createPost = (item: PostContentfull) => {
   if (!item || !item.fields) {
     return null;
   }
+
+  console.log(item.fields.category);
 
   const post: PostCMS = {
     title: item.fields.title,
@@ -43,7 +52,9 @@ const createPost = (item: PostContentfull) => {
     authors: item.fields.author,
     publish_date: item.fields.publish_date,
     tags: item.fields.tags,
-    category: item.fields.category,
+    category: item.fields.category.map((item) => {
+      return item.fields.title;
+    }),
   };
   return post;
 };

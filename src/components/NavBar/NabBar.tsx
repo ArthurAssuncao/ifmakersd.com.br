@@ -96,7 +96,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
         <div className={styles.menuIconTopWrapper}>
           <Image
             src={Logo}
-            alt="Logo do Hackathon"
+            alt="Logo do IFMaker"
             width={150}
             height={60}
             className={styles.menuIconTop}
@@ -120,7 +120,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
           <div className={styles.menuMainIconWrapper}>
             <Image
               src={Logo}
-              alt="Logo do Hackathon"
+              alt="Logo do IFMaker"
               width={150}
               height={60}
               className={styles.menuMainIcon}

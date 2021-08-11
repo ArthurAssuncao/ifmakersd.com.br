@@ -42,7 +42,7 @@ const Home = (props: HomeProps): JSX.Element => {
   const { projects, posts, equipments, collaborators } = props;
 
   return (
-    <PageTemplate headerChildren={<Hero />}>
+    <PageTemplate hero={<Hero />}>
       <Objectives />
 
       <Projects projects={projects} hasMoreButton={true} />

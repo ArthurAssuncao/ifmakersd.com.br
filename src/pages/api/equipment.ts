@@ -3,6 +3,7 @@ import { CmsClient } from '../../services/ContentfulClient';
 import { EquipmentCMS } from './schema/equipment';
 
 const CONTENT_TYPE = 'equipment';
+const cmsClient = CmsClient.getInstance();
 
 interface EquipmentContentfull {
   fields: {
@@ -53,38 +54,44 @@ const handleRequest = async (
   res: NextApiResponse
 ): Promise<void> => {
   const { limit = 10 } = req.query;
-  const data = await CmsClient.getEntries({
+  const data = await cmsClient.getEntries({
     content_type: CONTENT_TYPE,
     order: '-sys.createdAt',
     limit,
   });
 
-  const newData = createEquipmentsAndParse(data.items);
+  const newData = createEquipmentsAndParse(
+    data.items as EquipmentContentfull[]
+  );
 
   res.status(200).json(newData);
 };
 
 const fetchEquipments = async (limitReq?: number): Promise<EquipmentCMS[]> => {
   const limit = limitReq && 10;
-  const data = await CmsClient.getEntries({
+  const data = await cmsClient.getEntries({
     content_type: CONTENT_TYPE,
     order: '-sys.createdAt',
     limit,
   });
 
-  const newData = createEquipmentsAndParse(data.items);
+  const newData = createEquipmentsAndParse(
+    data.items as EquipmentContentfull[]
+  );
 
   return newData;
 };
 
 const fetchEquipment = async (slug: string): Promise<null | EquipmentCMS> => {
-  const data = await CmsClient.getEntries({
+  const data = await cmsClient.getEntries({
     content_type: CONTENT_TYPE,
     limit: 1,
     'fields.slug': slug,
   });
 
-  const newData = data ? createEquipment(data.items[0]) : null;
+  const newData = data
+    ? createEquipment(data.items[0] as EquipmentContentfull)
+    : null;
 
   return newData;
 };

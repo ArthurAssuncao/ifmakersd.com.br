@@ -101,7 +101,7 @@ const Post = (props: PostProps): JSX.Element => {
                   />
                 </div>
                 <div className={styles.type}>
-                  <ul className={styles.typeList}>
+                  <ul className={styles.typeList} data-active={true}>
                     {post.category.map((item) => {
                       return (
                         <li className={styles.typeItem} key={nextId()}>

@@ -12,6 +12,7 @@ import {
 import Image from 'next/image';
 import { CSSProperties, ReactNode } from 'react';
 import ReactHtmlParser from 'react-html-parser';
+import Loader from '../../services/Loader';
 import styles from './BodyRender.module.scss';
 
 interface BodyProps {
@@ -81,6 +82,7 @@ const RenderEmbeddedAsset = (node: Block | Inline): ReactNode => {
             src={fixUrlImage(file.url)}
             width={640}
             height={480}
+            loader={Loader.imageLoader}
           />
           {description ? <figcaption>{description}</figcaption> : null}
         </figure>

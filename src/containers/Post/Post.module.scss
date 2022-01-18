@@ -35,6 +35,7 @@ $desktop-img-height: 480px;
   }
 
   @include desktop-up {
+    max-width: 1280px;
   }
 
   .content {
@@ -42,13 +43,23 @@ $desktop-img-height: 480px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    width: 100vw;
 
     @include tablet-up {
       align-items: center;
+      width: 100%;
     }
 
     .imageWrapper {
       display: flex;
+      width: 100%;
+      height: auto;
+
+      > span,
+      > div {
+        width: 100% !important;
+      }
+
       @include tablet-up {
         display: none;
       }
@@ -57,10 +68,9 @@ $desktop-img-height: 480px;
     }
 
     .contentWrapper {
-      width: 90%;
-      top: -7rem;
+      width: 100%;
       position: relative;
-      padding: 2rem 3rem 2rem 2rem;
+      padding: 0rem 3rem 2rem 3rem;
       background-color: var(--color-background, $color-background);
 
       @include tablet-up {
@@ -70,12 +80,17 @@ $desktop-img-height: 480px;
       }
 
       .header {
-        margin-bottom: 2rem;
+        margin-bottom: 0rem;
         display: flex;
         flex-direction: column;
 
         .imageWrapper {
           display: none;
+
+          > span,
+          > div {
+            width: 100% !important;
+          }
 
           @include tablet-up {
             display: flex;
@@ -147,14 +162,19 @@ $desktop-img-height: 480px;
               font-weight: bold;
               height: 2rem;
               color: var(--color-primary, $color-primary);
-              animation: type-flip 6s ease-out infinite alternate;
+              &[data-active='true'] {
+                animation: type-flip 6s ease-out infinite alternate;
+              }
 
               @include tablet-up {
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                // justify-content: center;
                 flex-direction: column;
-                color: var(--color-text-alt, $color-text-alt);
+                color: var(
+                  --color-background-alt-contrast,
+                  $color-background-alt-contrast
+                );
                 height: 5rem;
                 line-height: 5rem;
               }
@@ -165,6 +185,11 @@ $desktop-img-height: 480px;
         .title {
           font-weight: bold;
           margin-bottom: 1rem;
+          font-size: var(--text-h2, $text-h2);
+
+          @include tablet-up {
+            font-size: var(--text-h1, $text-h1);
+          }
         }
 
         .info {
@@ -188,6 +213,15 @@ $desktop-img-height: 480px;
             font-size: var(--text-small, $text-small);
             color: var(--color-gray-line, $color-gray-line);
           }
+
+          .infoAuthor {
+            a,
+            a:visited,
+            a:active,
+            a:link {
+              color: var(--color-primary, $color-primary);
+            }
+          }
         }
 
         .description {
@@ -206,20 +240,23 @@ $desktop-img-height: 480px;
 }
 
 .shareButton {
+  display: flex;
   --share-size: 5rem;
   position: fixed;
-  right: 1.5rem;
+  // min-height: 100%;
+  overflow: hidden;
+  right: 2rem;
+  top: 2rem;
+  // top: 6rem;
   z-index: $z-index-over;
   transition: top 0.5s ease;
 
-  &[data-mobile='true'] {
-    &[data-onscroll='false'] {
-      top: 10rem;
-    }
+  &[data-onscroll='false'] {
+    top: 6rem;
+  }
 
-    &[data-onscroll='true'] {
-      top: 1.5rem;
-    }
+  &[data-onscroll='true'] {
+    top: 1.5rem;
   }
 
   @include tablet-up {
@@ -227,5 +264,9 @@ $desktop-img-height: 480px;
     --share-size: 4.2rem;
     bottom: 2rem;
     right: 8rem;
+    &[data-onscroll='false'],
+    &[data-onscroll='true'] {
+      top: initial;
+    }
   }
 }

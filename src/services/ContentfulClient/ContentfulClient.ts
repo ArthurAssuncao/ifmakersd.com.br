@@ -1,9 +1,21 @@
-const space = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
-const accessToken = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
+import * as contentful from 'contentful';
+import { env } from 'process';
 
-const CmsClient = require("contentful").createClient({
-  space: space,
-  accessToken: accessToken,
-});
+class CmsClient {
+  private static instance: contentful.ContentfulClientApi;
+  private static spaceId = env.CONTENTFUL_SPACE_ID;
+  private static accessTokenCode = env.CONTENTFUL_ACCESS_TOKEN;
+
+  public static getInstance(): contentful.ContentfulClientApi {
+    if (CmsClient.spaceId && CmsClient.accessTokenCode && !CmsClient.instance) {
+      CmsClient.instance = contentful.createClient({
+        space: CmsClient.spaceId,
+        accessToken: CmsClient.accessTokenCode,
+      } as contentful.CreateClientParams);
+    }
+
+    return CmsClient.instance;
+  }
+}
 
 export { CmsClient };

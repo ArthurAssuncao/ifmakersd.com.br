@@ -12,6 +12,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import ReactTooltip, { Effect, Type } from 'react-tooltip';
 import Logo from '../../assets/images/ifmaker/logo.svg';
+import Loader from '../../services/Loader';
 import styles from './Hero.module.scss';
 
 interface TooltipConfig {
@@ -315,6 +316,7 @@ const Hero = (): JSX.Element => {
             height={60}
             className={styles.heroLogoIcon}
             aria-label="Logo do Laboratório IFMaker"
+            loader={Loader.imageLoader}
           />
         </h1>
       </div>

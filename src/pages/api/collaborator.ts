@@ -3,6 +3,7 @@ import { CmsClient } from '../../services/ContentfulClient';
 import { CollaboratorCMS } from './schema/collaborator';
 
 const CONTENT_TYPE = 'author';
+const cmsClient = CmsClient.getInstance();
 
 interface CollaboratorContentfull {
   fields: {
@@ -57,13 +58,15 @@ const handleRequest = async (
   res: NextApiResponse
 ): Promise<void> => {
   const { limit = 10 } = req.query;
-  const data = await CmsClient.getEntries({
+  const data = await cmsClient.getEntries({
     content_type: CONTENT_TYPE,
     order: '-sys.createdAt',
     limit,
   });
 
-  const newData = createCollaboratorsAndParse(data.items);
+  const newData = createCollaboratorsAndParse(
+    data.items as CollaboratorContentfull[]
+  );
 
   res.status(200).json(newData);
 };
@@ -72,13 +75,15 @@ const fetchCollaborators = async (
   limitReq?: number
 ): Promise<CollaboratorCMS[]> => {
   const limit = limitReq && 10;
-  const data = await CmsClient.getEntries({
+  const data = await cmsClient.getEntries({
     content_type: CONTENT_TYPE,
     order: '-sys.createdAt',
     limit,
   });
 
-  const newData = createCollaboratorsAndParse(data.items);
+  const newData = createCollaboratorsAndParse(
+    data.items as CollaboratorContentfull[]
+  );
 
   return newData;
 };
@@ -86,13 +91,15 @@ const fetchCollaborators = async (
 const fetchCollaborator = async (
   slug: string
 ): Promise<null | CollaboratorCMS> => {
-  const data = await CmsClient.getEntries({
+  const data = await cmsClient.getEntries({
     content_type: CONTENT_TYPE,
     limit: 1,
     'fields.slug': slug,
   });
 
-  const newData = data ? createCollaborator(data.items[0]) : null;
+  const newData = data
+    ? createCollaborator(data.items[0] as CollaboratorContentfull)
+    : null;
 
   return newData;
 };

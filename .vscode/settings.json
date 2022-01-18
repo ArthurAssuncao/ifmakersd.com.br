@@ -43,7 +43,7 @@
   "window.title": "${separator} ${rootName} : ${activeFolderShort}${separator}${activeEditorShort}",
   "workbench.editor.highlightModifiedTabs": true,
   "editor.formatOnPaste": false,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.organizeImports": true,
     "source.fixAll.format": true,

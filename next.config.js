@@ -29,6 +29,7 @@ module.exports = withPlugins(
       {
         images: {
           domains: ['images.ctfassets.net'],
+          loader: 'custom',
         },
       },
     ],
@@ -42,5 +43,6 @@ module.exports = withPlugins(
       },
     ],
   ],
+  { reactStrictMode: true },
   nextConfig
 );

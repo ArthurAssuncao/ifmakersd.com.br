@@ -1,7 +1,7 @@
-import "isomorphic-fetch";
-import { createContext, ReactNode, useEffect } from "react";
-import useSWR from "swr";
-import { PostCMS } from "../../pages/api/schema/post";
+import 'isomorphic-fetch';
+import { createContext, ReactNode } from 'react';
+import useSWR from 'swr';
+import { PostCMS } from '../../pages/api/schema/post';
 
 interface PostContextData {
   posts: Array<PostCMS> | undefined;
@@ -15,10 +15,8 @@ const PostContext = createContext({} as PostContextData);
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const PostProvider = ({ children }: PostProviderProps) => {
-  const { data, error } = useSWR<Array<PostCMS>>("/api/post?limit=3", fetcher);
-
-  useEffect(() => {}, []);
+const PostProvider = ({ children }: PostProviderProps): JSX.Element => {
+  const { data } = useSWR<Array<PostCMS>>('/api/post?limit=3', fetcher);
 
   return (
     <PostContext.Provider value={{ posts: data }}>

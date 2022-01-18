@@ -12,6 +12,7 @@ import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import Logo from '../../assets/images/ifmaker/logo.svg';
+import Loader from '../../services/Loader';
 import styles from './NavBar.module.scss';
 
 interface NavBarProps {
@@ -67,7 +68,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
         if (!value) {
           setTimeout(() => {
             setFloatingWillDisappear(false);
-          }, 600);
+          }, 200);
         } else {
           setFloatingWillDisappear(true);
         }
@@ -75,7 +76,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
     };
 
     const checkScroll = () => {
-      const limitHeight = window.innerHeight; // window.innerHeight
+      const limitHeight = 300; // window.innerHeight
 
       if (window.pageYOffset > limitHeight) {
         setShowFloatingCheck(true);
@@ -100,6 +101,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
             width={150}
             height={60}
             className={styles.menuIconTop}
+            loader={Loader.imageLoader}
           />
         </div>
       </nav>
@@ -124,6 +126,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
               width={150}
               height={60}
               className={styles.menuMainIcon}
+              loader={Loader.imageLoader}
             />
           </div>
           <span

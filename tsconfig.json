@@ -16,7 +16,12 @@
     "noEmit": true,
     "sourceMap": true,
     "jsx": "preserve",
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
+    "incremental": true
   },
   "rootDirs": ["src", "stories"],
   "include": ["src"],

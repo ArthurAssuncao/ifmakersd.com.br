@@ -1,16 +1,57 @@
 @import '../../assets/styles/sass/resources';
 
 .container {
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+
+  a,
+  a:active,
+  a:link,
+  a:visited {
+    color: inherit;
+    color: var(--color-text, $color-text);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--color-primary, $color-primary);
+    }
+  }
+
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-weight: 500;
-    margin: 2rem 0 0.5rem 0;
-    border-bottom: 3px solid var(--color-primary, $color-primary);
+    margin: 1rem 0 0.5rem 0;
+    font-weight: bold;
+    border-bottom: 2px solid var(--color-primary, $color-primary);
     display: inline-block;
+    width: fit-content;
+    font-family: sans-serif;
+  }
+
+  h2 {
+    margin: 1.5rem 0 0.5rem 0;
+    font-size: var(--text-h4, $text-h4);
+  }
+
+  h3 {
+    font-size: var(--text-h5, $text-h5);
+  }
+
+  h4 {
+    font-size: var(--text-h6, $text-h6);
+  }
+
+  h5 {
+    font-size: var(--text-body, $text-body);
+  }
+
+  h6 {
+    font-size: var(--text-body, $text-body);
   }
 
   ul,
@@ -67,6 +108,342 @@
     hyphens: auto;
     hyphenate-limit-chars: 10 4 4;
     margin-bottom: 1rem;
+  }
+
+  p {
+    margin: 1rem 0;
+    overflow-wrap: break-word;
+  }
+
+  blockquote {
+    max-width: 90%;
+    text-align: center;
+  }
+
+  blockquote,
+  figure,
+  img,
+  video,
+  iframe {
+    align-self: center;
+  }
+
+  img,
+  video,
+  iframe {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
+    height: auto;
+
+    @include tablet-up {
+      height: 400px;
+    }
+  }
+
+  img,
+  figure,
+  video {
+    height: auto;
+  }
+
+  img {
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    &:hover {
+      border-color: var(--color-accent, $color-accent);
+    }
+  }
+
+  ul {
+    li {
+      list-style: disc;
+    }
+  }
+
+  ol {
+    li {
+      list-style: decimal;
+    }
+  }
+
+  ul,
+  ol {
+    margin-left: 2rem;
+  }
+
+  // below based on https://www.npmjs.com/package/github-markdown-css
+
+  details,
+  figcaption,
+  figure {
+    display: block;
+  }
+
+  summary {
+    display: list-item;
+  }
+  abbr[title] {
+    border-bottom: none;
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+  }
+
+  b,
+  strong {
+    font-weight: 600;
+  }
+
+  dfn {
+    font-style: italic;
+  }
+  mark {
+    background-color: #ff0;
+    color: #c9d1d9;
+  }
+
+  small {
+    font-size: 90%;
+  }
+
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: monospace, monospace;
+    font-size: 1em;
+  }
+  hr {
+    box-sizing: content-box;
+    overflow: hidden;
+    background: transparent;
+    border-bottom: 1px solid #21262d;
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #30363d;
+    border: 0;
+  }
+
+  html [type='button'],
+  [type='reset'],
+  [type='submit'] {
+    -webkit-appearance: button;
+  }
+
+  [type='button']::-moz-focus-inner,
+  [type='reset']::-moz-focus-inner,
+  [type='submit']::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+  hr {
+    box-sizing: content-box;
+    overflow: hidden;
+    background: transparent;
+    border-bottom: 1px solid #21262d;
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #30363d;
+    border: 0;
+  }
+
+  html [type='button'],
+  [type='reset'],
+  [type='submit'] {
+    -webkit-appearance: button;
+  }
+
+  [type='button']::-moz-focus-inner,
+  [type='reset']::-moz-focus-inner,
+  [type='submit']::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+  kbd {
+    display: inline-block;
+    padding: 3px 5px;
+    font: 11px ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+      Liberation Mono, monospace;
+    line-height: 10px;
+    color: #c9d1d9;
+    vertical-align: middle;
+    background-color: #161b22;
+    border: solid 1px rgba(110, 118, 129, 0.4);
+    border-bottom-color: rgba(110, 118, 129, 0.4);
+    border-radius: 6px;
+    box-shadow: inset 0 -1px 0 rgba(110, 118, 129, 0.4);
+  }
+
+  tt,
+  code {
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+      Liberation Mono, monospace;
+    font-size: 12px;
+  }
+
+  g-emoji {
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-size: 1em;
+    font-style: normal !important;
+    font-weight: 400;
+    line-height: 1;
+    vertical-align: -0.075em;
+  }
+
+  g-emoji img {
+    width: 1em;
+    height: 1em;
+  }
+  .absent {
+    color: #f85149;
+  }
+
+  .anchor {
+    float: left;
+    padding-right: 4px;
+    margin-left: -20px;
+    line-height: 1;
+  }
+
+  .anchor:focus {
+    outline: none;
+  }
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table,
+  pre,
+  details {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  blockquote > :first-child {
+    margin-top: 0;
+  }
+
+  blockquote > :last-child {
+    margin-bottom: 0;
+  }
+
+  sup > a::before {
+    content: '[';
+  }
+
+  sup > a::after {
+    content: ']';
+  }
+
+  dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px;
+  }
+
+  table th {
+    font-weight: 600;
+  }
+
+  table th,
+  table td {
+    padding: 6px 13px;
+    border: 1px solid #30363d;
+  }
+
+  table tr {
+    background-color: #0d1117;
+    border-top: 1px solid #21262d;
+  }
+
+  table tr:nth-child(2n) {
+    background-color: #161b22;
+  }
+
+  table img {
+    background-color: transparent;
+  }
+
+  code,
+  tt {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(110, 118, 129, 0.4);
+    border-radius: 6px;
+  }
+
+  code br,
+  tt br {
+    display: none;
+  }
+
+  del code {
+    text-decoration: inherit;
+  }
+
+  pre code {
+    font-size: 100%;
+  }
+
+  pre > code {
+    padding: 0;
+    margin: 0;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  .highlight {
+    margin-bottom: 16px;
+  }
+
+  .highlight pre {
+    margin-bottom: 0;
+    word-break: normal;
+  }
+
+  .highlight pre,
+  pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #161b22;
+    border-radius: 6px;
+  }
+
+  pre code,
+  pre tt {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
   }
 
   .embeddedWrapper {

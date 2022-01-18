@@ -151,6 +151,8 @@
   img {
     border: 2px solid transparent;
     border-radius: 1rem;
+    left: 50% !important;
+
     &:hover {
       border-color: var(--color-accent, $color-accent);
     }

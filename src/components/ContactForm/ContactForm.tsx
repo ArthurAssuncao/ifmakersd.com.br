@@ -11,6 +11,10 @@ import styles from './ContactForm.module.scss';
 
 Yup.setLocale(ptForm);
 
+interface ContactFormError {
+  response: { data: string; status: number };
+}
+
 interface ContactFormData {
   name: string;
   email: string;
@@ -70,7 +74,8 @@ const ContactForm = (): JSX.Element => {
         resetForm();
       }
     } catch (error) {
-      const response = error.response;
+      const theError: ContactFormError = error as ContactFormError;
+      const response = theError.response;
       if (response.data === 'user already exist' && response.status === 400) {
         setFormStatus(formStatusProps.duplicate);
       } else {
@@ -123,11 +128,11 @@ const ContactForm = (): JSX.Element => {
                   value={values.name}
                   helpertext={
                     errors.name && touched.name
-                      ? errors.name
-                      : fieldsHelper.name
+                      ? errors.name.toString()
+                      : fieldsHelper.name.toString()
                   }
                   placeholder="Seu nome"
-                  error={errors.name && touched.name ? true : false}
+                  error={errors.name && touched.name ? 'true' : 'false'}
                   data-error={errors.name && touched.name ? true : false}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -150,7 +155,7 @@ const ContactForm = (): JSX.Element => {
                       : fieldsHelper.email
                   }
                   placeholder="Seu e-mail"
-                  error={errors.email && touched.email ? true : false}
+                  error={errors.email && touched.email ? 'true' : 'false'}
                   data-error={errors.email && touched.email ? true : false}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -175,7 +180,7 @@ const ContactForm = (): JSX.Element => {
                     : fieldsHelper.message
                 }
                 placeholder="Sobre o que é seu contato?"
-                error={errors.message && touched.message ? true : false}
+                error={errors.message && touched.message ? 'true' : 'false'}
                 data-error={errors.message && touched.message ? true : false}
                 onChange={handleChange}
                 onBlur={handleBlur}

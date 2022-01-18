@@ -9,6 +9,7 @@ import objective02 from '../../assets/images/objectives/objetivo-02.webp';
 import objective03 from '../../assets/images/objectives/objetivo-03.webp';
 import { Objective } from '../../components/Objective';
 import { Wave } from '../../components/Wave';
+import Loader from '../../services/Loader';
 import styles from './Objectives.module.scss';
 
 const Objectives = (): JSX.Element => {
@@ -29,6 +30,7 @@ const Objectives = (): JSX.Element => {
                   alt="Aprendizado com base em projetos reais"
                   width={300}
                   height={180}
+                  loader={Loader.imageLoader}
                 />
               }
               title="Aprender fazendo"
@@ -42,6 +44,7 @@ const Objectives = (): JSX.Element => {
                   alt="Aprendizado com base em projetos reais"
                   width={300}
                   height={180}
+                  loader={Loader.imageLoader}
                 />
               }
               title="Transformação da sociedade"
@@ -55,6 +58,7 @@ const Objectives = (): JSX.Element => {
                   alt="Aprendizado com base em projetos reais"
                   width={300}
                   height={180}
+                  loader={Loader.imageLoader}
                 />
               }
               title="Inovação"

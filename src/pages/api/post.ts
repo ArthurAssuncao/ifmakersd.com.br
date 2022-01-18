@@ -4,6 +4,7 @@ import { CmsClient } from '../../services/ContentfulClient';
 import { PostCMS } from './schema/post';
 
 const CONTENT_TYPE = 'post';
+const cmsClient = CmsClient.getInstance();
 
 interface PostContentfull {
   fields: {
@@ -37,8 +38,6 @@ const createPost = (item: PostContentfull) => {
   if (!item || !item.fields) {
     return null;
   }
-
-  console.log(item.fields.category);
 
   const post: PostCMS = {
     title: item.fields.title,
@@ -75,38 +74,38 @@ const handleRequest = async (
   res: NextApiResponse
 ): Promise<void> => {
   const { limit = 10 } = req.query;
-  const data = await CmsClient.getEntries({
+  const data = await cmsClient.getEntries({
     content_type: CONTENT_TYPE,
     order: '-sys.createdAt',
     limit,
   });
 
-  const newData = createPostsAndParse(data.items);
+  const newData = createPostsAndParse(data.items as PostContentfull[]);
 
   res.status(200).json(newData);
 };
 
 const fetchPosts = async (limitReq?: number): Promise<PostCMS[]> => {
   const limit = limitReq && 10;
-  const data = await CmsClient.getEntries({
+  const data = await cmsClient.getEntries({
     content_type: CONTENT_TYPE,
     order: '-sys.createdAt',
     limit,
   });
 
-  const newData = createPostsAndParse(data.items);
+  const newData = createPostsAndParse(data.items as PostContentfull[]);
 
   return newData;
 };
 
 const fetchPost = async (slug: string): Promise<null | PostCMS> => {
-  const data = await CmsClient.getEntries({
+  const data = await cmsClient.getEntries({
     content_type: CONTENT_TYPE,
     limit: 1,
     'fields.slug': slug,
   });
 
-  const newData = data ? createPost(data.items[0]) : null;
+  const newData = data ? createPost(data.items[0] as PostContentfull) : null;
 
   return newData;
 };

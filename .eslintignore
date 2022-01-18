@@ -20,3 +20,5 @@ next.config.js
 next-seo.config.js
 next-env.d.ts
 lint-staged.config.js
+/out/**
+/.next/**

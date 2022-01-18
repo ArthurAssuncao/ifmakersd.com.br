@@ -9,9 +9,9 @@ import {
   Inline,
   MARKS,
 } from '@contentful/rich-text-types';
+import HTMLParse from 'html-react-parser';
 import Image from 'next/image';
 import { CSSProperties, ReactNode } from 'react';
-import ReactHtmlParser from 'react-html-parser';
 import Loader from '../../services/Loader';
 import styles from './BodyRender.module.scss';
 
@@ -23,7 +23,7 @@ const RenderBold = (text: ReactNode) => <strong>{text}</strong>;
 
 const RenderCode = (embedded: ReactNode) => (
   <div className={styles.embeddedWrapper}>
-    {ReactHtmlParser(
+    {HTMLParse(
       embedded
         ? embedded
             ?.toString()

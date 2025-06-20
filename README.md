@@ -17,7 +17,7 @@ O projeto IFMakerSD é um site para divulgação do laboratório IFMaker do IF S
 ## Imagens do projeto
 
 <div align="center">
-<img src="screenshot/screenshot-1.jpeg" width="400" alt="Screenshot 1 do projeto IFMakerSD" />
+<img src="https://github.com/ArthurAssuncao/ifmakersd.com.br/blob/main/screenshots/screenshot-1.jpeg?raw=true" width="400" alt="Screenshot 1 do projeto IFMakerSD" />
 <br>
 <em>Página inicial do site IFMakerSD em desktops</em>
 </div>
@@ -25,7 +25,7 @@ O projeto IFMakerSD é um site para divulgação do laboratório IFMaker do IF S
 <br>
 
 <div align="center">
-<img src="screenshot/screenshot-2-portrait.png" width="400" alt="Screenshot 2 do projeto IFMakerSD" />
+<img src="https://github.com/ArthurAssuncao/ifmakersd.com.br/blob/main/screenshots/screenshot-2-portrait.png?raw=true" width="400" alt="Screenshot 2 do projeto IFMakerSD" />
 <br>
 <em>Página interna do site IFMakerSD em smartphones</em>
 </div>
